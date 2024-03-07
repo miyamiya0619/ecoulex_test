@@ -1,0 +1,318 @@
+@charset "utf-8";
+
+/* lab */
+#lab{
+	position: relative;
+	margin:0 auto;
+	padding: 0 0 60px 0;
+}
+#lab .bg{
+	position: relative;
+	margin:0 auto;
+	padding-bottom: 30px;
+}
+#lab .bg::before{
+	position: absolute;
+	left: 0;
+	bottom: 5%;
+	background-image: url("../images/common/bg_pages.png");
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	background-size: cover;
+	content: '';
+	display: block;
+	width: 64%;
+	height:  100%;
+}
+#lab .labTtl{
+	position: relative;
+	margin: 0 auto 20px auto;
+	width: calc(100% - 100px);
+	max-width: 620px;
+}
+#lab h3{
+	position: relative;
+	margin: 0 auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+	font-size: .18rem;
+	text-align: center;
+}
+#lab .labImg{
+	position: relative;
+	margin:10px auto 0 auto;
+	width: calc(100% - 100px);
+	max-width: 620px;
+}
+
+#lab .qaArea{
+	position: relative;
+	margin: 30px auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+}
+#lab .qaArea .Btn{
+	position: relative;
+	margin: 0 auto;
+	padding: 20px 0;
+	cursor: pointer;
+	background-color: #0064b3;
+	border-radius: 40px;
+	transition: all 0.07s;
+}
+#lab .qaArea .Btn.open{border-top-left-radius: 40px;border-top-right-radius: 40px;border-bottom-left-radius: 0;border-bottom-right-radius: 0;}
+#lab .qaArea .Btn img{
+	width: auto;
+	height: 21px;
+	margin: 0 auto;
+}
+#lab .qaArea .Btn::before,
+#lab .qaArea .Btn::after {
+  position: absolute;
+  content: "";
+  display: block;
+  transition: all 0.4s;
+  background: #ffffff;
+  right: 20px;
+  top: 50%;
+  width: 15px;
+  height: 2px;
+  transform: translate(-50%, -50%);
+}
+#lab .qaArea .Btn::before {transform: translate(-50%, -50%) rotate(90deg);}
+#lab .qaArea .Btn.open::before {transform: translate(-50%, -50%) rotate(0deg);}
+#lab .qaArea .qaList{
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	display: none;
+}
+#lab .qaArea .qaList .Box{
+	position: relative;
+	margin: 0 auto;
+	padding: 30px 20px 160px 20px;
+	background-color: #ebf8ff;
+}
+#lab .qaArea .qaList .Box:nth-child(even){background-color: #f6f6f6;}
+#lab .qaArea .qaList .Box:last-child{border-bottom-left-radius: 40px;border-bottom-right-radius: 40px;}
+#lab .qaArea .qaList .Box .question{
+	position: relative;
+	margin: 0 auto 60px auto;
+	padding: 10px 20px 30px 20px;
+	width: calc(100% - 40px);
+	background-color: #0064b3;
+	border-radius: 20px;
+	color: #ffffff;
+	line-height: 1.4em;
+}
+#lab .qaArea .qaList .Box .question::before{
+	position: absolute;
+	top: calc(100% - 20px);
+	left: 5px;
+	content: '';
+	display: block;
+	width: 70px;
+	height: 72px;
+	background-image: url("../images/lab/iconQ.png");
+	background-repeat: no-repeat;
+	background-position: 50% 0;
+	background-size: contain;
+}
+#lab .qaArea .qaList .Box .question::after{
+	position: absolute;
+	top: 100%;
+	left: 90px;
+	content: '';
+	display: block;
+	transform: translateY(-50%) rotate(-45deg);
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 30px 10px 0;
+	border-color: transparent #0064b3 transparent transparent;
+}
+#lab .qaArea .qaList .Box .answer{
+	position: relative;
+	margin: 0 auto;
+	padding: 20px 20px 30px 20px;
+	width: calc(100% - 40px);
+	background-color: #ffffff;
+	border-radius: 20px;
+	font-size: .14rem;
+	line-height: 1.7em;
+}
+#lab .qaArea .qaList .Box .answer::before{
+	position: absolute;
+	top: calc(100% - 20px);
+	right: 10px;
+	content: '';
+	display: block;
+	width: 130px;
+	height: 180px;
+	background-image: url("../images/lab/iconA.png");
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+	background-size: contain;
+}
+#lab .qaArea .qaList .Box .answer::after{
+	position: absolute;
+	top: calc(100% - 5px);
+	right: 120px;
+	transform: rotate(45deg);
+	content: '';
+	display: block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 10px 0 10px 30px;
+	border-color: transparent transparent transparent #ffffff;
+}
+#lab .qaArea .qaList .Box .answer .Img{
+	position: relative;
+	margin: 20px auto 0 auto;
+}
+#lab .qaArea .qaList .Box .answer .Img img{margin: 0 auto;}
+#lab .qaArea .qaList .Box .answer.flexbox .Img{width: 60%;}
+#lab .qaArea .qaList .Box .answer.flexbox .Txt{width: 100%;}
+#lab .qaArea .qaList .Box .answer .Img.w50{width: 100%;}
+#lab .qaArea .qaList .Box .answer .Img.w50 img{width: calc(50% - 5px);display: inline-block;margin: 0;}
+#lab .qaArea .qaList .Box .answer .Img.w50 img:first-child{margin: 0 10px 0 0;}
+
+
+/* ----- pc ----- */
+@media screen and (min-width: 769px) {
+	
+	/* lab */
+	#lab{padding: 0 0 120px 0;}
+	#lab .bg{
+		padding-bottom: 50px;
+	}
+	#lab .bg::before{
+		bottom: 3%;
+		width: 46%;
+	}
+	#lab h3{font-size: .20rem;}
+	#lab .labImg{margin:30px auto;padding-bottom: 20px;}
+
+	#lab .qaArea{margin: 60px auto;}
+	#lab .qaArea .Btn img{height:40px;}
+	#lab .qaArea .Btn::before,
+	#lab .qaArea .Btn::after {
+	  right: 100px;
+	  width: 30px;
+	  height: 4px;
+	}
+	#lab .qaArea .qaList .Box{padding: 40px 60px;}
+	#lab .qaArea .qaList .Box .question{
+		margin: 0 0 0 160px;
+		padding: 20px 40px;
+		width: calc(100% - 240px);
+		font-size: .24rem;
+		border-radius: 100px;
+	}
+	#lab .qaArea .qaList .Box .question::before{
+		background-image: url("../images/lab/iconQ_pc.png");
+		transform: translateY(-50%);
+		top: 50%;
+		left: -160px;
+		width: 125px;
+		height: 142px;
+	}
+	#lab .qaArea .qaList .Box .question::after{
+		top: 50%;
+		left: -30px;
+		border-width: 15px 50px 15px 0;
+		transform: translateY(-50%);
+	}
+	#lab .qaArea .qaList .Box .answer{
+		margin: 60px 0 0 0;
+		padding: 40px;
+		width: calc(100% - 230px);
+		font-size: .16rem !important;
+		line-height: 1.8em;
+		border-radius: 40px;
+	}
+	#lab .qaArea .qaList .Box .answer::before{
+		background-image: url("../images/lab/iconA_pc.png");
+		background-position: 50% 0;
+		top: 10px;
+		right: -200px;
+		display: block;
+		width: 180px;
+		height: 300px;
+	}
+	#lab .qaArea .qaList .Box .answer::after{
+		transform: rotate(0);
+		top: 30px;
+		right: -35px;
+		border-width: 15px 0 15px 50px;
+	}
+	#lab .qaArea .qaList .Box .answer.flexbox{flex-direction: row-reverse;}
+	#lab .qaArea .qaList .Box .answer .Img{margin: 30px auto 0 auto;}
+	#lab .qaArea .qaList .Box .answer.flexbox .Img{width: 40%;margin: 0;}
+	#lab .qaArea .qaList .Box .answer .Img.w50 img{width: 100%;display: block;}
+	#lab .qaArea .qaList .Box .answer .Img.w50 img:first-child{margin: 0 0 10px 0;}
+	#lab .qaArea .qaList .Box .answer.flexbox .Txt{width: calc(60% - 40px);}
+}
+@media screen and (min-width: 900px) {
+	#lab .qaArea .qaList .Box{padding: 80px 100px;}
+	#lab .qaArea .qaList .Box .question{
+		margin: 0 0 0 160px;
+		padding: 30px 60px;
+		width: calc(100% - 280px);
+		font-size: .24rem;
+	}
+	#lab .qaArea .qaList .Box .question::before{
+		left: -160px;
+		width: 143px;
+		height: 142px;
+	}
+	#lab .qaArea .qaList .Box .question::after{
+		left: -30px;
+		border-width: 15px 50px 15px 0;
+	}
+	#lab .qaArea .qaList .Box .answer{
+		margin: 60px 0 0 0;
+		padding: 60px;
+		width: calc(100% - 300px);
+		font-size: .16rem !important;
+		line-height: 1.8em;
+	}
+	#lab .qaArea .qaList .Box .answer::before{
+		top: 18px;
+		right: -240px;
+		display: block;
+		width: 218px;
+		height: 297.5px;
+	}
+	#lab .qaArea .qaList .Box .answer::after{
+		top: 30px;
+		right: -35px;
+		border-width: 15px 0 15px 50px;
+	}
+	#lab .qaArea .qaList .Box .answer.flexbox{flex-direction: row-reverse;}
+	#lab .qaArea .qaList .Box .answer .Img{margin: 30px auto 0 auto;}
+	#lab .qaArea .qaList .Box .answer.flexbox .Img{width: 40%;margin: 0;}
+	#lab .qaArea .qaList .Box .answer .Img.w50 img{width: 100%;display: block;}
+	#lab .qaArea .qaList .Box .answer .Img.w50 img:first-child{margin: 0 0 10px 0;}
+	#lab .qaArea .qaList .Box .answer.flexbox .Txt{width: calc(60% - 40px);}
+}
+@media screen and (max-width: 500px) {
+	#lab .qaArea .qaList .Box .answer .Img.w50 img{width: 100%;display: block;}
+	#lab .qaArea .qaList .Box .answer .Img.w50 img:first-child{margin: 0 0 10px 0;}
+}
+@media screen and (min-width: 770px) and (max-width: 1050px) {
+	#lab .qaArea .Btn::before,
+	#lab .qaArea .Btn::after {
+		right: 30px;
+	}
+}
+@media screen and (max-width: 418px) {
+	#lab .qaArea .Btn img{
+		height: 17px;
+	}
+	#lab .qaArea .Btn::before,
+	#lab .qaArea .Btn::after {
+		right: 10px;
+	}
+}
