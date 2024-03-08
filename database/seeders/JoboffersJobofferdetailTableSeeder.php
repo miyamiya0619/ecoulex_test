@@ -17,7 +17,7 @@ class JoboffersJobofferdetailTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 2; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             DB::table('joboffers_jobofferdetails')->insert([
                 'id' => $i,
                 'jobcat_id' => rand(1, 4),

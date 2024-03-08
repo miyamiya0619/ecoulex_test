@@ -16,7 +16,7 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 2; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $companyName = '宮本企業' . $i;
             $companyNameKana = 'ミヤモトキギョウ' . $i;
             $mail1 = 'miya' . $i . '00@example.com';

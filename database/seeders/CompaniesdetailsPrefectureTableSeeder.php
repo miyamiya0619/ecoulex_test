@@ -18,10 +18,10 @@ class CompaniesdetailsPrefectureTableSeeder extends Seeder
     public function run()
     {
         $prefectureIds = [13, 14, 15, 16, 17, 18, 19, 20]; // 9種類の prefecture_id
-        $count = 99; // 全体の件数
+        $count = 100; // 全体の件数
 
         $index = 0; // prefectureIds配列のインデックスを追跡する変数
-        for ($i = 2; $i <= $count + 1; $i++) {
+        for ($i = 1; $i <= $count + 1; $i++) {
             $companyId = $i;
             $prefectureId = $prefectureIds[$index];
 

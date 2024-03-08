@@ -17,7 +17,7 @@ class CompaniesdetailTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 2; $i <= 100; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             $company_id = $i;
             $url = 'https://example.com/' . $i;
             $address_num = rand(100, 999) . '-' . rand(1000, 9999);
