@@ -1,0 +1,93 @@
+@extends('layouts.app')
+@section('title', 'CONTACT｜つくりたい未来がある。（一社）エコ・ウレックス工業会')
+
+@section('contact-css')
+<link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+@endsection
+
+@section('form-css')
+<link rel="stylesheet" href="{{ asset('css/form.css') }}">
+@endsection
+
+@section('content')
+    
+	<!-- main-contents -->
+	<div id="main-contents">
+			
+		<!-- contact -->
+        <section id="contact" class="result">
+			<div class="bg">
+				<h2 class="contents"><span class="font-MP">CONTACT</span>
+					防水工事・各種工事<br class="sp">のご相談</h2>
+			</div>
+			
+			<div class="searchBox contents flexbox flexbetween">
+				<div class="searchData">
+					
+					<div class="searchList flexbox flexstart">
+						<div class="ttl">工事：</div>
+						<ul class="searchList flexbox flexaligncenter flexstart">
+							<li class="searchType">防水工事</li>
+							<li class="searchType">外壁補修工事各種</li>
+						</ul>
+					</div>
+
+					<div class="searchArea flexbox flexstart">
+						<div class="ttl">地域：</div>
+						<ul class="searchList flexbox flexaligncenter flexstart">
+							<li class="searchType">北海道｜北海道</li>
+							<li class="searchType">東北｜青森、岩手、福島</li>
+							<li class="searchType">東北｜青森、岩手、福島</li>
+						</ul>
+					</div>
+					
+				</div><!-- /searchData -->
+
+			</div><!-- /searchBox -->
+				
+			
+			<div class="Nodata contents">
+				
+				<p>該当の企業がありません。</p>
+				
+				<div class="searchButton">
+					<a href="index.html" class="button">条件を変更する</a>
+				</div>
+			</div><!-- /Nodata -->
+			
+		</section>
+		
+		<footer>
+			<div class="footer">
+				<div class="flexbox flexbetween flexaligncenter">
+					<div class="links flexbox">
+						<div><a href="https://www.eco-ulex.com/">エコ・ウレックス工業会</a></div>
+						<div><a href="https://www.eco-ulex.com/contact">個人情報の取り扱い</a></div>
+					</div>
+					
+					<div class="copyraight">
+						<p>Copyright &copy; eco-ulex. All Rights Reserved.</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	
+		<a href="#wrap" class="totop"><span></span></a>
+		
+		<div class="menuBtmWrap">
+			<div class="menuBtn flexbox">
+				<a href="../contact/" class="flexbox flexaligncenter flexcenter"><img src="../assets/images/common/menu01.png" alt=""><p>防水工事・<br>各種工事の<br>ご相談</p></a>
+				<a href="../recruit/" class="flexbox flexaligncenter flexcenter"><img src="../assets/images/common/menu02.png" alt=""><p>防水の<br>挑戦者になる</p></a>
+			</div>
+		</div>
+		
+	</div><!-- main-contents -->
+</div><!-- wrap -->
+@endsection
+
+@section('form-js')
+<script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
+@endsection
+
+</body>
+</html>

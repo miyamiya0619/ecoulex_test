@@ -1,0 +1,440 @@
+@charset "utf-8";
+
+/* contact */
+#contact{
+	position: relative;
+	margin:0 auto;
+	padding: 0 0 20px 0;
+	background-color: #ebf8ff;
+}
+#contact .bg{
+	position: relative;
+	margin:0 auto;
+	padding-top:40px;
+	padding-bottom: 90px;
+}
+#contact .bg::before{
+	position: absolute;
+	left: 0;
+	bottom: 5%;
+	background-image: url("../images/common/bg_pages.png");
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	background-size: cover;
+	content: '';
+	display: block;
+	width: 64%;
+	height: 100%;
+}
+#contact h2{margin: 0 auto 20px auto;}
+#contact h2::before{
+	position: absolute;
+	left:9.5em;
+	bottom:.5em;
+	background-image: url("../images/contact/icon01.svg");
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: auto;
+	content: '';
+	display: block;
+	width: 18%;
+	max-width: 60px;
+	height: 100%;
+}
+#contact.result h2{padding-bottom: 4em;}
+#contact.result h2::before{background-position: 0 .5em;}
+#contact h3{
+	position: relative;
+	margin: 0 auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+	font-size: .18rem;
+	padding-bottom: 4em;
+}
+#contact h4{
+	position: relative;
+	margin: 0 auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+	font-size: .22rem;
+	line-height: 1.8em;
+	color: #0064b3;
+}
+#contact h4 span{display: block; font-size: .14rem;line-height: 1.6em;}
+#contact .selectWrap{
+	position: relative;
+	margin:-130px auto 0 auto;
+}
+#contact.result .selectWrap{margin:-80px auto 0 auto;}
+#contact .selectArea{
+	position: relative;
+	margin: 5px auto 0 auto;
+	width: calc(100% - 40px);
+	max-width: 960px;
+	background-color: #ffffff;
+	border: solid 2px #0064b3;
+	border-radius: 20px;
+	overflow: hidden;
+}
+#contact .selectArea.selectType{margin: 5px auto 40px auto;padding: 20px 0 25px 0;}
+#contact .selectArea label{
+	width: 100%;
+	max-width: 210px;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+#contact .selectArea.areaWrap{text-align: center;border-radius: 100px;}
+#contact .selectArea.areaWrap.display{border-radius: 20px;}
+#contact .selectArea.areaWrap div.areaName{position: relative;transition: all .3s ease-out;padding: 15px 20px;}
+#contact .selectArea.areaWrap div.areaName.clicked{background-color: #ffb8c1;color: #0064b3;}
+#contact .selectArea.areaWrap div.areaName span{
+	position: absolute;
+	top:50%;
+	transform: translateY(-50%);
+	right:20px;
+	width: 15px;
+	height: 9px;
+	background-image: url("../images/common/arrow_b.png");
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	background-size: contain;
+	display: block;
+	transition: all .3s ease-out;
+	cursor: pointer;
+}
+#contact .selectArea.areaWrap div.areaName.display span{transform: translateY(-50%) rotate(180deg);}
+#contact .selectArea.areaWrap .prefArea{
+	position: relative;
+	margin: 0 auto;
+	padding: 10px 0;
+	display: none;
+	border-top: solid 2px #0064b3;
+}
+#contact .selectArea.areaWrap label{width: 7em;}
+#contact .selectArea.areaWrap .prefArea label{width: calc(50% - 50px);text-align: left;}
+#contact .selectArea.areaWrap .prefArea label.pclicked{color: #0064b3;}
+#contact .buttonArea{
+	position: relative;
+	margin:50px auto 20px auto;
+	text-align: center;
+}
+#contact .selectArea label.selected{color: #0064b3;}
+
+#contact .selectArea.gray{border: solid 2px #c0bfbf;color: #c0bfbf;}
+#contact .selectArea.areaWrap.gray div.areaName span{background-image: url("../images/common/arrow_g.png");}
+#contact .selectArea.gray::before{
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	content: '';
+	display: block;
+	z-index: 10;
+}
+
+/*  result */
+#contact.result .searchBox{
+	position: relative;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+	margin:-160px auto 0 auto;
+	color: #0064b3;
+	line-height: 1em;
+}
+#contact.result .searchBox .searchData{
+	position: relative;
+	width: 100%;
+}
+#contact.result .searchBox .searchButton{
+	position: relative;
+	margin: 20px auto;
+	width: 100%;
+}
+#contact.result .searchBox .searchButton a{
+	position: relative;
+	margin: 0;
+	display: inline-block;
+	padding: 4px 2em;
+	width: auto;
+	line-height: 1.4em;
+	text-align: center;
+	background-color: #0064b3;
+	border: solid 1px #0064b3;
+	border-radius: 100px;
+	color: #ffffff !important;
+	transition: all .3s ease-out;
+}
+#contact.result .searchBox .searchButton a:hover{background-color: #ffffff;color: #0064b3 !important;}
+#contact.result .searchBox .searchList .ttl, #contact.result .searchBox .searchArea .ttl{
+	position: relative;
+	margin: 0;
+	padding-top: 4px;
+	width: 3.1em;
+}
+#contact.result .searchBox ul{
+	position: relative;
+	margin: 0 0 5px 0;
+	width: calc(100% - 3.1em);
+	gap: 5px;
+}
+#contact.result .searchBox .searchType{
+	position: relative;
+	padding: 4px 1em;
+	font-size: .12rem;
+	background-color: #ffffff;
+	border: solid 2px #0064b3;
+	border-radius: 100px;
+}
+#contact.result .resultWrap{
+	position: relative;
+	margin: 20px auto 30px auto;
+	width: calc(100% - 80px);
+	padding: 20px;
+	max-width: 780px;
+	background-color: #ffffff;
+	border: solid 2px #0064b3;
+	border-radius: 20px;
+}
+#contact.result .resultWrap .Name{
+	position: relative;
+	margin: 0;
+	color: #0064b3;
+	font-size: .22rem;
+	font-weight: 500;
+}
+#contact.result .resultWrap .searchList{
+	position: relative;
+	margin: 10px 0 20px 0;
+	gap: 5px 10px;
+}
+#contact.result .resultWrap .searchList .searchType{
+	position: relative;
+	padding: 5px 1.5em;
+	font-size: .12rem;
+	background-color: #ebf8ff;
+	color: #0064b3;
+	line-height: 1em;
+}
+#contact.result .resultWrap .Company{
+	position: relative;
+	margin: 0 auto;
+	gap:20px 30px;
+}
+#contact.result .resultWrap .Company .Img{position: relative; width: 100%;}
+#contact.result .resultWrap .Company .Txt{position: relative; width: 100%;}
+#contact.result .resultWrap .Company .Txt .catch{
+	position: relative;
+	margin: 0 auto 10px auto;
+	font-size: .16rem;
+	color: #0064b3;
+}
+#contact.result .resultWrap .ttl{
+	position: relative;
+	margin: 30px auto 10px auto;
+	text-align: center;
+	font-size: .19rem;
+	color: #0064b3;
+	font-weight: 500;
+}
+#contact.result .resultWrap dl{
+	position: relative;
+	margin: 0 auto;
+	border-top: solid 2px #f6f6f6;
+}
+#contact.result .resultWrap dl dt{
+	position: relative;
+	margin: 0;
+	border-bottom: solid 2px #f6f6f6;
+	width: 20%;
+	padding: 10px 1em;
+	color: #0064b3;
+	font-size: .13rem;
+}
+#contact.result .resultWrap dl dd{
+	position: relative;
+	margin: 0;
+	border-bottom: solid 2px #f6f6f6;
+	width: calc(80% - 3em);
+	padding: 10px 1em 10px 0;
+}
+#contact.result .resultWrap dl dd a{
+	position: relative;
+	color: #333333;
+	transition: all .3s ease-out;
+}
+#contact.result .resultWrap dl dd a::after{
+	position: absolute;
+	bottom: -3px;
+	width: 100%;
+	display: block;
+	height: 1px;
+	content: '';
+	background-color: #333333;
+	transition: all .3s ease-out;
+}
+#contact.result .resultWrap dl dd a:hover{opacity: .6;}
+#contact.result .resultWrap dl dd a:hover::after{opacity: 0;}
+
+#contact.result .resultNav{
+	position: relative;
+	margin: 0 auto 20px auto;
+	width: calc(100% - 20px);
+}
+#contact.result .resultNav ul{
+	position: relative;
+	gap:0 10px;
+}
+#contact.result .resultNav ul li a{position: relative;color: #333333;transition: all .3s ease-out;}
+#contact.result .resultNav ul li.active a{color: #0064b3;}
+#contact.result .resultNav ul li a:hover{color: #0064b3;opacity: .6;}
+#contact.result .resultNav ul li.prevBtn, #contact.result .resultNav ul li.nextBtn{
+	position: relative;
+	width: 1.5em;
+	height: 1.5em;
+	margin: 0 0 0 15px;
+	background-image: url("../images/common/arrow.svg");
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-size: contain;
+	transition: all .3s ease-out;
+}
+#contact.result .resultNav ul li.prevBtn{margin: 0 15px 0 0;transform: scale(-1,-1);}
+#contact.result .resultNav ul li.prevBtn:hover, #contact.result .resultNav ul li.nextBtn:hover{background-image: url("../images/common/arrow_w.svg");}
+#contact.result .resultNav ul li.prevBtn a, #contact.result .resultNav ul li.nextBtn a{
+	position: absolute;
+	top:0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#contact.result .Nodata{
+	position: relative;
+	margin:0 auto;
+	padding-bottom: 40px;
+	width: calc(100% - 20px);
+	text-align: center;
+}
+#contact.result .Nodata p{
+	padding: 50px 0;
+	color: #0064b3;
+	font-size: .15rem;
+}
+#contact.result .Nodata .button{background-position: 2px 50%;background-image: url("../images/common/arrow01.svg");}
+#contact.result .Nodata .button:hover{background-image: url("../images/common/arrow_w01.svg");}
+
+/* ----- pc ----- */
+@media screen and (min-width: 1090px) {
+
+	/* contact */
+	#contact .bg{
+		padding-top:100px;
+		padding-bottom: 100px;
+	}
+	#contact .bg::before{
+		bottom: 3%;
+		width: 46%;
+	}
+	#contact h2{margin: 0 auto 30px auto;}
+	#contact h2::before{
+		left:13.9em;
+		bottom:0;
+		max-width: 82px;
+	}
+	#contact.result h2{padding-bottom: 2.5em;}
+	#contact.result h2::before{background-position: 0 0;}
+	#contact h3{font-size: .20rem;padding-bottom: 3.5em;}
+	#contact h4{font-size: .28rem;}
+	#contact h4 span{display: inline; font-size: .20rem;line-height: 1.6em;}
+	#contact .selectWrap{margin:-100px auto 0 auto;}
+	#contact .selectArea{
+		margin: 10px auto 0 auto;
+		border-radius: 40px;
+		overflow: hidden;
+	}
+	#contact .selectArea.selectType{margin: 5px auto 50px auto;padding: 40px 70px;}
+	#contact .selectArea label{
+		width: calc(33.33% - 40px);
+		padding: 10px 20px;
+		margin: 0;
+	}
+	#contact .selectArea.areaWrap{text-align: left;max-width: 1100px;}
+	#contact .selectArea.areaWrap.display{border-radius: 40px;}
+	#contact .selectArea.areaWrap div.areaName{padding: 15px 70px;}
+	#contact .selectArea.areaWrap div.areaName span{
+		right:60px;
+		width: 20px;
+		height: 12px;
+	}
+	#contact .selectArea.areaWrap .prefArea{padding: 20px 70px;}
+	#contact .selectArea.areaWrap label{display: block; margin: 0 auto; width: 10em;}
+	#contact .selectArea.areaWrap .prefArea label{margin: 0; padding: 10px 0;width: calc(100% / 6);text-align: left;}
+	#contact .buttonArea{margin:80px auto 100px auto;}
+
+	
+	/*  result */
+	#contact.result .searchBox{margin:-130px auto 0 auto;}
+	#contact.result .searchBox .searchData{
+		margin: 0;
+		width: calc(100% - 15em);
+	}
+	#contact.result .searchBox .searchButton{
+		margin: 0;
+		width: 15em;
+	}
+	#contact.result .searchBox .searchList .ttl, #contact.result .searchBox .searchArea .ttl{padding-top: 5px;}
+	#contact.result .searchBox ul{
+		margin: 0 0 10px 0;
+		gap: 10px;
+	}
+	#contact.result .searchBox .searchType{font-size: .16rem;}
+	#contact.result .resultWrap{
+		margin: 40px auto 80px auto;
+		padding: 60px 160px;
+		border-radius: 40px;
+	}
+	#contact.result .resultWrap .Name{font-size: .38rem;}
+	#contact.result .resultWrap .searchList{margin: 20px 0 40px 0;}
+	#contact.result .resultWrap .searchList .searchType{
+		padding: 7px 2em;
+		font-size: .16rem;
+	}
+	#contact.result .resultWrap .Company .Img{width: 32%; max-width: 240px;}
+	#contact.result .resultWrap .Company .Txt{width: calc(68% - 30px); max-width: calc(100% - 240px);font-size: .16rem;}
+	#contact.result .resultWrap .Company .Txt .catch{
+		margin: 15px auto 0 auto;
+		font-size: .2rem;
+	}
+	#contact.result .resultWrap .ttl{
+		margin: 50px auto 15px auto;
+		font-size: .28rem;
+	}
+	#contact.result .resultWrap dl dt{
+		width: 7em;
+		padding: 20px 2em;
+		color: #0064b3;
+		font-size: .16rem;
+	}
+	#contact.result .resultWrap dl dd{
+		width: calc(100% - 17em);
+		padding: 20px 2em;
+		font-size: .16rem;
+	}
+	
+	#contact.result .resultNav{margin: 0 auto 80px auto;}
+	#contact.result .resultNav ul{gap:0 25px;font-size: .20rem;}
+	#contact.result .resultNav ul li.prevBtn, #contact.result .resultNav ul li.nextBtn{
+		width: 2em;
+		height: 2em;
+	}
+	
+	#contact.result .Nodata{padding-bottom: 100px;}
+	#contact.result .Nodata p{
+		padding:  150px 0 100px 0;
+		font-size: .28rem;
+	}
+
+}
+

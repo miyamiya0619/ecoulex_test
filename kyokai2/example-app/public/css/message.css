@@ -1,0 +1,84 @@
+@charset "utf-8";
+
+/* message */
+#message{
+	position: relative;
+	margin:0 auto;
+	padding: 0 0 60px 0;
+}
+#message .bg{
+	position: relative;
+	margin:0 auto;
+	padding-top:40px;
+}
+#message .bg::before{
+	position: absolute;
+	left:0;
+	bottom: 3%;
+	background-image: url("../images/common/bg_pages.png");
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	background-size: cover;
+	content: '';
+	display: block;
+	width: 64%;
+	height: 100%;
+}
+#message h3{
+	position: relative;
+	margin: 0 auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+}
+#message h3 img{
+	position: relative;
+	width: calc(100% - 20px);
+	max-width: 780px;
+}
+#message p{
+	position: relative;
+	margin: 20px auto 0 auto;
+	font-size: .16rem;
+}
+#message .Txt{
+	position: relative;
+	margin: 40px auto 0 auto;
+	width: calc(100% - 40px);
+	max-width: 1100px;
+}
+#message .nameWrap{
+	position: relative;
+	width: calc(100% - 40px);
+	margin: 40px auto 0 auto;
+	max-width: 1100px;
+}
+#message .name{
+	position: relative;
+	width: 50%;
+	padding-bottom: 20px;
+}
+#message .photo{
+	position: relative;
+	width: calc(40% - 20px);
+	margin: 0 20px 0 0;
+}
+
+/* ----- pc ----- */
+@media screen and (min-width: 769px) {
+	
+	/* message */
+	#message{padding: 0 0 120px 0;}
+	#message .bg{padding-top:100px;}
+	#message .bg::before{width: 46%;}
+	#message p{margin: 40px auto 0 auto;}
+	#message .Txt{margin: 80px auto 0 auto;}
+	#message .nameWrap{margin: 80px auto 0 auto;}
+	#message .name{
+		max-width: 250px;
+		padding-bottom: 20px;
+	}
+	#message .photo{
+		max-width: 155px;
+		margin: 0 30px 0 0;
+	}
+}

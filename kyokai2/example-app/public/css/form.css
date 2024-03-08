@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+input[type="checkbox"], input[type="radio"] {
+	position: relative;
+	margin: 0 .7em 0 0;
+	width: 22px;
+	height: 22px;
+	background-color: #f6f6f6;
+	border-radius: 100px;
+	vertical-align: -5px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+input[type="checkbox"]:checked, input[type="radio"]:checked{background-color: #ffb8c1;}
+input[type="checkbox"]:before, input[type="radio"]:before {
+	position: absolute;
+	top: 3px;
+	left: 7px;
+	transform: rotate(45deg);
+	width: 6px;
+	height: 10px;
+	border-right: 2px solid #c0bfbf;
+	border-bottom: 2px solid #c0bfbf;
+	content: '';
+}
+input[type="checkbox"]:checked:before, input[type="radio"]:checked:before {
+	position: absolute;
+	top: 3px;
+	left: 7px;
+	transform: rotate(45deg);
+	width: 6px;
+	height: 10px;
+	border-right: 2px solid #0064b3;
+	border-bottom: 2px solid #0064b3;
+	content: '';
+}
+
+/* 地域選択時 */
+.clicked input[type="checkbox"]:checked{background-color: #0064b3;}
+.clicked input[type="checkbox"]:checked:before {
+	border-right: 2px solid #ffffff;
+	border-bottom: 2px solid #ffffff;
+}
+
+/* リクルート地域表示 */
+#recruit .areaList input[type="radio"] {opacity: 0;margin:0;width: 0;}
+
+@media screen and (min-width: 769px) {
+	input[type="checkbox"], input[type="radio"] {
+		margin: 0 .9em 0 0;
+		width: 30px;
+		height: 30px;
+		vertical-align: -8px;
+	}
+	input[type="checkbox"]:before, input[type="radio"]:before {
+		top: 5px;
+		left: 10px;
+		width: 8px;
+		height: 12px;
+		border-right: 3px solid #c0bfbf;
+		border-bottom: 3px solid #c0bfbf;
+	}
+	input[type="checkbox"]:checked:before, input[type="radio"]:checked:before {
+		top: 5px;
+		left: 10px;
+		width: 8px;
+		height: 12px;
+		border-right: 3px solid #0064b3;
+		border-bottom: 3px solid #0064b3;
+		content: '';
+	}
+}
