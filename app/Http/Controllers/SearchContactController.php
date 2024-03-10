@@ -3,45 +3,87 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\WaterproofdetailsCat;
-use App\Models\PrefecturesCat;
-use App\Models\Company;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+
+
+use App\Services\CompanySearchService;
+use App\Services\ContactService;
+
 class SearchContactController extends Controller
 {
+    private $companySearchService;
+    private $ContactService;
+    
+    public function __construct(CompanySearchService $companySearchService, ContactService $ContactService)
+    {
+        $this->companySearchService = $companySearchService;
+        $this->ContactService = $ContactService;
+    }
+    
+
     //初期表示
     public function index()
     {
-        // construction_cats全件取得
-        $categories = WaterproofdetailsCat::all();
-        // Prefecture全件取得
-        $prefetures = PrefecturesCat::all(); 
+        $data = $this->ContactService->getIndexData();
+
+        
+        if (session()->has('categoryIds') || session()->has('prefectureIds') || !empty($_GET['checkflg'])) {
+            $categoryIds = session()->get('categoryIds');
+            $prefectureIds = session()->get('prefectureIds');
+
+            // セッションから特定のキーを破棄
+            session()->forget('categoryIds');
+            session()->forget('prefectureIds');
+        } else {
+            // セッションからデータが取得できない場合は初期化
+            $categoryIds = [];
+            $prefectureIds = [];
+        }
+
+        $data['categoryIds'] = $categoryIds;
+        $data['prefectureIds'] = $prefectureIds;
+
+        // dd($data);
 
         // 取得したデータをビューに渡して表示
-        return view('contact.top01', compact('categories','prefetures'));
+        return view('contact.top01', $data);
     }
     //検索メイン処理
     public function contact_search(Request $request)
     {
-        //工事、カテゴリの必須チェック
-        $errors = $this->validateRequest($request);
-        
+        // validateRequest 関数を呼び出し、戻り値を取得する
+        $result = $this->validateRequest($request);
+
+        // エラーメッセージを取得
+        $errors = $result['errors'];
+
+        // カテゴリIDを取得
+        $categoryIds = $result['categoryIds'];
+
+        // 都道府県IDを取得
+        $prefectureIds = $result['prefectureIds'];
+
+            
+        session()->put('categoryIds', $categoryIds);
+        session()->put('prefectureIds', $prefectureIds);
+
         // エラーメッセージがある場合はリダイレクト
         if (!empty($errors)) {
-            return redirect()->back()->with('errors', $errors);
+
+            return redirect()->route('index')->withErrors($errors)->withInput([
+                'categoryIds' => $categoryIds,
+                'prefectureIds' => $prefectureIds
+            ]);
         }
     
         // カテゴリと都道府県情報の取得
-        list($categories, $groupedPrefectures) = $this->fetchCategoryAndPrefectureData($request);
+        list($categories, $groupedPrefectures) = $this->ContactService->getCategoryAndPrefectureData($categoryIds, $prefectureIds);
         
         //ページャ遷移時に使用するためセッションに保存
         session()->put('categories', $categories);
         session()->put('groupedPrefectures', $groupedPrefectures);
     
         // 会社情報の取得
-        $companies = $this->fetchCompanyData();
-        // dd($companies);
+        $companies = $this->companySearchService->fetchCompanyData($groupedPrefectures, $categories);
     
         return view('contact.result', compact('categories', 'groupedPrefectures', 'companies'));
     }
@@ -53,9 +95,8 @@ class SearchContactController extends Controller
         $groupedPrefectures = session()->get('groupedPrefectures');
     
         // 会社情報の取得
-        $companies = $this->fetchCompanyData();
+        $companies = $this->companySearchService->fetchCompanyData($groupedPrefectures, $categories);
 
-    
         return view('contact.result', compact('categories', 'groupedPrefectures', 'companies'));
     }
 
@@ -76,96 +117,15 @@ class SearchContactController extends Controller
             $errors[] = '都道府県は1つ以上選択してください。';
         }
 
-        return $errors;
+
+        // 連想配列として$errors、$categoryIds、$prefectureIdsを返す
+        return [
+            'errors' => $errors,
+            'categoryIds' => $categoryIds,
+            'prefectureIds' => $prefectureIds,
+        ];
     }
 
-
-    //入力した情報の取得
-    private function fetchCategoryAndPrefectureData(Request $request)
-    {
-        // カテゴリ情報の取得
-        $categoryIds = $request->input('categories');
-        $categories = WaterproofdetailsCat::whereIn('waterproofcat_id', $categoryIds)->pluck('catName', 'waterproofcat_id');
-        
-    
-        // 都道府県情報の取得
-        $prefectureIds = $request->input('prefectures');
-        $prefectures = PrefecturesCat::whereIn('prefecuture_id', $prefectureIds)
-            ->select('prefecuture_id', 'catName', 'region_id', 'regionName')
-            ->get();
-    
-        // 都道府県情報を整形する
-        $groupedPrefectures = collect($prefectures)->groupBy('region_id')->map(function ($regionPrefectures, $regionId) {
-            $regionName = $regionPrefectures->first()['regionName'] ?? null;
-            $prefecturesData = $regionPrefectures->map(function ($prefecture) {
-                return [
-                    'prefecture_id' => $prefecture['prefecuture_id'],
-                    'prefecture_name' => $prefecture['catName'],
-                ];
-            });
-    
-            return [
-                'region_id' => $regionId,
-                'regionName' => $regionName,
-                'prefectures' => $prefecturesData,
-            ];
-        })->values();
-    
-        return [$categories, $groupedPrefectures];
-    }
-    
-    //企業情報の取り出し
-    private function fetchCompanyData()
-    {
-        $groupedPrefectures = session()->get('groupedPrefectures');
-        $categories = session()->get('categories');
-        // dd($groupedPrefectures);
-        
-
-
-        // 会社情報の取得
-        $companies = Company::select(
-            'companies.company_id',
-            'companies.company_name',
-            DB::raw("CONCAT('[', GROUP_CONCAT(wc.catName SEPARATOR ','), ']') AS catNames"),
-            'w.waterproofing_job_image',
-            'w.waterproofing_job_description',
-            'w.waterproofing_job_catch',
-            'cd.url',
-            'cd.address_num',
-            'cd.address',
-            'cd.representative',
-            'cd.phone',
-            'cd.form',
-        )
-        ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
-        ->leftJoin('waterproofs as w', 'w.company_id', '=', 'companies.company_id')
-        ->leftJoin('companiesdetails_prefectures as cp', 'cp.company_id', '=', 'companies.company_id')
-        ->leftJoin('prefectures_cats as pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
-        ->leftJoin('waterproof_waterproofdetails as ww', 'ww.waterproof_id', '=', 'w.company_id')
-        ->leftJoin('waterproofdetails_cats as wc', 'wc.waterproofcat_id', '=', 'ww.waterproofcat_id')
-        ->whereRaw('cp.prefecuture_id IN (' . $groupedPrefectures->flatMap(function ($region) {
-            return $region['prefectures']->pluck('prefecture_id');
-        })->implode(', ') . ')')        
-        ->whereRaw('wc.waterproofcat_id IN (' . implode(', ', $categories->keys()->toArray()) . ')')
-        ->groupBy(
-            'companies.company_id',
-            'companies.company_name',
-            'w.waterproofing_job_image',
-            'w.waterproofing_job_description',
-            'w.waterproofing_job_catch',
-            'cd.url',
-            'cd.address_num',
-            'cd.address',
-            'cd.representative',
-            'cd.phone',
-            'cd.form',
-        )
-        ->paginate(10);
-    
-    
-        return $companies;
-    }
 
 }
 

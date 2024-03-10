@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchContactController;
+use App\Http\Controllers\SearchRecruitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,10 +61,6 @@ Route::get('/ecoulex/message/', function () {
 });
 
 //recruit
-Route::get('/ecoulex/recruit/', function () {
-    return view('recruit/top');
-});
+Route::get('/ecoulex/recruit/', [SearchRecruitController::class, 'index'])->name('index');
+Route::get('/ecoulex/recruit/result', [SearchRecruitController::class, 'recruit_search'])->name('recruit_search');
 
-Route::get('/ecoulex/recruit/recruit/', function () {
-    return view('recruit/recruit');
-});

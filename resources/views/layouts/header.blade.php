@@ -16,7 +16,7 @@
 						<p class="mainNav font-MP">CONTACT</p>
 						<div class="subNav">
 							<div><a href="/ecoulex/contact/">防水工事・各種工事のご相談</a></div>
-							<div><a href="recruit">防水の挑戦者になる</a></div>
+							<div><a href="/ecoulex/recruit">防水の挑戦者になる</a></div>
 						</div>
 					</li>
 					<li class="snsBtn twi"><a href="" target="_blank"><img src="{{ asset('images/common/btn_x.png') }}" alt="Official X"></a></li>

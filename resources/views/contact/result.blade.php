@@ -51,7 +51,7 @@
 				
 				
 				<div class="searchButton">
-					<a href="/ecoulex/contact/">条件を変更する</a>
+					<a href="/ecoulex/contact/?checkflg=1">条件を変更する</a>
 				</div>
 			</div><!-- /searchBox -->
 				

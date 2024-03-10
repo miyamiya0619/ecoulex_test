@@ -17,8 +17,8 @@
 		
 		<div class="menuBtmWrap">
 			<div class="menuBtn flexbox">
-				<a href="contact/" class="flexbox flexaligncenter flexcenter"><img src="{{ asset('images/common/menu01.png') }}" alt=""><p>防水工事・<br>各種工事の<br>ご相談</p></a>
-				<a href="recruit/" class="flexbox flexaligncenter flexcenter"><img src="{{ asset('images/common/menu02.png') }}" alt=""><p>防水の<br>挑戦者になる</p></a>
+				<a href="/ecoulex/contact/" class="flexbox flexaligncenter flexcenter"><img src="{{ asset('images/common/menu01.png') }}" alt=""><p>防水工事・<br>各種工事の<br>ご相談</p></a>
+				<a href="/ecoulex/recruit/" class="flexbox flexaligncenter flexcenter"><img src="{{ asset('images/common/menu02.png') }}" alt=""><p>防水の<br>挑戦者になる</p></a>
 			</div>
 		</div>
 		

@@ -23,8 +23,8 @@
 				<h3 class="contents">お気軽にお問い合わせください。<br>
 				<div class="alert alert-danger">
 					<ul>
-						@if (session('errors'))
-							@foreach (session('errors') as $error)
+						@if ($errors->any())
+							@foreach ($errors->all() as $error)
 								<li class="error-message">{{ $error }}</li>
 							@endforeach
 						@endif
@@ -39,9 +39,11 @@
 				
 				<div class="selectArea selectType contents flexbox flexbetween">
 					<!-- カテゴリを全件取得し表示 -->
-				@foreach($categories as $category)
-					<label><input type="checkbox" name="categories[]" value="{{ $category->waterproofcat_id }}" />{{ $category->catName }}</label>
-				@endforeach
+					@foreach($categories as $index => $category)
+						<label class="areaBtn_font">
+							<input type="checkbox" name="categories[]" value="{{ $category->waterproofcat_id }}" {{ in_array($category->waterproofcat_id, $categoryIds ?? []) ? 'checked' : '' }}/>{{ $category->catName }}
+						</label>
+					@endforeach
 				</div>
 
 				<h4 class="contents">地域を選択　<span>工事を検討している場所の地域を選んでください。</span></h4>
@@ -52,9 +54,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 						<!-- 関東の地方（region_id = 4） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 4)
-							<label><input type="checkbox" name="prefectures[]" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $index => $prefecture)
+							@if($prefecture->region_id == 4)
+							<label><input type="checkbox" name="prefectures[]" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -67,9 +69,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexcenter">
 						<!-- 北海道の地方（region_id = 1） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 1)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 1)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }} />{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -82,9 +84,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 東北の地方（region_id = 2） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 2)
-							<label><input type="checkbox" name="prefectures[]" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 2)					
+								<label><input type="checkbox" name="prefectures[]" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }} />{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -97,9 +99,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 北陸・甲信越の地方（region_id = 3） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 3)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 3)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -114,9 +116,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 東海の地方（region_id = 5） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 5)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 5)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -129,9 +131,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 近畿の地方（region_id = 6） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 6)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 6)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -144,9 +146,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 中国の地方（region_id = 7） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 7)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 7)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -159,9 +161,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 四国の地方（region_id = 8） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 8)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 8)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}"  {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }} />{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
@@ -174,9 +176,9 @@
 					<div class="prefArea">
 						<div class="flexbox flexstart">
 							<!-- 九州・沖縄の地方（region_id = 9） -->
-						@foreach($prefetures as $prefeture)
-							@if($prefeture->region_id == 9)
-							<label><input type="checkbox" name="" value="{{ $prefeture->prefecuture_id }}" class="area0{{ $prefeture->region_id }}" />{{ $prefeture->catName }}</label>
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 9)
+								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }} />{{ $prefecture->catName }}</label>
 							@endif
 						@endforeach
 						</div>
