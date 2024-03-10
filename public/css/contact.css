@@ -79,7 +79,7 @@
 #contact .selectArea.selectType{margin: 5px auto 40px auto;padding: 20px 0 25px 0;}
 #contact .selectArea label{
 	width: 100%;
-	max-width: 210px;
+	max-width: 250px;
 	padding: 10px 20px;
 	cursor: pointer;
 }
@@ -404,7 +404,7 @@
 	#contact.result .resultWrap .Company .Img{width: 32%; max-width: 240px;}
 	#contact.result .resultWrap .Company .Txt{width: calc(68% - 30px); max-width: calc(100% - 240px);font-size: .16rem;}
 	#contact.result .resultWrap .Company .Txt .catch{
-		margin: 15px auto 0 auto;
+		margin: 0 auto;
 		font-size: .2rem;
 	}
 	#contact.result .resultWrap .ttl{
@@ -434,6 +434,10 @@
 	#contact.result .Nodata p{
 		padding:  150px 0 100px 0;
 		font-size: .28rem;
+	}
+
+	#contact .selectArea .areaBtn_font{
+		font-size: 14px;
 	}
 
 }
