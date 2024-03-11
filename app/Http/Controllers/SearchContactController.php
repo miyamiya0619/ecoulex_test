@@ -47,6 +47,7 @@ class SearchContactController extends Controller
         // 取得したデータをビューに渡して表示
         return view('contact.top01', $data);
     }
+
     //検索メイン処理
     public function contact_search(Request $request)
     {
@@ -69,7 +70,7 @@ class SearchContactController extends Controller
         // エラーメッセージがある場合はリダイレクト
         if (!empty($errors)) {
 
-            return redirect()->route('index')->withErrors($errors)->withInput([
+            return redirect()->action([SearchContactController::class, 'index'])->withErrors($errors)->withInput([
                 'categoryIds' => $categoryIds,
                 'prefectureIds' => $prefectureIds
             ]);

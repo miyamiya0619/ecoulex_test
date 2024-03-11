@@ -99,14 +99,13 @@
 
 			</div><!-- /resultWrap -->
 			@endforeach
-			
 			<div class="resultNav contents">
 				<ul class="flexbox flexcenter flexaligncenter">
 					<!-- Previous Button -->
-					@if ($companies->onFirstPage())
-						<li class="prevBtn disabled"></li>
+					@if ($companies->currentPage() == 1)
+						
 					@else
-						<li class="prevBtn"><a href="{{ $companies->previousPageUrl() }}"></a></li>
+						<li class="prevBtn"><a href="{{ $companies->url($companies->currentPage() - 1) }}"></a></li>
 					@endif
 
 					<!-- Page Numbers -->
@@ -119,14 +118,14 @@
 					@endfor
 
 					<!-- Next Button -->
-					@if ($companies->hasMorePages())
-						<li class="nextBtn"><a href="{{ $companies->nextPageUrl() }}"></a></li>
+					@if ($companies->currentPage() == $companies->lastPage())
+						
 					@else
-						<li class="nextBtn disabled"></li>
+						<li class="nextBtn"><a href="{{ $companies->url($companies->currentPage() + 1) }}"></a></li>
 					@endif
 				</ul>
 			</div><!-- /resultNav -->
-			
+
 		</section>
 	
 	

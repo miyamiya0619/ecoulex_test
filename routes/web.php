@@ -32,6 +32,7 @@ Route::get('/ecoulex/challenger/', function () {
 // });
 
 Route::get('/ecoulex/contact/', [SearchContactController::class, 'index'])->name('index');
+Route::post('/ecoulex/contact/', [SearchContactController::class, 'index'])->name('index');
 
 
 //contact(5月では全域のリリース)
@@ -61,6 +62,6 @@ Route::get('/ecoulex/message/', function () {
 });
 
 //recruit
-// Route::get('/ecoulex/recruit/', [SearchRecruitController::class, 'index'])->name('index');
+Route::get('/ecoulex/recruit/', [SearchRecruitController::class, 'index'])->name('index');
 // Route::get('/ecoulex/recruit/result', [SearchRecruitController::class, 'recruit_search'])->name('recruit_search');
 
