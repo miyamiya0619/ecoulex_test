@@ -8,5 +8,10 @@ use Illuminate\Support\Collection;
 
 class RecruitService
 {
+    public function getPrefectureData()
+    {
+        $prefectures = PrefecturesCat::all();
+        return $prefectures;
+    }
 
 }

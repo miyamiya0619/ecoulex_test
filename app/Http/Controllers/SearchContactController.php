@@ -25,7 +25,6 @@ class SearchContactController extends Controller
     {
         $data = $this->ContactService->getIndexData();
 
-        
         if (session()->has('categoryIds') || session()->has('prefectureIds') || !empty($_GET['checkflg'])) {
             $categoryIds = session()->get('categoryIds');
             $prefectureIds = session()->get('prefectureIds');

@@ -77,6 +77,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- コンタクトページ、リクルートページの場合 -->
 @yield('form-js')
+@yield('searchbox-js')
 
 </body>
 	

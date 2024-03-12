@@ -551,25 +551,14 @@
 		content: '';
 		display: block;
 		background-color: #f6f6f6;
+		background-image: url("../images/common/arrow_g.png");
+		background-position: 50% 50%;
+		background-size: 18px auto;
+		background-repeat: no-repeat;
 		border-radius: 100px;
 		vertical-align: -5px;
 	}
-	#recruit.result .prefList a.active span::before{background-color: #0064b3;}
-	#recruit.result .prefList a span::after{
-		position: absolute;
-		top: 11px;
-		left: 21px;
-		transform: rotate(45deg);
-		width: 6px;
-		height: 10px;
-		border-right: 2px solid #c0bfbf;
-		border-bottom: 2px solid #c0bfbf;
-		content: '';
-	}
-	#recruit.result .prefList a.active span::after {
-		border-right: 2px solid #ffffff;
-		border-bottom: 2px solid #ffffff;
-	}
+	#recruit.result .prefList a.active span::before{background-image: url("../images/common/arrow_w.png");background-color: #0064b3;}
 	
 	#recruit.result .resultWrap{
 		margin: 40px auto 80px auto;

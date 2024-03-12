@@ -63,14 +63,14 @@
 					<div class="areaName"><a href="result.html">関東</a></div>
 					
 					<div class="prefArea">
-						<a href="recruit/result">茨城</a>／
-						<a href="recruit/result">栃木</a>／
-						<a href="recruit/result">群馬</a><br>
-						<a href="recruit/result">埼玉</a>／
-						<a href="recruit/result">千葉</a>／
-						<a href="recruit/result">東京</a><br>
-						<a href="recruit/result">神奈川</a>／
-						<a href="recruit/result">山梨</a>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 13]) }}">茨城</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 14]) }}">栃木</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 15]) }}">群馬</a><br>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 16]) }}">埼玉</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 17]) }}">千葉</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 18]) }}">東京</a><br>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 19]) }}">神奈川</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 20]) }}">山梨</a>
 					</div>
 				</div>
 				
