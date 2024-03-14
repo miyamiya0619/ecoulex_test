@@ -60,7 +60,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap area04">
-					<div class="areaName"><a href="result.html">関東</a></div>
+				<div class="areaName"><a href="{{ route('recruit_search_region', ['region_id' => 4]) }}">関東</a></div>
 					
 					<div class="prefArea">
 						<a href="{{ route('recruit_search', ['prefecture_id' => 13]) }}">茨城</a>／
@@ -139,7 +139,7 @@
 			</div>
 							
 			<div class="buttonArea contents">
-				<a href="result.html" class="button">採用情報一覧を見る</a>
+				<a href="{{ route('recruit_search_all') }}" class="button">採用情報一覧を見る</a>
 			</div>
 			
 		</section>

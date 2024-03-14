@@ -37,7 +37,7 @@
 						<p>北海道</p>
 						<p>東北</p>
 						<p>北陸・<br class="pc">甲信越</p>
-						<a href="result.html" class="area04 active">関東</a>
+						<a href="{{ route('recruit_search_region', ['region_id' => 4]) }}" class="area04 active">関東</a>
 						<p>東海</p>
 						<p>近畿</p>
 						<p>中国</p>
@@ -69,9 +69,14 @@
 					<div class="prefList area04 active">
 					@foreach($prefectures as $index => $prefecture)
 						@if($prefecture->region_id == 4)
-							<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture_id]) }}" @if ($prefecture->prefecuture_id == $prefecture_id) class="active" @endif><span>{{ $prefecture->catName }}</span></a>
+							@if ($prefecture_id == 'all')
+								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id]) }}" class="active"><span>{{ $prefecture->catName }}</span></a>
+							@else
+								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id]) }}" class="@if ($prefecture->prefecuture_id == $prefecture_id) active @endif"><span>{{ $prefecture->catName }}</span></a>
+							@endif
 						@endif
 					@endforeach
+
 					</div>
 
 					<div class="prefList area05">
@@ -138,50 +143,50 @@
 				</div>
 
 				<div class="Company flexbox flexbetween">
-					<div class="Img"><img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="株式会社xxxx"></div>
+					<div class="Img"><img src="{{ asset('images/uploads/' . $company->prefecuture_image) }}" alt="{{ $company['prefecuture_image']}}"></div>
 					<div class="Txt">
-						<p class="catch">キャッチが入ります。キャッチが入ります。</p>
-						<p class="detail">会社紹介が入ります。会社紹介が入ります。会社紹介が入ります。<br>会社紹介が入ります。会社紹介が入ります。<br>会社紹介が入ります。会社紹介が入ります。会社紹介が入ります。</p>
+						<p class="catch">{{ $company['prefecuture_catch_head']}}</p>
+						<p class="detail">{{ $company['prefecuture_catch_reading']}}</p>
 					</div>
 				</div>
 				
 				<div class="ttl">勤務条件</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>勤務地</dt>
-					<dd>東京都港区赤坂</dd>
+					<dd>{{ $company['locate']}}</dd>
 					
 					<dt>勤務時間</dt>
-					<dd>8:00~18:00（休憩２時間）</dd>
+					<dd>{{ $company['working_hours']}}</dd>
 					
 					<dt>初年度月収例</dt>
-					<dd>月20万</dd>
+					<dd>{{ $company['monthly_income']}}</dd>
 				</dl>
 				
 				<div class="ttl">企業情報</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>WEBサイト</dt>
-					<dd><a href="https://tfc.co.jp/" target="_blank">https://tfc.co.jp/</a></dd>
+					<dd><a href="{{ $company['url']}}" target="_blank">{{ $company['url']}}</a></dd>
 					
 					<dt>所在地</dt>
-					<dd>〒107-0052東京都港区赤坂4-9-17 <br>赤坂第一ビル７F</dd>
+					<dd>〒{{ $company['address_num']}}{{ $company['address']}}</dd>
 					
 					<dt>社員数</dt>
-					<dd>1000人（2023年3月時点）</dd>
+					<dd>{{ $company['number_of_employees']}}</dd>
 					
 					<dt>設立年</dt>
-					<dd>1961年</dd>
+					<dd>{{ $company['year_of_establishment']}}</dd>
 					
 					<dt>資本金</dt>
-					<dd>1億円</dd>
+					<dd>{{ $company['capital']}}</dd>
 					
 					<dt>代表者</dt>
-					<dd>小坂恵一</dd>
+					<dd>{{ $company['representative']}}</dd>
 					
 					<dt>電話</dt>
-					<dd>03-1111-1111<br>（平日9：00-17：00）</dd>
+					<dd>{{ $company['phone']}}</dd>
 					
 					<dt>お問い合わせ先</dt>
-					<dd><a href="https://tfc.co.jp/contact/" target="_blank">https://tfc.co.jp/contact/</a></dd>
+					<dd><a href="{{ $company['form']}}" target="_blank">{{ $company['form']}}</a></dd>
 				</dl>
 
 			</div><!-- /resultWrap -->

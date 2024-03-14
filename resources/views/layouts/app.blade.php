@@ -24,7 +24,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.eco-ulex.com/lp/mirai_project">
 <meta property="og:image" content="https://www.eco-ulex.com/lp/mirai_project/assets/images/og.jpg">
-
+<meta name="robots" content="noindex">
 <link rel="canonical" href="https://www.eco-ulex.com/lp/mirai_project">
 	
 <link rel="preconnect" href="https://fonts.googleapis.com">

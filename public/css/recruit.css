@@ -248,7 +248,7 @@
 #recruit.result .resultWrap .Company .Txt{position: relative; width: 100%;}
 #recruit.result .resultWrap .Company .Txt .catch{
 	position: relative;
-	margin: 0 auto 10px auto;
+	margin: 0 auto 0 auto;
 	font-size: .16rem;
 	color: #0064b3;
 }
@@ -574,7 +574,7 @@
 	#recruit.result .resultWrap .Company .Img{width: 32%; max-width: 240px;}
 	#recruit.result .resultWrap .Company .Txt{width: calc(68% - 30px); max-width: calc(100% - 240px);font-size: .16rem;}
 	#recruit.result .resultWrap .Company .Txt .catch{
-		margin: 15px auto 0 auto;
+		margin: 0 auto 0 auto;
 		font-size: .2rem;
 	}
 	#recruit.result .resultWrap .ttl{
