@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Company;
+use App\Models\PrefecturesCat;
 use Illuminate\Support\Facades\DB;
 
 class RecruitSearchService
@@ -66,5 +67,15 @@ class RecruitSearchService
             $companies->where('cp.prefecuture_id', '=', $prefecture_id);
         }
         return $companies->get();
+    }
+
+    //都道府県IDから都道府県名を取得する
+    public function fetchPrefectureData($prefecture_id){
+
+        $prefecture_name = PrefecturesCat::select(
+            'prefectures_cats.catName'
+        )->where('prefectures_cats.prefecuture_id', '=', $prefecture_id);
+
+        return $prefecture_name->get();
     }
 }

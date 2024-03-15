@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
 @endsection
 
+@section('index-css')
+<link rel="stylesheet" href="{{ asset('css/index.css') }}">
+@endsection
+
 @section('content')
 	<!-- main-contents -->
 	<div id="main-contents">

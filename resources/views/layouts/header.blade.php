@@ -7,11 +7,11 @@
 			<h1><a href="#wrap"><img src="{{ asset('images/common/logo.png') }}" alt="一般社団法人 エコ・ウレックス工業会"></a></h1>
 			<div class="navWrap">
 				<ul class="flexbox flexaligncenter flexcenter">
-					<li><a href="future/" class="font-MP">FUTURE</a></li>
-					<li><a href="challenger/" class="font-MP">CHALLENGER</a></li>
-					<li><a href="#case" class="font-MP">CASE</a></li>
-					<li><a href="lab/" class="font-MP">LAB</a></li>
-					<li><a href="#movie" class="font-MP">MOVIE</a></li>
+					<li><a href="/ecoulex/future/#wrap" class="font-MP">FUTURE</a></li>
+					<li><a href="/ecoulex/challenger/#wrap" class="font-MP">CHALLENGER</a></li>
+					<li><a href="/ecoulex/#case" class="font-MP">CASE</a></li>
+					<li><a href="/ecoulex/lab/" class="font-MP">LAB</a></li>
+					<li><a href="/ecoulex/#movie" class="font-MP">MOVIE</a></li>
 					<li>
 						<p class="mainNav font-MP">CONTACT</p>
 						<div class="subNav">

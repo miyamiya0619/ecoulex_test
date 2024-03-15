@@ -32,16 +32,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;500&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
 <!-- 共通CSS -->
+<!-- トップページ用CSS -->
+@yield('slick-css')
 <link rel="stylesheet" href="{{ asset('css/common.css') }}">
-<link rel="stylesheet" href="{{ asset('css/index.css') }}">
 
 <!-- 個別CSS -->
 <!-- トップページ用CSS -->
-@yield('slick-css')
+@yield('index-css')
 <!-- コンタクト用CSS -->
 @yield('contact-css')
 <!-- コンタクト、リクルート用CSS -->
 @yield('form-css')
+<!-- future用CSS -->
+@yield('future-css')
+<!-- challenger用CSS -->
+@yield('challenger-css')
+<!-- lab用CSS -->
+@yield('lab-css')
 
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

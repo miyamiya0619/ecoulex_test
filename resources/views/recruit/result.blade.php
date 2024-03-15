@@ -29,7 +29,16 @@
 					<div class="areaBtn sp">
 						<div class="flexbox flexstretch">
 							<div class="areaButton area04">関東</div>
-							<div class="prefButton">東京</div>
+							<div class="prefButton">
+								@if(($prefecture_id == 'all' && $region_id !=null )|| ($prefecture_id != 'all' && $region_id ==null))
+									@if($prefecture_id == 'all' && $region_id !=null)
+									{{ $prefectures_sentence }}
+										@else
+										{{ $prefecture_name[0]->catName }}
+
+									@endif
+								@endif
+							</div>
 						</div>
 					</div>
 					
