@@ -212,6 +212,3 @@
 @section('searchbox-js')
 <script type="text/javascript" src="{{ asset('js/searchbox.js') }}"></script>
 @endsection
-
-</body>
-</html>

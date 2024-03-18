@@ -151,6 +151,3 @@
 @section('form-js')
 <script type="text/javascript" src="{{ asset('js/form.js') }}"></script>
 @endsection
-
-</body>
-</html>

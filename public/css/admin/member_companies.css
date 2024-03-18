@@ -1,0 +1,164 @@
+.main-content {
+
+    margin-left: 20%;
+    min-height: 100vh;
+    /* ビューポートの高さに合わせる */
+
+}
+
+.dashboard-container {
+    width: 95%;
+
+    margin: auto;
+    padding-top: 20px;
+}
+
+.dashboard-container {
+    width: 95%;
+}
+
+.company-name {
+    font-size: small;
+}
+
+.dashboard-box {
+    padding-top: 20px;
+
+}
+
+.dashboard-title {
+    font-size: xx-large;
+}
+
+.dashboard-content {
+    border: 1px solid black;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-top: 10px;
+
+}
+
+
+
+.info-header .info-title {
+    font-size: medium;
+}
+
+.dashboard-box h3 {
+    font-size: medium;
+}
+
+
+/* インフォメーションアイテムスタイル */
+.information-item {
+    border: 1px solid black;
+    padding: 15px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+}
+
+
+.information-section input[type="text"] {
+    margin-left: 10px;
+}
+
+/* インフォメーションヘッダー */
+.info-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* 左右に要素を分ける */
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.info-title {
+    margin: 0;
+    /* タイトルの余白を取り除く */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+/* 検索ボタンのスタイル */
+.search-button {
+    padding: 5px 15px;
+    margin-left: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+
+}
+
+/* 編集削除するボタンのスタイル */
+.delete-edit-button-design {
+    padding: 5px 15px;
+    background-color: #000;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    
+    text-decoration: none;
+    /* 右寄せ */
+}
+
+/* 編集削除するボタンのスタイル */
+.info-button {
+    margin-left: auto;
+    /* 右寄せ */
+    width: 130px;
+}
+.info-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.company-name {
+    font-size: medium;
+}
+
+.company-name-text {
+    font-size: small;
+}
+
+.email {
+    font-size: small;
+}
+
+.link-button {
+    padding: 5px 15px;
+    margin-left: 3px;
+    background-color: #000;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-style: none;
+    /* 右寄せ */
+}
+
+.non-decoration {
+    text-decoration: none;
+    color: #fff;
+}
+
+.email-link {
+
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.email-link a {
+    color: #000;
+    /* text-decoration: none; */
+}

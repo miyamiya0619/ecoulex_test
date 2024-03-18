@@ -142,6 +142,3 @@
 
 		</section>
 @endsection
-
-</body>
-</html>

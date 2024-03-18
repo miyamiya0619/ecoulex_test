@@ -1,0 +1,59 @@
+<!-- 新規企業登録(CSV) -->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <!-- ヘッダーとフッターのCSSファイルを読み込む -->
+    <link rel="stylesheet" href="../../css/admin/admin_common.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/common/pagination.css">
+
+    <link rel="stylesheet" href="../../css/admin/new_company_registration_CSV.css">
+
+
+
+    <!-- jQueryの読み込み -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="header-container">
+        <header>
+            <nav id="admin-nav">
+                <div class="menu-title">
+                    事務局メニュー
+                </div>
+                <ul>
+                    <li><a href="admin_dashboard.html">●TOP</a></li>
+                    <li><a href="member_companies.html">●会員企業管理</a></li>
+                    <li><a href="company_info_management.html">●企業情報管理</a></li>
+                    <li><a href="waterproofing_management.html">●防水工事管理</a></li>
+                    <li><a href="job_postings_management.html">●求人情報管理</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div class="main-content">
+        <div class="dashboard-container">
+            <h1 class="dashboard-title">会員企業管理</h1>
+
+
+            <div class="information-section">
+                <h3 class="info-title">新規企業登録CSVアップロード</h3>
+
+            </div>
+            <div class="form-group file-upload">
+                <button type="button" id="upload-btn">ファイルを選択</button>
+                <input type="file" id="file-upload" style="display: none;">
+            </div>
+
+            <button class="registration-button">登録する</button>
+
+
+        </div>
+
+        <!-- ヘッダーとフッターの動的読み込みに関するJavaScriptファイルを読み込む -->
+        <script src="../../javascript/admin/admin_common.js"></script>
+</body>
+
+</html>

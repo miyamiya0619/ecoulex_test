@@ -1,0 +1,91 @@
+body,
+html {
+    height: 100%;
+    /* 高さを全画面にする */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* 水平中央に配置 */
+    align-items: center;
+    /* 垂直中央に配置 */
+}
+
+.login-container {
+    width: 480px;
+    /* Flexboxを使用 */
+    flex-direction: row;
+    /* 横並びにするためにrowを指定 */
+    transform: translate(0, 0%);
+    /* 垂直方向のみ中央に */
+}
+
+.side-bar {
+    flex: 2;
+    border: solid 1px black;
+    background-color: #EEEEEE;
+    text-align: center;
+    padding: 20px;
+}
+
+.login-form {
+    flex: 8;
+    border: solid 1px black;
+    text-align: center;
+    padding: 20px;
+}
+
+.login-form h2,
+.login-form form,
+.forgot-password {
+    margin-bottom: 20px;
+}
+
+
+button {
+    width: 35%;
+    padding: 10px 0px;
+    border-radius: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.forgot-password {
+    font-size: small;
+    display: block;
+    color: black;
+    width: 35%;
+    margin: auto;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+}
+
+.form-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+
+label {
+    width: 150px;
+    /* ラベルの幅を固定 */
+    text-align: left;
+    margin-left: 10%;
+
+}
+
+input[type="email"],
+input[type="password"] {
+    flex: 1;
+    /* 入力フィールドは残りのスペースを埋める */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    margin-right: 10%;
+
+
+}

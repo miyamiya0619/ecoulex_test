@@ -1,0 +1,35 @@
+.pagination a {
+    color: #5db0d6; /* 水色の文字色 */
+    padding: 8px 16px; /* パディングの調整 */
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd; /* グレーの枠線 */
+
+    float: left; /* フロートで左寄せ */
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 4px; /* 角を丸くする */
+    border-bottom-left-radius: 4px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 4px; /* 角を丸くする */
+    border-bottom-right-radius: 4px;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background-color: #5db0d6; /* 水色の背景 */
+    color: white;
+    border-color: #5db0d6; /* ボーダーの色を変更 */
+}
+
+.pagination {
+    display: flex; /* フレックスボックスを使用 */
+    justify-content: flex-end; /* 右寄せにする */
+    margin: 20px 0; /* 上下のマージンを設定 */
+    margin-right: 2.5%;
+}
+
+/* clearfixクラスは不要になるため、削除しても良い */

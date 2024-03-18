@@ -4,13 +4,13 @@
 		<div class="btn_menu sp"><div class="menu-trigger"><span></span><span></span><span></span></div></div>
 		 
 		<nav class="navigation">
-			<h1><a href="#wrap"><img src="{{ asset('images/common/logo.png') }}" alt="一般社団法人 エコ・ウレックス工業会"></a></h1>
+			<h1><a href="/ecoulex/"><img src="{{ asset('images/common/logo.png') }}" alt="一般社団法人 エコ・ウレックス工業会"></a></h1>
 			<div class="navWrap">
 				<ul class="flexbox flexaligncenter flexcenter">
-					<li><a href="/ecoulex/future/#wrap" class="font-MP">FUTURE</a></li>
-					<li><a href="/ecoulex/challenger/#wrap" class="font-MP">CHALLENGER</a></li>
+					<li><a href="/ecoulex/future/#wrap" class="font-MP {{ Request::is('ecoulex/future*') ? 'active' : '' }}">FUTURE</a></li>
+					<li><a href="/ecoulex/challenger/#wrap" class="font-MP {{ Request::is('ecoulex/challenger*') ? 'active' : '' }}">CHALLENGER</a></li>
 					<li><a href="/ecoulex/#case" class="font-MP">CASE</a></li>
-					<li><a href="/ecoulex/lab/" class="font-MP">LAB</a></li>
+					<li><a href="/ecoulex/lab/" class="font-MP {{ Request::is('ecoulex/lab*') ? 'active' : '' }}">LAB</a></li>
 					<li><a href="/ecoulex/#movie" class="font-MP">MOVIE</a></li>
 					<li>
 						<p class="mainNav font-MP">CONTACT</p>

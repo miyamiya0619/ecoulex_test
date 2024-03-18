@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'つくりたい未来がある。（一社）エコ・ウレックス工業会')
+@section('title', 'FUTURE｜つくりたい未来がある。（一社）エコ・ウレックス工業会')
 
 @section('slick-css')
 <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
@@ -43,7 +43,7 @@
 				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt">Instagram開始しました。</p></li>
 				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt">防水の挑戦者募集開始いたしました。</p></li>
 			</ul>
-
+、
 		</section>
 
 		<!-- future -->

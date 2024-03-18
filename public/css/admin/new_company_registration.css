@@ -1,0 +1,74 @@
+.main-content {
+    /* 中央寄せ */
+    min-height: 100vh;
+    padding-top: 20px;
+
+
+    margin-left: 20%;
+}
+
+.dashboard-container {
+    width: 95%;
+    /* コンテナの幅 */
+    margin: auto;
+    /* 中央寄せ */
+}
+
+.dashboard-title {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.information-section {
+    margin-bottom: 20px;
+}
+
+.info-title {
+    margin-bottom: 10px;
+}
+
+.registration-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    /* 1列レイアウト */
+    gap: 10px;
+    /* ギャップ */
+    margin-bottom: 20px;
+    margin-left: 5%;
+}
+
+.registration-item {
+    display: flex;
+    justify-content: start;
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+.registration-item label {
+    flex-basis: 250px;
+    text-align: left;
+    margin-left: 20px;
+    /* ラベルの左マージンのみ設定 */
+    white-space: nowrap;
+}
+
+.registration-item input {
+    width: 50%;
+    height: 40px;
+    margin-left: 10px;
+    /* 入力フィールドとラベルの間隔を調整 */
+}
+
+.registration-button {
+    display: block;
+    width: 100px;
+    /* ボタンの幅 */
+    padding: 5px 15px;
+    margin-left: 40%;
+    /* 中央寄せ */
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

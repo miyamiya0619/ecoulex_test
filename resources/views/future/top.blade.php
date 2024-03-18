@@ -86,6 +86,3 @@
 	</div><!-- main-contents -->
 </div><!-- wrap -->
 @endsection
-
-</body>
-</html>

@@ -1,0 +1,60 @@
+#member-nav {
+    background-color: #d2eff7;
+    width: 20%;
+    height: 100vh;
+    position: fixed;
+    padding: 0;
+}
+
+
+#member-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#member-nav ul li {
+    border-bottom: 1px solid #d2eff7;
+}
+
+#member-nav ul li a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+}
+
+#member-nav ul li a:hover,
+#member-nav ul li a.active {
+    background-color: rgb(167, 220, 233);
+}
+
+.menu-title {
+    margin: 0;
+    font-size: large;
+    padding: 10px;
+    padding-left: 20px;
+
+}
+
+.nav-company-name {
+    overflow: hidden;
+    /* フロートのクリア */
+    position: fixed;
+    text-overflow: clip;
+    width: 20%;
+
+    /* ページネーションを画面下部に固定 */
+    bottom: 20px;
+    /* 画面の下部に配置 */
+    left: 2%;
+    right: 82%;
+    /* 左側から開始 */
+    width: fit-content;
+    padding: 10px 0;
+    /* 右寄せ */
+    font-size: small;
+}

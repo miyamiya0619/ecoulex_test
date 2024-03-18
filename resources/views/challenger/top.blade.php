@@ -114,6 +114,4 @@
 			</div>
 
 		</section>
-	</div><!-- main-contents -->
-</div><!-- wrap -->
 @endsection
