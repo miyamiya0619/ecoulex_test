@@ -139,7 +139,6 @@
 			</div>
 							
 			<div class="buttonArea contents">
-				<a href="{{ route('recruit_search_all') }}" class="button">採用情報一覧を見る</a>
 			</div>
 			
 		</section>
