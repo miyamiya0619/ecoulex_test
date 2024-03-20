@@ -17,11 +17,17 @@ class CompaniesdetailTableSeeder extends Seeder
      */
     public function run()
     {
+        $prefectures = ['茨城', '栃木', '群馬', '埼玉', '千葉', '東京', '神奈川', '山梨'];
+        $addressDetails = ['つくば市', '宇都宮市', '前橋市', '所沢市', '柏市', '千代田区', '横浜市', '山梨市'];
+        
         for ($i = 1; $i <= 100; $i++) {
             $company_id = $i;
             $url = 'https://example.com/' . $i;
             $address_num = rand(100, 999) . '-' . rand(1000, 9999);
-            $address = '東京都渋谷区' . $i . '-' . $i . '-' . $i;
+            $prefectureIndex = ($i - 1) % count($prefectures);
+            $addressIndex = ($i - 1) % count($addressDetails);
+            $prefectureName = $prefectures[$prefectureIndex];
+            $addressDetail = $addressDetails[$addressIndex] . $i . '-' . $i . '-' . $i;
             $number_of_employees = rand(10, 500) . '人';
             $year_of_establishment = rand(1970, 2020) . '年';
             $capital = rand(10, 100) . '万円';
@@ -33,7 +39,8 @@ class CompaniesdetailTableSeeder extends Seeder
                 'company_id' => $company_id,
                 'url' => $url,
                 'address_num' => $address_num,
-                'address' => $address,
+                'prefectureName' => $prefectureName,
+                'addressDetail' => $addressDetail,
                 'number_of_employees' => $number_of_employees,
                 'year_of_establishment' => $year_of_establishment,
                 'capital' => $capital,
@@ -46,5 +53,4 @@ class CompaniesdetailTableSeeder extends Seeder
         }
     }
 }
-
 

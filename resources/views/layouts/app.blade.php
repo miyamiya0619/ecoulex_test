@@ -49,6 +49,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 @yield('challenger-css')
 <!-- lab用CSS -->
 @yield('lab-css')
+<!-- message用CSS -->
+@yield('message-css')
+
 
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

@@ -17,18 +17,20 @@ class RecruitSearchService
             'jo.prefecuture_image',
             'jo.prefecuture_catch_head',
             'jo.prefecuture_catch_reading',
-            'jo.locate',
+            'jo.address_num',
+            'jo.prefectureName',
+            'jo.addressDetail',
             'jo.working_hours',
             'jo.monthly_income',
             'cd.url',
             'cd.address_num',
-            'cd.address',
+            'cd.prefectureName',
             'cd.number_of_employees',
             'cd.year_of_establishment',
             'cd.capital',
             'cd.representative',
-            'cd.phone',
-            'cd.form'
+            'jo.offer1_by_tel',
+            'jo.offer1_by_form'
         )
          ->leftJoin('companiesdetails AS cd', 'cd.company_id', '=', 'companies.company_id')
         ->leftJoin('companiesdetails_prefectures AS cp', 'cp.company_id', '=', 'companies.company_id')
@@ -42,18 +44,20 @@ class RecruitSearchService
             'jo.prefecuture_image',
             'jo.prefecuture_catch_head',
             'jo.prefecuture_catch_reading',
-            'jo.locate',
+            'jo.address_num',
+            'jo.prefectureName',
+            'jo.addressDetail',
             'jo.working_hours',
             'jo.monthly_income',
             'cd.url',
             'cd.address_num',
-            'cd.address',
+            'cd.prefectureName',
             'cd.number_of_employees',
             'cd.year_of_establishment',
             'cd.capital',
             'cd.representative',
-            'cd.phone',
-            'cd.form'
+            'jo.offer1_by_tel',
+            'jo.offer1_by_form'
         );
 
         //地域を押下した場合

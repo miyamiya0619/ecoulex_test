@@ -35,7 +35,8 @@
 			<form action="{{ route('contact_search') }}" method="POST">
 				@csrf
 			<div class="selectWrap">
-				<h4 class="contents">工事を選択　<span>ご希望する工事の種類を選択してください。</span></h4>
+				<h4 class="contents">工事を選択　<span>ご希望する工事の種類を選択してください。<br>
+			<small class="contents_caution">防水工事の種類がわからない方は調査、診断|防水劣化調査、診断を選択してください</small></h4>
 				
 				<div class="selectArea selectType contents flexbox flexbetween">
 					<!-- カテゴリを全件取得し表示 -->

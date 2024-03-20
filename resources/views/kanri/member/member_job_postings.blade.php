@@ -21,29 +21,31 @@
                                     <div class="inquiry_content">
                                         <div class="label">お問い合わせ募集内容:</div>
                                         <ul>
-                                            <li>現場作業員
-                                            </li>
-                                            <li>現場調査診断士
-                                            </li>
-                                            <li>現場管理監督員
-                                            </li>
-                                            <li>現場・営業サポー
-                                                ト（現場事務、精
-                                                算等）</li>
+                                        @php
+                                            $catNamesArray = explode(',', str_replace(['[', ']'], '', $companies[0]->catNames));
+                                        @endphp
+
+                                        @foreach($catNamesArray as $catName)
+                                        <li>{{ $catName }}</li>
+                                        @endforeach
                                         </ul>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="label">求人情報キャッチ:</div>
-                                    <div class="catch">〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</div>
+                                    <div class="catch">{{ $companies[0]->prefecuture_catch_head }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">求人情報詳細:</div>
+                                    <div class="detail">{{ $companies[0]->prefecuture_catch_reading }}</div>
                                 </li>
                                 <li>
                                     <div class="image">
                                         <div class="label">求人情報画像:</div>
                                         <div>
                                             <img class="fit-picture"
-                                                src="https://user0514.cdnw.net/shared/img/thumb/ookawa221061281_TP_V.jpg"
-                                                alt="書類選考中の男性" />
+                                                src="{{ asset('images/uploads/' . $companies[0]->prefecuture_image) }}"
+                                                alt="{{ $companies[0]->prefecuture_image}}" />
                                         </div>
                                     </div>
 

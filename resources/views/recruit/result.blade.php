@@ -162,7 +162,7 @@
 				<div class="ttl">勤務条件</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>勤務地</dt>
-					<dd>{{ $company['locate']}}</dd>
+					<dd>{{ $company['address_num']}}{{ $company['prefectureName']}}{{ $company['addressDetail']}}</dd>
 					
 					<dt>勤務時間</dt>
 					<dd>{{ $company['working_hours']}}</dd>
@@ -192,10 +192,10 @@
 					<dd>{{ $company['representative']}}</dd>
 					
 					<dt>電話</dt>
-					<dd>{{ $company['phone']}}</dd>
+					<dd>{{ $company['offer1_by_tel']}}</dd>
 					
 					<dt>お問い合わせ先</dt>
-					<dd><a href="{{ $company['form']}}" target="_blank">{{ $company['form']}}</a></dd>
+					<dd><a href="{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
 				</dl>
 
 			</div><!-- /resultWrap -->

@@ -33,13 +33,12 @@ class MemberCompanyInfoController extends Controller
 
             // 会社情報の取得
             $companies = $this->MemberCompanyInfoService->fetchCompanyDetailData($company_id);
-
             
-            return view('kanri.member.member_company_info_data', compact('user'));
+            return view('kanri.member.member_company_info_data', compact('user','companies'));
 
         }
         // sessionにデータが入っていない（有効期限切れ）場合、ログイン画面に遷移する
-        return view('kanri.registration.loginCpmany');
+        return view('kanri.registration.loginCopmany');
     }
 
 }

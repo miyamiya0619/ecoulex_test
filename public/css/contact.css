@@ -76,6 +76,8 @@
 	border-radius: 20px;
 	overflow: hidden;
 }
+#contact .contents_caution{font-size: 10px;}
+
 #contact .selectArea.selectType{margin: 5px auto 40px auto;padding: 20px 0 25px 0;}
 #contact .selectArea label{
 	width: 100%;
@@ -358,6 +360,7 @@
 		border-radius: 40px;
 		overflow: hidden;
 	}
+	#contact .contents_caution{font-size: 15px;}
 	#contact .selectArea.selectType{margin: 5px auto 50px auto;padding: 40px 30px;}
 	#contact .selectArea label{
 		width: calc(33.33% - 20px);

@@ -38,22 +38,22 @@ $(function(){
 		$('.pupWrap .slider').removeClass('slick-initialized slick-slider slick-dotted');
 		
 		if(slideNo == 'sNO1'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case01.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case01-1.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case01-2.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case01.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case01-1.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case01-2.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('駒沢オリンピック公園管制塔／2015年3月23日<br>ＤSカラーゼロ(ウレタン防水)他');
 		}else if(slideNo == 'sNO2'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case02.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case02-1.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case02.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case02-1.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('都内某学校／2021年<br>エバーコートZero-1S（ウレタン防水）<br>エバーコートZero-1H（ウレタン防水）');
 		}else if(slideNo == 'sNO3'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case03.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case03.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('ロレックス ラーニングセンター<br>Sikaplan（塩ビシート防水）');
 		}else if(slideNo == 'sNO4'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case04-2.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case04.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case04-1.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case04-2.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case04.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case04-1.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('マンション  共用廊下<br>ダイナフロア　長尺シート');
 		}else if(slideNo == 'sNO5'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case05.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case05.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('緑化システム採用物件<br>グリーンプレイス（ウレタン防水＋緑化）');
 		}else if(slideNo == 'sNO6'){
-			$('.slide-P').html('<div class="slick-slide"><img src="assets/images/case/case06.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case06-1.jpg" alt=""></div><div class="slick-slide"><img src="assets/images/case/case06-2.jpg" alt=""></div>');
+			$('.slide-P').html('<div class="slick-slide"><img src="../images/case/case06.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case06-1.jpg" alt=""></div><div class="slick-slide"><img src="../images/case/case06-2.jpg" alt=""></div>');
 			$('.pupWrap .Txt p').html('ルネ上星川／2014年<br>エバーコートZero-1H（ウレタン防水）');
 		}
 		setTimeout(function(){
@@ -67,8 +67,8 @@ $(function(){
 				initialSlide: 0,
 				fade:true,
 				appendArrows: $('#arrowsP'),
-				prevArrow: '<div class="slide-arrow prev-arrow"><img src="assets/images/common/arrow.svg"></div>',
-				nextArrow: '<div  class="slide-arrow next-arrow"><img src="assets/images/common/arrow.svg"></div>',
+				prevArrow: '<div class="slide-arrow prev-arrow"><img src="../images/common/arrow.svg"></div>',
+				nextArrow: '<div  class="slide-arrow next-arrow"><img src="../images/common/arrow.svg"></div>',
 				customPaging: function(slider, i) {
 					var targetImage = slider.$slides.eq(i).find('img').attr('src');
 					return $('<img src="'+targetImage+'" alt="">');

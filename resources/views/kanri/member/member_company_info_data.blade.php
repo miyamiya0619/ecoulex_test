@@ -21,35 +21,35 @@
                             <ul>
                                 <li>
                                     <span class="label">URL:</span>
-                                    <span class="URL">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="URL">{{ $companies[0] -> url }}</span>
                                 </li>
                                 <li>
                                     <span class="label">所在地:</span>
-                                    <span class="address">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="address">〒{{ $companies[0] -> address_num }}  {{ $companies[0] -> prefectureName }}{{ $companies[0] -> addressDetail }}</span>
                                 </li>
                                 <li>
                                     <span class="label">社員数:</span>
-                                    <span class="number-of-employees">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="number-of-employees">{{ $companies[0] -> number_of_employees }}</span>
                                 </li>
                                 <li>
                                     <span class="label">設立年:</span>
-                                    <span class="establishment-date">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="establishment-date">{{ $companies[0] -> year_of_establishment }}</span>
                                 </li>
                                 <li>
                                     <span class="label">資本金:</span>
-                                    <span class="capital">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="capital">{{ $companies[0] -> capital }}</span>
                                 </li>
                                 <li>
                                     <span class="label">代表者:</span>
-                                    <span class="representative">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="representative">{{ $companies[0] -> representative }}</span>
                                 </li>
                                 <li>
                                     <span class="label">電話番号:</span>
-                                    <span class="phone-number">〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="phone-number">{{ $companies[0] -> phone }}</span>
                                 </li>
                                 <li>
                                     <span class="label">フォーム:</span>
-                                    <span class="form-mail">〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</span>
+                                    <span class="form-mail">{{ $companies[0] -> form }}</span>
                                 </li>
                             </ul>
                         </div>
@@ -59,14 +59,9 @@
                         <a href="{{ route('ecoulex.kanri.editMemberCompanyInfo') }}">
                             <button class="registration-button">編集する
                             </button>
-
                         </a>
                     </div>
-
-
                 </div>
-
-
             </div>
             <!-- ページネーション -->
 

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB; //追加
 use Illuminate\Support\Str; //追加
 use Illuminate\Support\Facades\Hash; //追加
 
-class CompaniesPrefecturesTableSeeder extends Seeder
+class JobofferPrefectureSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,13 +22,13 @@ class CompaniesPrefecturesTableSeeder extends Seeder
 
         $index = 0; // prefectureIds配列のインデックスを追跡する変数
         for ($i = 1; $i <= $count + 1; $i++) {
-            $company_id = $i;
-            $prefecuture_id = $prefectureIds[$index];
+            $job_id = $i;
+            $prefectureId = $prefectureIds[$index];
 
-            DB::table('companiesdetails_prefectures')->insert([
+            DB::table('joboffer_prefectures')->insert([
                 'id' => $i,
-                'company_id' => $company_id,
-                'prefecuture_id' => $prefecuture_id,
+                'job_id' => $job_id,
+                'prefecuture_id' => $prefectureId,
             ]);
 
             // prefectureIds配列のインデックスを更新し、ループさせる

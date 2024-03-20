@@ -24,7 +24,7 @@ class EditMemberCompanyInfoController extends Controller
             return view('kanri.member.edit_member_company_info', compact('user'));
         }
 
-        return view('kanri.registration.loginCpmany');
+        return view('kanri.registration.loginCopmany');
     }
 
 }

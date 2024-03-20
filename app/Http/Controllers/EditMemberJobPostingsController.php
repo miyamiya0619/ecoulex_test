@@ -24,7 +24,7 @@ class EditMemberJobPostingsController extends Controller
             return view('kanri.member.edit_member_job_postings', compact('user'));
         }
 
-        return view('kanri.registration.loginCpmany');
+        return view('kanri.registration.loginCopmany');
     }
 
 }
