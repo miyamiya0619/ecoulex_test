@@ -510,7 +510,7 @@
 	#recruit.result .areaList a, #recruit.result .prefList a, #recruit.result .areaList p{
 		display: block;
 		padding: 10px 0;
-		font-size: .20rem;
+		font-size: .19rem;
 		border: none;
 		border-radius: 10px;
 	}
