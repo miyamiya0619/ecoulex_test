@@ -293,6 +293,7 @@
 }
 #contact.result .resultNav ul li a{position: relative;color: #333333;transition: all .3s ease-out;}
 #contact.result .resultNav ul li.active a{color: #0064b3;}
+#contact.result .resultNav ul li.active span{color: #0064b3;}
 #contact.result .resultNav ul li a:hover{color: #0064b3;opacity: .6;}
 #contact.result .resultNav ul li.prevBtn, #contact.result .resultNav ul li.nextBtn{
 	position: relative;

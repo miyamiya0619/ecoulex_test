@@ -12,7 +12,11 @@ class CompanySearchService
         $companies = Company::select(
             'companies.company_id',
             'companies.company_name',
-            DB::raw("CONCAT('[', GROUP_CONCAT(wc.catName SEPARATOR ','), ']') AS catNames"),
+            DB::raw("(SELECT CONCAT('[', GROUP_CONCAT(waterproofdetails_cats.catName SEPARATOR ','), ']')
+            FROM waterproofdetails_cats
+            INNER JOIN waterproof_waterproofdetails ON waterproofdetails_cats.waterproofcat_id = waterproof_waterproofdetails.waterproofcat_id
+            INNER JOIN waterproofs ON waterproofs.company_id = waterproof_waterproofdetails.waterproofcat_id
+            WHERE waterproof_waterproofdetails.waterproof_id = waterproofs.company_id) AS catNames"),
             'w.waterproofing_job_image',
             'w.waterproofing_job_description',
             'w.waterproofing_job_catch',

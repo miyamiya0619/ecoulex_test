@@ -133,8 +133,9 @@
 				</div><!-- /selectArea -->
 				</div>
 			</div><!-- /searchWrap -->
-				
-@foreach($companies as $company)			
+<!-- データが存在する場合 -->
+@if ($companies->count() != 0)
+@foreach($companies as $company)
 			<div class="resultWrap contents">
 				<div class="Name">{{ $company['company_name']}}</div>
 				
@@ -162,7 +163,7 @@
 				<div class="ttl">勤務条件</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>勤務地</dt>
-					<dd>〒{{ $company['address_num']}} {{ $company['prefectureName']}} {{ $company['addressDetail']}}</dd>
+					<dd>{{ $company['prefectureNameJo']}} {{ $company['addressDetailJo']}}</dd>
 					
 					<dt>勤務時間</dt>
 					<dd>{{ $company['working_hours']}}</dd>
@@ -177,7 +178,7 @@
 					<dd><a href="{{ $company['url']}}" target="_blank">{{ $company['url']}}</a></dd>
 					
 					<dt>所在地</dt>
-					<dd>〒{{ $company['address_num']}}{{ $company['address']}}</dd>
+					<dd>〒{{ $company['address_numCd']}} {{ $company['prefectureNameCd']}} {{ $company['addressDetailCd']}}</dd>
 					
 					<dt>社員数</dt>
 					<dd>{{ $company['number_of_employees']}}</dd>
@@ -200,7 +201,13 @@
 
 			</div><!-- /resultWrap -->
 @endforeach
-
+@else
+					<div class="Nodata contents">
+							
+						<p>該当の企業がありません。お手数ですが、条件を変更して検索してください。</p>
+						
+					</div><!-- /Nodata -->
+@endif
 		</section>
 	</div><!-- main-contents -->
 </div><!-- wrap -->

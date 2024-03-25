@@ -49,12 +49,14 @@
 					
 				</div><!-- /searchData -->
 				
-				
+				@if ($companies->total() != 0)		
 				<div class="searchButton">
 					<a href="/ecoulex/contact/?checkflg=1">条件を変更する</a>
 				</div>
+				@endif
 			</div><!-- /searchBox -->
-				
+<!-- データが存在する場合 -->
+@if ($companies->total() != 0)				
 			@foreach($companies as $company)
 			<div class="resultWrap contents">
 				<div class="Name">{{ $company['company_name']}}</div>
@@ -72,7 +74,12 @@
 				</div>
 
 				<div class="Company flexbox flexbetween">
-					<div class="Img"><img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="{{ $company['company_name']}}"></div>
+					<div class="Img">
+					@if ($company->waterproofing_job_image && file_exists(public_path('images/uploads/' . $company->waterproofing_job_image)))
+						<img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="{{ $company->company_name }}">
+					@else
+					@endif
+					</div>
 					<div class="Txt">
 						<p class="catch">{{ $company['waterproofing_job_description']}}</p>
 						<p class="detail">{{ $company['waterproofing_job_catch']}}</p>
@@ -82,7 +89,7 @@
 				<div class="ttl">企業情報</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>WEBサイト</dt>
-					<dd><a href="https://tfc.co.jp/" target="_blank">{{ $company['url']}}</a></dd>
+					<dd><a href="{{ $company['url']}}" target="_blank">{{ $company['url']}}</a></dd>
 					
 					<dt>所在地</dt>
 					<dd>〒{{ $company['address_num']}} {{ $company['prefectureName']}} {{ $company['addressDetail']}}</dd>
@@ -99,6 +106,7 @@
 
 			</div><!-- /resultWrap -->
 			@endforeach
+
 			<div class="resultNav contents">
 				<ul class="flexbox flexcenter flexaligncenter">
 					<!-- Previous Button -->
@@ -125,7 +133,17 @@
 					@endif
 				</ul>
 			</div><!-- /resultNav -->
+@else
 
+			<div class="Nodata contents">
+							
+				<p>該当の企業がありません。お手数ですが、条件を変更して検索してください。</p>
+				
+				<div class="searchButton">
+					<a href="/ecoulex/contact/?checkflg=1" class="button">条件を変更する</a>
+				</div>
+			</div><!-- /Nodata -->			
+@endif
 		</section>
 	
 	

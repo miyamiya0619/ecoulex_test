@@ -17,14 +17,15 @@ class RecruitSearchService
             'jo.prefecuture_image',
             'jo.prefecuture_catch_head',
             'jo.prefecuture_catch_reading',
-            'jo.address_num',
-            'jo.prefectureName',
-            'jo.addressDetail',
+            'jo.address_num AS address_numJo',
+            'jo.prefectureName AS prefectureNameJo',
+            'jo.addressDetail AS addressDetailJo',
             'jo.working_hours',
             'jo.monthly_income',
             'cd.url',
-            'cd.address_num',
-            'cd.prefectureName',
+            'cd.address_num AS address_numCd',
+            'cd.prefectureName AS prefectureNameCd',
+            'cd.addressDetail AS addressDetailCd',
             'cd.number_of_employees',
             'cd.year_of_establishment',
             'cd.capital',
@@ -32,12 +33,12 @@ class RecruitSearchService
             'jo.offer1_by_tel',
             'jo.offer1_by_form'
         )
-         ->leftJoin('companiesdetails AS cd', 'cd.company_id', '=', 'companies.company_id')
-        ->leftJoin('companiesdetails_prefectures AS cp', 'cp.company_id', '=', 'companies.company_id')
-        ->leftJoin('prefectures_cats AS pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
-        ->leftJoin('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
-        ->leftJoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.id')
-        ->leftJoin('jobofferdetail_cats AS jc', 'jc.jobcat_id', '=', 'jj.jobcat_id')
+        ->join('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
+        ->leftjoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.id')
+        ->leftjoin('jobofferdetail_cats AS jc', 'jc.jobcat_id', '=', 'jj.jobcat_id')
+        ->join('companiesdetails AS cd', 'cd.company_id', '=', 'companies.company_id')
+        ->join('companiesdetails_prefectures AS cp', 'cp.company_id', '=', 'companies.company_id')
+        ->join('prefectures_cats AS pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
         ->groupBy(
             'companies.company_id',
             'companies.company_name',
