@@ -27,6 +27,7 @@
                     <li><a href="{{ route('ecoulex.kanri.memberCompanyInfo') }}">●企業情報管理</a></li>
                     <li><a href="{{ route('ecoulex.kanri.memberWaterproofingManagement') }}">●防水工事管理</a></li>
                     <li><a href="{{ route('ecoulex.kanri.memberJobPostings') }}">●求人情報管理</a></li>
+                    <li><a href="{{ route('showCpmanyLoginForm') }}">ログアウト</a></li>
                 </ul>
                 <div class="nav-company-name">
                     @yield('company_name', 'デフォルトの企業名')

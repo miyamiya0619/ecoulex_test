@@ -15,7 +15,9 @@
         <div class="dashboard-box">
             <h3>ダッシュボード</h3>
             <div class="dashboard-content">
-                <p>ログイン履歴など</p>
+                @foreach ($companyLoginT as $companyLoginData)
+                    <p>ログイン履歴: {{ $companyLoginData->created_at }}</p>
+                @endforeach
             </div>
         </div>
 

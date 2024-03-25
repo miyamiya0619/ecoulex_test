@@ -93,12 +93,15 @@ Route::get('/ecoulex/kanri/memberDashboard', [MemberTopController::class, 'index
 //お問い合わせ管理（企業情報管理ページ）
 Route::get('/ecoulex/kanri/memberCompanyInfo', [MemberCompanyInfoController::class, 'index'])->name('ecoulex.kanri.memberCompanyInfo');
 Route::get('/ecoulex/kanri/editMemberCompanyInfo', [EditMemberCompanyInfoController::class, 'index'])->name('ecoulex.kanri.editMemberCompanyInfo');
+Route::post('/ecoulex/kanri/editMemberCompanyInfo', [EditMemberCompanyInfoController::class, 'updateCompanyInfo'])->name('ecoulex.kanri.editMemberCompanyInfo.updateCompanyInfo');
 
 //お問い合わせ管理（防水工事管理ページ）
 Route::get('/ecoulex/kanri/memberWaterproofingManagement', [MemberWaterproofingManagementController::class, 'index'])->name('ecoulex.kanri.memberWaterproofingManagement');
 Route::get('/ecoulex/kanri/editMemberWaterproofing', [EditMemberWaterproofingController::class, 'index'])->name('ecoulex.kanri.editMemberWaterproofing');
+Route::post('/ecoulex/kanri/editMemberWaterproofing', [EditMemberWaterproofingController::class, 'index'])->name('ecoulex.kanri.editMemberWaterproofing');
 
 //お問い合わせ管理（求人情報管理ページ）
 Route::get('/ecoulex/kanri/memberJobPostings', [MemberJobPostingsController::class, 'index'])->name('ecoulex.kanri.memberJobPostings');
 Route::get('/ecoulex/kanri/editMemberJobPostings', [EditMemberJobPostingsController::class, 'index'])->name('ecoulex.kanri.editMemberJobPostings');
+Route::post('/ecoulex/kanri/editMemberJobPostings', [EditMemberJobPostingsController::class, 'updateJobPostingInfo'])->name('ecoulex.kanri.updateJobPostingInfo');
 

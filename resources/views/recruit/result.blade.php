@@ -162,7 +162,7 @@
 				<div class="ttl">勤務条件</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>勤務地</dt>
-					<dd>{{ $company['address_num']}}{{ $company['prefectureName']}}{{ $company['addressDetail']}}</dd>
+					<dd>〒{{ $company['address_num']}} {{ $company['prefectureName']}} {{ $company['addressDetail']}}</dd>
 					
 					<dt>勤務時間</dt>
 					<dd>{{ $company['working_hours']}}</dd>

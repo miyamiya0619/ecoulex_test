@@ -12,6 +12,10 @@ $(document).ready(function () {
         $('#file-upload').click();
     });
 
+    $('#file-upload').on('change', function () {
+        updateFileNameDisplay(this);
+    });
+
     // フォーム検証関数
     window.validateForm = function () {
         var isValid = true;
@@ -30,7 +34,7 @@ $(document).ready(function () {
 
         // チェックボックスの検証
         var checkBoxGroups = {};
-        $('input[type="checkbox"][required]').each(function () {
+        $('input[type="checkbox"][checked]').each(function () {
             var name = $(this).attr('name');
             checkBoxGroups[name] = checkBoxGroups[name] || [];
             checkBoxGroups[name].push(this);
@@ -56,12 +60,15 @@ $(document).ready(function () {
     addRequiredTextToOtherFields();
     addRequiredTextToSelectFields(); // プルダウン用の関数を追加
     addRequiredFieldStyles();
+    highlightCurrentPageLink(); // 現在のページのリンクの背景をグレーにする機能
+
 });
+
 
 function addRequiredTextToCheckboxGroup() {
     // チェックボックスグループのコンテナに「必須」を追加
-    if ($(".checkbox input[type='checkbox'][required]").length) {
-        $(".checkbox").append('<div class="required-asterisk_long">* 少なくとも一つ選択必須</div>');
+    if ($(".checkboxWaterproofing input[type='checkbox'][checked]").length) {
+        $(".checkboxWaterproofing").append('<div class="required-asterisk_long">* 少なくとも一つ選択必須</div>');
     }
 }
 
@@ -103,4 +110,23 @@ function addRequiredFieldStyles() {
         }
     `);
     $('head').append(style);
+}
+
+function highlightCurrentPageLink() {
+    var currentPagePath = window.location.pathname.split('/').pop();
+
+    $('#member-nav ul li a').each(function () {
+        var linkPath = $(this).attr('href');
+        if (linkPath === currentPagePath) {
+            $(this).css('background-color', 'rgb(167, 220, 233)');
+        }
+    });
+}
+// ファイル名表示関数
+function updateFileNameDisplay(input) {
+    var fileName = $(input).val().split('\\').pop(); // ファイル名を取得
+    $('.selected-file-name').each(function () {
+        $(this).text(fileName); // 各表示要素にファイル名をセット
+        $(this).css('display', 'block'); // このクラスのみflexが効かないように設定
+    });
 }

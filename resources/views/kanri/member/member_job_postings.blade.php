@@ -22,7 +22,7 @@
                                         <div class="label">お問い合わせ募集内容:</div>
                                         <ul>
                                         @php
-                                            $catNamesArray = explode(',', str_replace(['[', ']'], '', $companies[0]->catNames));
+                                            $catNamesArray = explode(',', str_replace(['[', ']'], '', $jobPostings[0]->catNames));
                                         @endphp
 
                                         @foreach($catNamesArray as $catName)
@@ -33,22 +33,49 @@
                                 </li>
                                 <li>
                                     <div class="label">求人情報キャッチ:</div>
-                                    <div class="catch">{{ $companies[0]->prefecuture_catch_head }}</div>
+                                    <div class="catch">{{ $jobPostings[0]->prefecuture_catch_head }}</div>
                                 </li>
                                 <li>
                                     <div class="label">求人情報詳細:</div>
-                                    <div class="detail">{{ $companies[0]->prefecuture_catch_reading }}</div>
+                                    <div class="detail">{{ $jobPostings[0]->prefecuture_catch_reading }}</div>
                                 </li>
                                 <li>
                                     <div class="image">
                                         <div class="label">求人情報画像:</div>
                                         <div>
                                             <img class="fit-picture"
-                                                src="{{ asset('images/uploads/' . $companies[0]->prefecuture_image) }}"
-                                                alt="{{ $companies[0]->prefecuture_image}}" />
+                                                src="{{ asset('storage/app/uploads/' . $jobPostings[0]->prefecuture_image) }}"
+                                                alt="{{ $jobPostings[0]->prefecuture_image}}" />
                                         </div>
                                     </div>
-
+                                </li>
+                                <li>
+                                    <div class="label">勤務地:</div>
+                                    <div class="detail">〒{{ $jobPostings[0]->address_num }}{{ $jobPostings[0]->prefectureName }}{{ $jobPostings[0]->addressDetail }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">勤務時間:</div>
+                                    <div class="detail">{{ $jobPostings[0]->working_hours }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">初年度月収例:</div>
+                                    <div class="detail">{{ $jobPostings[0]->monthly_income }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">応募➀電話:</div>
+                                    <div class="detail">{{ $jobPostings[0]->offer1_by_tel }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">応募➀フォーム:</div>
+                                    <div class="detail">{{ $jobPostings[0]->offer1_by_form }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">応募➁電話:</div>
+                                    <div class="detail">{{ $jobPostings[0]->offer2_by_tel }}</div>
+                                </li>
+                                <li>
+                                    <div class="label">応募➁フォーム:</div>
+                                    <div class="detail">{{ $jobPostings[0]->offer2_by_form }}</div>
                                 </li>
                             </ul>
                         </div>

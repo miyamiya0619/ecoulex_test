@@ -85,7 +85,7 @@
 					<dd><a href="https://tfc.co.jp/" target="_blank">{{ $company['url']}}</a></dd>
 					
 					<dt>所在地</dt>
-					<dd>〒{{ $company['address_num']}}{{ $company['address']}}</dd>
+					<dd>〒{{ $company['address_num']}} {{ $company['prefectureName']}} {{ $company['addressDetail']}}</dd>
 					
 					<dt>代表者</dt>
 					<dd>{{ $company['representative']}}</dd>

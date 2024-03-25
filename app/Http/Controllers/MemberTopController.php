@@ -18,10 +18,11 @@ class MemberTopController extends Controller
     {
         //ユーザIDから企業名を取得する
         $user = Session::get('user');
+        $companyLoginT = Session::get('companyLoginT');
 
 
         if ($user) {
-            return view('kanri.member.member_dashboard', compact('user'));
+            return view('kanri.member.member_dashboard', compact('user','companyLoginT'));
         }
 
         return view('kanri.registration.loginCopmany');

@@ -15,29 +15,34 @@
                 </div>
                 @include('partials._company_info_header')
                 <div class="information-item">
+                <form action="{{ route('ecoulex.kanri.updateJobPostingInfo') }}" method="post" enctype="multipart/form-data">
+                @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">
                             <div class="form-group">
                                 <label class="form-label">求人募集内容:</label>
                                 <div class="checkbox">
-                                    <input type="checkbox" name="services[]" value="現場作業員" required> 現場作業員<br>
-                                    <input type="checkbox" name="services[]" value="現場調査診断士" required> 現場調査診断士<br>
-                                    <input type="checkbox" name="services[]" value="現場管理監督員" required> 現場管理監督員<br>
-                                    <input type="checkbox" name="services[]" value="現場・営業サポート" required>
-                                    現場・営業サポート（現場事務、精算等）<br>
+                                @foreach($JobofferdetailCatAll as $JobofferdetailCat)
+                                @if(in_array($JobofferdetailCat -> jobcat_id, json_decode($jobPostings[0]->jobcatIds)))
+                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}" checked> {{$JobofferdetailCat -> catName}}</div>
+                                    @else
+                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}"> {{$JobofferdetailCat -> catName}}</div>
+                                    @endif
+                                @endforeach
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="form-label">求人見出し:</label>
+                                <input type="text" name="prefecuture_catch_head" value="{{$jobPostings[0] -> prefecuture_catch_reading}}">
+                            </div>
                             <div class="form-group">
                                 <div class="form-label">
                                     <label>求人用キャッチ:</label>
                                     <div class="form-attention">
-                                        ※文字数〇〇まで
+                                        ※文字数100文字まで
                                     </div>
-
                                 </div>
-                                <textarea name="catchphrase" rows="4" cols="50" maxlength="〇〇"
-                                    required>〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇〇</textarea>
+                                <textarea name="prefecuture_catch_reading" rows="4" cols="50" maxlength="〇〇">{{$jobPostings[0] -> prefecuture_catch_head}}</textarea>
                             </div>
 
                             <div class="form-group">
@@ -50,102 +55,62 @@
                                 </div>
                                 <div class="file-upload">
                                     <button type="button" id="upload-btn">ファイルを選択</button>
-                                    <input type="file" id="file-upload" style="display: none;">
+                                    <input type="file" id="file-upload" name="prefecuture_image" style="display: none;">
+                                    <div class="selected-file-name"></div>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label" for="prefecture">都道府県名:</label>
-                                <select name="prefecture" id="prefecture" required>
-                                    <option value="">都道府県を選択してください</option>
-                                    <option value="北海道">北海道</option>
-                                    <option value="青森県">青森県</option>
-                                    <option value="岩手県">岩手県</option>
-                                    <option value="宮城県">宮城県</option>
-                                    <option value="秋田県">秋田県</option>
-                                    <option value="山形県">山形県</option>
-                                    <option value="福島県">福島県</option>
-                                    <option value="茨城県">茨城県</option>
-                                    <option value="栃木県">栃木県</option>
-                                    <option value="群馬県">群馬県</option>
-                                    <option value="埼玉県">埼玉県</option>
-                                    <option value="千葉県">千葉県</option>
-                                    <option value="東京都">東京都</option>
-                                    <option value="神奈川県">神奈川県</option>
-                                    <option value="新潟県">新潟県</option>
-                                    <option value="富山県">富山県</option>
-                                    <option value="石川県">石川県</option>
-                                    <option value="福井県">福井県</option>
-                                    <option value="山梨県">山梨県</option>
-                                    <option value="長野県">長野県</option>
-                                    <option value="岐阜県">岐阜県</option>
-                                    <option value="静岡県">静岡県</option>
-                                    <option value="愛知県">愛知県</option>
-                                    <option value="三重県">三重県</option>
-                                    <option value="滋賀県">滋賀県</option>
-                                    <option value="京都府">京都府</option>
-                                    <option value="大阪府">大阪府</option>
-                                    <option value="兵庫県">兵庫県</option>
-                                    <option value="奈良県">奈良県</option>
-                                    <option value="和歌山県">和歌山県</option>
-                                    <option value="鳥取県">鳥取県</option>
-                                    <option value="島根県">島根県</option>
-                                    <option value="岡山県">岡山県</option>
-                                    <option value="広島県">広島県</option>
-                                    <option value="山口県">山口県</option>
-                                    <option value="徳島県">徳島県</option>
-                                    <option value="香川県">香川県</option>
-                                    <option value="愛媛県">愛媛県</option>
-                                    <option value="高知県">高知県</option>
-                                    <option value="福岡県">福岡県</option>
-                                    <option value="佐賀県">佐賀県</option>
-                                    <option value="長崎県">長崎県</option>
-                                    <option value="熊本県">熊本県</option>
-                                    <option value="大分県">大分県</option>
-                                    <option value="宮崎県">宮崎県</option>
-                                    <option value="鹿児島県">鹿児島県</option>
-                                    <option value="沖縄県">沖縄県</option>
+                                <select name="prefectureId" id="prefecture" required>
+                                @foreach($prefectures as $prefecture)
+                                    @if($prefecture->prefecuture_id == $jobPostings[0]->prefecuture_id)
+                                    <option value="{{$prefecture -> prefecuture_id}}" selected>{{$prefecture -> catName}}</option>
+                                    @else
+                                    <option value="{{$prefecture -> prefecuture_id}}">{{$prefecture -> catName}}</option>
+                                    @endif
+                                @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">郵便番号:</label>
-                                <input type="text" name="zip_code" required>
+                                <input type="text" value= "{{$jobPostings[0] -> address_num}}" name="address_num" >
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">勤務地:</label>
-                                <input type="text" name="work_location" required>
+                                <input type="text" value= "{{$jobPostings[0] -> addressDetail}}" name="addressDetail">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">勤務時間:</label>
-                                <input type="text" name="work_hours" required>
+                                <input type="text" value= "{{$jobPostings[0] -> working_hours}}" name="working_hours">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">初年度月収例:</label>
-                                <input type="text" name="salary_example">
+                                <input type="text" value= "{{$jobPostings[0] -> monthly_income}}" name="monthly_income">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">応募①電話:</label>
-                                <input type="text" name="application_phone1">
+                                <input type="text" value= "{{$jobPostings[0] -> offer1_by_tel}}" name="offer1_by_tel">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">応募①フォーム:</label>
-                                <input type="text" name="application_form1">
+                                <input type="text" value= "{{$jobPostings[0] -> offer1_by_form}}" name="offer1_by_form">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">応募②電話:</label>
-                                <input type="text" name="application_phone2">
+                                <input type="text" value= "{{$jobPostings[0] -> offer2_by_tel}}" name="offer2_by_tel">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">応募②フォーム:</label>
-                                <input type="text" name="application_form2">
+                                <input type="text" value= "{{$jobPostings[0] -> offer2_by_form}}" name="offer2_by_form">
                             </div>
 
                         </div>
@@ -154,6 +119,7 @@
                     <div class="info-button">
                         <button class="registration-button" onclick="validateForm()">更新する</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

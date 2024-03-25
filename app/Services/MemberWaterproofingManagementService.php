@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Models\Company;
+use App\Models\WaterproofdetailsCat;
 use Illuminate\Support\Facades\DB;
 
 class MemberWaterproofingManagementService
@@ -12,7 +13,8 @@ class MemberWaterproofingManagementService
         $worterProofs = Company::select(
             'companies.company_id',
             'companies.company_name',
-            DB::raw("CONCAT('[', GROUP_CONCAT(wc.catName SEPARATOR ','), ']') AS catNames"),
+            DB::raw("CONCAT('[', GROUP_CONCAT(JSON_OBJECT('id', wc.waterproofcat_id, 'name', wc.catName) SEPARATOR ','), ']') AS catAndIds"),
+            DB::raw("JSON_ARRAYAGG(wc.waterproofcat_id) AS catIds"),
             'w.waterproofing_job_description',
             'w.waterproofing_job_catch',
             'w.waterproofing_job_image',
@@ -33,4 +35,13 @@ class MemberWaterproofingManagementService
 
         return $worterProofs;
     }
+
+
+    public function fetchWaterProofingCatData()
+    {
+        // 会社情報の取得
+        $worterProofCatAll = WaterproofdetailsCat::all();
+        return $worterProofCatAll;
+    }
+    
 }

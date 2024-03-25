@@ -22,10 +22,10 @@
                                         <div class="label">お問い合わせ募集内容:</div>
                                         <ul>
                                         @php
-                                            $catNamesArray = explode(',', str_replace(['[', ']'], '', $worterProofs[0]->catNames));
+                                            $catNamesArray = json_decode($worterProofs[0]->catAndIds, true);
                                         @endphp
                                         @foreach($catNamesArray as $catName)
-                                        <li>{{ $catName }}</li>
+                                        <li>{{ $catName['name'] }}</li>
                                         @endforeach
                                         </ul>
                                     </div>
