@@ -13,6 +13,11 @@
                     <h1 class="dashboard-title">防水工事管理</h1>
                 </div>
                 @include('partials._company_info_header')
+@php
+$catAndIdsArray  = json_decode($worterProofs[0]->catAndIds, true);
+$idValue = $catAndIdsArray[0]['id'];
+@endphp                
+@if(!empty($idValue))
                 <div class="information-item">
                     <div class="information-content">
                         <div class="box-info">
@@ -21,10 +26,7 @@
                                     <div class="inquiry_content">
                                         <div class="label">お問い合わせ募集内容:</div>
                                         <ul>
-                                        @php
-                                            $catNamesArray = json_decode($worterProofs[0]->catAndIds, true);
-                                        @endphp
-                                        @foreach($catNamesArray as $catName)
+                                        @foreach($catAndIdsArray as $catName)
                                         <li>{{ $catName['name'] }}</li>
                                         @endforeach
                                         </ul>
@@ -59,6 +61,19 @@
                         </a>
                     </div>
                 </div>
+@else
+<div class="information-item">
+                    <div class="information-content">
+                        <div class="no-box-info">登録情報がありません</div>
+
+                    </div>
+                    <div class="info-button">
+                    <a href="{{ route('ecoulex.kanri.editMemberWaterproofing') }}">
+                        <button class="registration-button">新規登録する</button>
+                        </a>
+                    </div>
+</div>
+@endif
             </div>
             <!-- ページネーション -->
 

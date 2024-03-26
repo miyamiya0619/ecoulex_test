@@ -13,6 +13,7 @@
                     <h1 class="dashboard-title">求人情報管理</h1>
                 </div>
                 @include('partials._company_info_header')
+@if($jobPostings[0]->prefectureName)
                 <div class="information-item">
                     <div class="information-content">
                         <div class="box-info">
@@ -22,10 +23,11 @@
                                         <div class="label">お問い合わせ募集内容:</div>
                                         <ul>
                                         @php
-                                            $catNamesArray = explode(',', str_replace(['[', ']'], '', $jobPostings[0]->catNames));
+                                        $catNamesArray = json_decode($jobPostings[0]['catAndIds'], true);
+                                        $catNames = array_column($catNamesArray, 'catName');
                                         @endphp
 
-                                        @foreach($catNamesArray as $catName)
+                                        @foreach($catNames as $catName)
                                         <li>{{ $catName }}</li>
                                         @endforeach
                                         </ul>
@@ -44,7 +46,7 @@
                                         <div class="label">求人情報画像:</div>
                                         <div>
                                             <img class="fit-picture"
-                                                src="{{ asset('storage/app/uploads/' . $jobPostings[0]->prefecuture_image) }}"
+                                                src="{{ asset('images/uploads/' . $jobPostings[0]->prefecuture_image) }}"
                                                 alt="{{ $jobPostings[0]->prefecuture_image}}" />
                                         </div>
                                     </div>
@@ -91,8 +93,19 @@
 
 
                 </div>
+@else           
+<div class="information-item">
+    <div class="information-content">
+        <div class="no-box-info">登録情報がありません</div>
 
-
+    </div>
+    <div class="info-button">
+        <a href="{{ route('ecoulex.kanri.editMemberJobPostings') }}">
+            <button class="registration-button">新規登録する</button>
+        </a>
+    </div>
+</div>
+@endif
             </div>
             <!-- ページネーション -->
 

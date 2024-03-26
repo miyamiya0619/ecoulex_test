@@ -29,7 +29,7 @@
                 @endif
                 <button type="submit">ログインする</button>
             </form>
-            <a href="forgot_password.html" class="forgot-password">パスワードを忘れた場合</a>
+            <a href="{{ route('ecoulex.kanri.forgot_password') }}" class="forgot-password">パスワードを忘れた場合</a>
         </div>
     </div>
 </body>

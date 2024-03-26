@@ -22,8 +22,12 @@
                             <div class="form-group">
                                 <label class="form-label">求人募集内容:</label>
                                 <div class="checkbox">
+                                @php
+                                $catNamesArray = json_decode($jobPostings[0]['catAndIds'], true);
+                                $jobcatIds = array_column($catNamesArray, 'jobcat_id');
+                                @endphp
                                 @foreach($JobofferdetailCatAll as $JobofferdetailCat)
-                                @if(in_array($JobofferdetailCat -> jobcat_id, json_decode($jobPostings[0]->jobcatIds)))
+                                @if(in_array($JobofferdetailCat -> jobcat_id, $jobcatIds))
                                     <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}" checked> {{$JobofferdetailCat -> catName}}</div>
                                     @else
                                     <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}"> {{$JobofferdetailCat -> catName}}</div>

@@ -81,8 +81,8 @@
 					@endif
 					</div>
 					<div class="Txt">
-						<p class="catch">{{ $company['waterproofing_job_description']}}</p>
-						<p class="detail">{{ $company['waterproofing_job_catch']}}</p>
+						<p class="catch">{{ $company['waterproofing_job_catch']}}</p>
+						<p class="detail">{{ $company['waterproofing_job_description']}}</p>
 					</div>
 				</div>
 				

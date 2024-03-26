@@ -15,6 +15,7 @@
                     <h1 class="dashboard-title">企業情報管理</h1>
                 </div>
                 @include('partials._company_info_header')
+@if($companies[0]->address_num)
                 <div class="information-item">
                     <div class="information-content">
                         <div class="box-info">
@@ -53,7 +54,6 @@
                                 </li>
                             </ul>
                         </div>
-
                     </div>
                     <div class="info-button">
                         <a href="{{ route('ecoulex.kanri.editMemberCompanyInfo') }}">
@@ -62,6 +62,20 @@
                         </a>
                     </div>
                 </div>
+@else
+<div class="information-item">
+                    <div class="information-content">
+                        <div class="no-box-info">登録情報がありません</div>
+
+                    </div>
+                    <div class="info-button">
+                    <a href="{{ route('ecoulex.kanri.editMemberCompanyInfo') }}">
+                        <button class="registration-button">新規登録する
+                        </button>
+                    </a>
+                    </div>
+</div>
+@endif
             </div>
             <!-- ページネーション -->
 
