@@ -34,7 +34,7 @@ $(document).ready(function () {
 
         // チェックボックスの検証
         var checkBoxGroups = {};
-        $('input[type="checkbox"][checked]').each(function () {
+        $('input[type="checkbox"][required]').each(function () {
             var name = $(this).attr('name');
             checkBoxGroups[name] = checkBoxGroups[name] || [];
             checkBoxGroups[name].push(this);
@@ -51,12 +51,12 @@ $(document).ready(function () {
             return false; // フォームの送信を防ぐ
         } else {
             // ここにフォーム送信のコードを追加
+            alert("更新完了しました。");
             return true;
         }
     };
 
-    // 必須フィールドに関する関数はそのまま保持し、プルダウンにも適用します
-    addRequiredTextToCheckboxGroup();
+    // addRequiredTextToCheckboxGroup();
     addRequiredTextToOtherFields();
     addRequiredTextToSelectFields(); // プルダウン用の関数を追加
     addRequiredFieldStyles();
@@ -64,13 +64,6 @@ $(document).ready(function () {
 
 });
 
-
-function addRequiredTextToCheckboxGroup() {
-    // チェックボックスグループのコンテナに「必須」を追加
-    if ($(".checkboxWaterproofing input[type='checkbox'][checked]").length) {
-        $(".checkboxWaterproofing").append('<div class="required-asterisk_long">* 少なくとも一つ選択必須</div>');
-    }
-}
 
 function addRequiredTextToOtherFields() {
     // テキストフィールドとテキストエリアに「必須」を追加

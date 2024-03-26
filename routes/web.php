@@ -85,8 +85,8 @@ Route::get('/ecoulex/recruit/result/region/{region_id}', [SearchRecruitControlle
 // 管理画面（企業側）
 
 // ログイン
-Route::get('/ecoulex/kanri/loginCopmany/', [CompanyLoginController::class, 'showCpmanyLoginForm'])->name('showCpmanyLoginForm');
-Route::post('/ecoulex/kanri/loginCopmany/', [CompanyLoginController::class, 'login'])->name('login');
+Route::get('/ecoulex/kanri/loginCompmany/', [CompanyLoginController::class, 'showCpmanyLoginForm'])->name('showCpmanyLoginForm');
+Route::post('/ecoulex/kanri/loginCompmany/', [CompanyLoginController::class, 'login'])->name('login');
 
 //お問い合わせ管理（トップページ）
 Route::get('/ecoulex/kanri/memberDashboard', [MemberTopController::class, 'index'])->name('ecoulex.kanri.memberDashboard');

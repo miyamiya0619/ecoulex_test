@@ -38,7 +38,7 @@ class EditMemberCompanyInfoController extends Controller
             return view('kanri.member.edit_member_company_info', compact('user','companies','prefectures'));
         }
 
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
     }
 
     public function updateCompanyInfo(Request $request)
@@ -58,7 +58,7 @@ class EditMemberCompanyInfoController extends Controller
         
         }
 
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
 
     }
     

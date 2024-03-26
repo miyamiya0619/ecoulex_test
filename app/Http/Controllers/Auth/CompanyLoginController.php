@@ -25,7 +25,7 @@ class CompanyLoginController extends Controller
     
     public function showCpmanyLoginForm()
     {
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
     }
 
     public function login(Request $request)

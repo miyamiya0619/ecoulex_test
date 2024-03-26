@@ -88,7 +88,7 @@ class EditMemberWaterproofingController extends Controller
             
             return redirect()->route('ecoulex.kanri.memberWaterproofingManagement');
         }
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
 
     }
     

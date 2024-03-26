@@ -25,7 +25,7 @@ class MemberTopController extends Controller
             return view('kanri.member.member_dashboard', compact('user','companyLoginT'));
         }
 
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
     }
 
 }

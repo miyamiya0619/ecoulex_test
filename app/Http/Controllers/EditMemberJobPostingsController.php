@@ -40,7 +40,7 @@ class EditMemberJobPostingsController extends Controller
             return view('kanri.member.edit_member_job_postings', compact('user','jobPostings','JobofferdetailCatAll','prefectures'));
         }
 
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
     }
 
     public function updateJobPostingInfo(Request $request)
@@ -85,7 +85,7 @@ class EditMemberJobPostingsController extends Controller
             
             return redirect()->route('ecoulex.kanri.updateJobPostingInfo');
         }
-        return view('kanri.registration.loginCopmany');
+        return view('kanri.registration.loginCompmany');
 
     }
 
