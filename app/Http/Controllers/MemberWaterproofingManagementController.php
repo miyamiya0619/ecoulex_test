@@ -33,7 +33,7 @@ class MemberWaterproofingManagementController extends Controller
             return view('kanri.member.member_waterproofing_management_data', compact('user','worterProofs','worterProofCatAll'));
         }
 
-        return view('kanri.registration.loginCompmany');
+        return view('kanri.registration.loginCompany');
     }
 
 }
