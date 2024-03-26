@@ -16,8 +16,11 @@ class MemberJobPostingsService
         $jobPostings = Company::select(
             'companies.company_id',
             'companies.company_name',
-            DB::raw("GROUP_CONCAT(DISTINCT jc.catName SEPARATOR ',') AS catNames"),
-            DB::raw("JSON_ARRAYAGG(jc.jobcat_id) AS jobcatIds"),
+            DB::raw("(SELECT CONCAT('[', GROUP_CONCAT(JSON_OBJECT('jobcat_id', jc.jobcat_id, 'catName', jc.catName) SEPARATOR ','), ']') AS catAndIds
+            FROM laravel.jobofferdetail_cats AS jc
+            left JOIN laravel.joboffers_jobofferdetails AS jj ON jj.jobcat_id = jc.jobcat_id
+            left JOIN laravel.joboffers AS jo ON jo.company_id = jj.joboffer_id
+            WHERE jo.company_id = laravel.companies.company_id) AS catAndIds"),
             'jo.prefecuture_image',
             'jo.prefecuture_catch_head',
             'jo.prefecuture_catch_reading',
@@ -58,7 +61,7 @@ class MemberJobPostingsService
 
         return $jobPostings;
     }
-    // 求人情報の取得
+    // 求人カテゴリ情報の取得
     public function fetchJobofferdetailCatsData()
     {
         $JobofferdetailCatAll = JobofferdetailCat::all();
@@ -72,9 +75,17 @@ class MemberJobPostingsService
         return $PrefecturesCats;
     }
 
-    //求人情報の更新
+    //求人情報テーブルを取得する
+    public function fetchJobPostingData($company_id)
+    {
+        $jobPostingRec = Joboffer::where('company_id', $company_id)->get();
+        return $jobPostingRec;
+    }
+
+    //求人情報の更新処理を行う
     public function updateJobPostingData($company_id,$jobPostingAll,$filename)
     {
+
         //求人募集内容関連テーブルを更新する（delete→insert)
         JoboffersJobofferdetail::where('joboffer_id', $company_id)->delete();
 
@@ -107,12 +118,67 @@ class MemberJobPostingsService
         ];
 
         //prefecuture_imageに関しては、定義されている場合すなわちアップロードされた場合はアップロードしたファイル名で更新する
-        if (isset($filename)) {
+        if (!empty($filename)) {
             $updateData['prefecuture_image'] = $filename;
         }
 
         Joboffer::where('company_id', $company_id)->update($updateData);
 
-
     }
+
+    //求人情報の登録処理を行う
+    public function insertJobPostingData($company_id,$jobPostingAll,$filename){
+
+        // トランザクションを開始
+        DB::beginTransaction();
+            try {
+            //prefectureIdからprefectureNameを取得する
+            $prefectureName = PrefecturesCat::select('catName')->where('prefecuture_id', $jobPostingAll['prefectureId'])->get();
+
+            //求人都道府県テーブルを登録する
+            $Joboffer = new Joboffer();
+            $Joboffer->company_id = $company_id;
+            $Joboffer->prefecuture_catch_head = $jobPostingAll['prefecuture_catch_head'];
+            $Joboffer->prefecuture_catch_reading = $jobPostingAll['prefecuture_catch_reading'];
+            $Joboffer->address_num =  $jobPostingAll['address_num'];
+            $Joboffer->prefectureName = $prefectureName[0]->catName;
+            $Joboffer->addressDetail = $jobPostingAll['addressDetail'];
+            $Joboffer->working_hours = $jobPostingAll['working_hours'];
+            $Joboffer->monthly_income = $jobPostingAll['monthly_income'];
+            $Joboffer->offer1_by_tel = $jobPostingAll['offer1_by_tel'];
+            $Joboffer->offer1_by_form = $jobPostingAll['offer1_by_form'];
+            $Joboffer->offer2_by_tel = $jobPostingAll['offer2_by_tel'];
+            $Joboffer->offer2_by_form = $jobPostingAll['offer2_by_form'];
+            //prefecuture_imageに関しては、定義されている場合すなわちアップロードされた場合はアップロードしたファイル名で更新する
+            if (!empty($filename)) {
+                $Joboffer->prefecuture_image = $filename;
+            }
+            $Joboffer->save();
+
+
+            //求人都道府県関連テーブルを更新する
+            foreach ($jobPostingAll['JobofferdetailCat'] as $jobcatId) {
+                JoboffersJobofferdetail::insert([
+                    'jobcat_id' => $jobcatId,
+                    'joboffer_id' => $company_id,
+                ]);
+            }
+
+            //求人都道府県関連テーブルを登録する
+            $JobofferPrefecture = new JobofferPrefecture();
+            $JobofferPrefecture->job_id = $company_id;
+            $JobofferPrefecture->prefecuture_id = $jobPostingAll['prefectureId'];
+            $JobofferPrefecture->save();
+
+            // コミット
+            DB::commit();
+            } catch (\Exception $e) {
+                // エラーが発生した場合はロールバック
+                DB::rollBack();
+                throw $e; // 例外を再スローして呼び出し元でエラーを処理できるようにする
+            }
+    }
+
+
+
 }

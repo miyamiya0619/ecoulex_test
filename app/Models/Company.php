@@ -49,4 +49,19 @@ class Company extends Model implements Authenticatable
         // ユーザーの識別子を返す
         return $this->getKey();
     }
+
+
+    protected $fillable = [
+        'company_id',
+        'url',
+        'address_num',
+        'prefectureName',
+        'addressDetail',
+        'number_of_employees',
+        'year_of_establishment',
+        'capital',
+        'representative',
+        'phone',
+        'form'
+    ];
 }

@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class JobofferPrefecture extends Model
 {
     use HasFactory;
+    protected $fillable =  [
+        'job_id',
+        'prefecuture_id'
+    ];
 }

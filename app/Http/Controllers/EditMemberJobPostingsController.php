@@ -34,6 +34,8 @@ class EditMemberJobPostingsController extends Controller
         //都道府県の情報を取得する
         $prefectures = $this->MemberJobPostingsService->fetchPrefecturesCatsData();
 
+  
+
         if ($user) {
             return view('kanri.member.edit_member_job_postings', compact('user','jobPostings','JobofferdetailCatAll','prefectures'));
         }
@@ -55,7 +57,7 @@ class EditMemberJobPostingsController extends Controller
             if ($request->hasFile('prefecuture_image')) {
                 //既存のファイルを削除する
                 $filenameTodel = "/^jobPosting_{$company_id}_/";
-                $files = Storage::files('uploads'); // ストレージディレクトリ内の全ファイルを取得
+                $files = Storage::disk('public')->files('images/uploads'); // ストレージディレクトリ内の全ファイルを取得
                 foreach ($files as $file) {
                     if (preg_match($filenameTodel, basename($file))) {
                         Storage::delete($file); // ファイルを削除
@@ -65,12 +67,22 @@ class EditMemberJobPostingsController extends Controller
                 $prefecuture_image_up = $request->file('prefecuture_image');
                 $datetime = Carbon::now()->format('YmdHisv');
                 $filename = 'jobPosting_' . $company_id . '_' . $datetime . '.' . $prefecuture_image_up->getClientOriginalExtension();
-                $prefecuture_image_up->storeAs('uploads', $filename);
+                $prefecuture_image_up->storeAs('images/uploads', $filename);
+            }else{
+                $filename = "";
             }
-            //受け取ったパラメータで求人情報、カテゴリを更新する
-            $this->MemberJobPostingsService->updateJobPostingData($company_id,$jobPostingAll,$filename);
 
-
+            //ログイン情報に紐づく求人情報のレコードを取得する
+            $jobPostingsRec = $this->MemberJobPostingsService->fetchJobPostingData($company_id);
+            
+            if($jobPostingsRec->count() == 0){
+            //求人情報が存在しない場合は登録処理を行う
+                $this->MemberJobPostingsService->insertJobPostingData($company_id,$jobPostingAll,$filename);
+            }else{
+            //求人情報が存在するばあいは更新処理を行う
+                $this->MemberJobPostingsService->updateJobPostingData($company_id,$jobPostingAll,$filename);
+            }
+            
             return redirect()->route('ecoulex.kanri.updateJobPostingInfo');
         }
         return view('kanri.registration.loginCopmany');

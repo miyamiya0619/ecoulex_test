@@ -26,7 +26,6 @@ class MemberWaterproofingManagementController extends Controller
 
         //ログインユーザに紐づく防水工事情報を取得する
         $worterProofs = $this->MemberWaterproofingManagementService->fetchCompanyData($company_id);
-
         //全工事カテゴリを取得する
         $worterProofCatAll = $this->MemberWaterproofingManagementService->fetchWaterProofingCatData();
 

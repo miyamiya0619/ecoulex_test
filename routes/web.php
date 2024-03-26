@@ -11,6 +11,7 @@ use App\Http\Controllers\MemberJobPostingsController;
 use App\Http\Controllers\EditMemberCompanyInfoController;
 use App\Http\Controllers\EditMemberWaterproofingController;
 use App\Http\Controllers\EditMemberJobPostingsController;
+use App\Http\Controllers\CompanyPasswordForgetController;
 
 
 
@@ -98,10 +99,12 @@ Route::post('/ecoulex/kanri/editMemberCompanyInfo', [EditMemberCompanyInfoContro
 //お問い合わせ管理（防水工事管理ページ）
 Route::get('/ecoulex/kanri/memberWaterproofingManagement', [MemberWaterproofingManagementController::class, 'index'])->name('ecoulex.kanri.memberWaterproofingManagement');
 Route::get('/ecoulex/kanri/editMemberWaterproofing', [EditMemberWaterproofingController::class, 'index'])->name('ecoulex.kanri.editMemberWaterproofing');
-Route::post('/ecoulex/kanri/editMemberWaterproofing', [EditMemberWaterproofingController::class, 'index'])->name('ecoulex.kanri.editMemberWaterproofing');
+Route::post('/ecoulex/kanri/editMemberWaterproofing', [EditMemberWaterproofingController::class, 'updateWaterProofingInfo'])->name('ecoulex.kanri.editMemberWaterproofing');
 
 //お問い合わせ管理（求人情報管理ページ）
 Route::get('/ecoulex/kanri/memberJobPostings', [MemberJobPostingsController::class, 'index'])->name('ecoulex.kanri.memberJobPostings');
 Route::get('/ecoulex/kanri/editMemberJobPostings', [EditMemberJobPostingsController::class, 'index'])->name('ecoulex.kanri.editMemberJobPostings');
 Route::post('/ecoulex/kanri/editMemberJobPostings', [EditMemberJobPostingsController::class, 'updateJobPostingInfo'])->name('ecoulex.kanri.updateJobPostingInfo');
 
+//パスワード忘れ
+Route::get('/ecoulex/kanri/forgot_password', [CompanyPasswordForgetController::class, 'index'])->name('ecoulex.kanri.forgot_password');

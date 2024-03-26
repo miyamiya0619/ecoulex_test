@@ -50,7 +50,6 @@ class EditMemberCompanyInfoController extends Controller
         if ($user) {
         //パラメータの受け取り、不要な情報を削除
         $companiesdetailsAll = $request->all();
-        unset($companiesdetailsAll['_token']);
 
         //受け取ったパラメータで企業詳細情報を更新する
         $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);

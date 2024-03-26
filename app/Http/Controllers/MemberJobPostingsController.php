@@ -31,12 +31,7 @@ class MemberJobPostingsController extends Controller
 
         //全求人カテゴリを取得する
         $JobofferdetailCatAll = $this->MemberJobPostingsService->fetchJobofferdetailCatsData();
-        
-        //ファイルのアップロード先を取得する
-        $file_path = 'public/storage/';
-        $jobPostingsImg = $jobPostings[0] -> prefecuture_image;
-        $file_url = asset($file_path.$jobPostingsImg);
-        dd($file_url);
+
 
         if ($user) {
             return view('kanri.member.member_job_postings', compact('user','jobPostings'));
