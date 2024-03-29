@@ -13,13 +13,14 @@ use Illuminate\Queue\SerializesModels;
 class ForgetdMail extends Mailable
 {
     use Queueable, SerializesModels;
- 
+    public $newPassword;
     /**
      * Create a new message instance.
      */
     public function __construct($newPassword)
     {
         //
+        $this->newPassword = $newPassword;
     }
  
     /**
@@ -28,7 +29,7 @@ class ForgetdMail extends Mailable
     public function envelope(): Envelope
     {
         $from    = new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-        $subject = '【' . env('APP_NAME') . '】お問い合せありがとうございます';
+        $subject = 'エコ・ウレックス工業会LPサイトお問い合わせ管理画面登録のお知らせ';
  
         return new Envelope(
             from: $from,
