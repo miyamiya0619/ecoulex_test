@@ -4,15 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as Authenticatable; // 追加
-use App\Models\User; // ユーザーモデルをインポート
-use Illuminate\Contracts\Auth\CanResetPassword;
-use App\Notifications\CustomResetPasswordNotification;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\Authenticatable; // 追加
 
-class Company extends Model implements Authenticatable , CanResetPassword
+class Company extends Model implements Authenticatable 
 {
-    use HasFactory,Notifiable;
+    use HasFactory;
 
      protected $primaryKey = 'company_id';
 
@@ -68,15 +64,4 @@ class Company extends Model implements Authenticatable , CanResetPassword
         'phone',
         'form'
     ];
-
-    public function getEmailForPasswordReset()
-    {
-        return $this->email;
-    }
-
-    // パスワードリセット通知を送信するためのメソッド
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new CustomResetPasswordNotification($token));
-    }
 }

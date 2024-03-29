@@ -57,20 +57,23 @@ class EditMemberJobPostingsController extends Controller
             if ($request->hasFile('prefecuture_image')) {
                 //既存のファイルを削除する
                 $filenameTodel = "/^jobPosting_{$company_id}_/";
-                $files = Storage::disk('public')->files('images/uploads'); // ストレージディレクトリ内の全ファイルを取得
+                $files = Storage::disk('public')->files('uploads'); // ストレージディレクトリ内の全ファイルを取得
                 foreach ($files as $file) {
                     if (preg_match($filenameTodel, basename($file))) {
-                        Storage::delete($file); // ファイルを削除
+                        Storage::disk('public')->delete($file); // ファイルを削除
                     }
                 }
+                
                 //ファイルをアップロードする
                 $prefecuture_image_up = $request->file('prefecuture_image');
                 $datetime = Carbon::now()->format('YmdHisv');
                 $filename = 'jobPosting_' . $company_id . '_' . $datetime . '.' . $prefecuture_image_up->getClientOriginalExtension();
-                $prefecuture_image_up->storeAs('images/uploads', $filename);
+                $prefecuture_image_up->storeAs('uploads', $filename, 'public');
             }else{
                 $filename = "";
             }
+
+
 
             //ログイン情報に紐づく求人情報のレコードを取得する
             $jobPostingsRec = $this->MemberJobPostingsService->fetchJobPostingData($company_id);

@@ -60,17 +60,17 @@ class EditMemberWaterproofingController extends Controller
             if ($request->hasFile('waterproofing_job_image')) {
                 //既存のファイルを削除する
                 $filenameTodel = "/^waterProofing_{$company_id}_/";
-                $files = Storage::disk('public')->files('images/uploads'); // ストレージディレクトリ内の全ファイルを取得
+                $files = Storage::disk('public')->files('uploads'); // ストレージディレクトリ内の全ファイルを取得
                 foreach ($files as $file) {
                     if (preg_match($filenameTodel, basename($file))) {
-                        Storage::delete($file); // ファイルを削除
+                        Storage::disk('public')->delete($file); // ファイルを削除
                     }
                 }
                 //ファイルをアップロードする
                 $waterproofing_job_image_up = $request->file('waterproofing_job_image');
                 $datetime = Carbon::now()->format('YmdHisv');
                 $filename = 'waterProofing_' . $company_id . '_' . $datetime . '.' . $waterproofing_job_image_up->getClientOriginalExtension();
-                $waterproofing_job_image_up->storeAs('images/uploads', $filename);
+                $waterproofing_job_image_up->storeAs('uploads', $filename, 'public');
             }else{
                 $filename = "";
             }

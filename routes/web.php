@@ -108,3 +108,5 @@ Route::post('/ecoulex/kanri/editMemberJobPostings', [EditMemberJobPostingsContro
 
 //パスワード忘れ
 Route::get('/ecoulex/kanri/forgot_password', [CompanyPasswordForgetController::class, 'index'])->name('ecoulex.kanri.forgot_password');
+
+Route::post('/ecoulex/kanri/forgot_password_complete', [CompanyPasswordForgetController::class, 'forgot_password_complete'])->name('ecoulex.kanri.forgot_password_complete');
