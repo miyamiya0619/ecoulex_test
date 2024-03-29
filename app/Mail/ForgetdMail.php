@@ -42,8 +42,11 @@ class ForgetdMail extends Mailable
      */
     public function content(): Content
     {
+        
+        $contentText = view('emails.member', ['newPassword' => $this->newPassword])->render();
+
         return new Content(
-            text: 'emails.member', // プレーンテキストで送信
+            text: $contentText
         );
     }
  
