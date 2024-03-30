@@ -34,11 +34,11 @@ $idValue = $catAndIdsArray[0]['id'];
                                 </li>
                                 <li>
                                     <div class="label">防水工事用キャッチ:</div>
-                                    <div class="catch">{{ $worterProofs[0]->waterproofing_job_description }}</div>
+                                    <div class="catch">{{ $worterProofs[0]->waterproofing_job_catch }}</div>
                                 </li>
                                 <li>
                                     <div class="label">防水工事用詳細:</div>
-                                    <div class="catch">{{ $worterProofs[0]->waterproofing_job_catch }}</div>
+                                    <div class="catch">{{ $worterProofs[0]-> waterproofing_job_description}}</div>
                                 </li>
                                 <li>
                                     <div class="image">

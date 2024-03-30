@@ -53,6 +53,7 @@ class EditMemberJobPostingsController extends Controller
             //パラメータの受け取る
             $jobPostingAll = $request->all();
 
+            
             //パラメータの中に画像ファイルがあった場合、uploadsフォルダに画像を格納する
             if ($request->hasFile('prefecuture_image')) {
                 //既存のファイルを削除する
@@ -86,7 +87,7 @@ class EditMemberJobPostingsController extends Controller
                 $this->MemberJobPostingsService->updateJobPostingData($company_id,$jobPostingAll,$filename);
             }
             
-            return redirect()->route('ecoulex.kanri.updateJobPostingInfo');
+            return redirect()->route('ecoulex.kanri.memberJobPostings');
         }
         return view('kanri.registration.loginCompany');
 

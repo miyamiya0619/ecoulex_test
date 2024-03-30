@@ -18,7 +18,7 @@ class MemberCompanyloginService
     }
     public function fetchCompanieshistoryCntData($company_id)
     {
-        // 会社情報の取得
+        // 会社ログイン情報の取得
         $loginCnt = Companieshistory::where('company_id', $company_id)->count();
 
         return $loginCnt;
@@ -40,7 +40,10 @@ class MemberCompanyloginService
     //3件以上ログイン履歴がある場合、最も古いレコードを削除
     public function fetchCompanieshistoryLoginTData($company_id)
     {
-        $companyLoginT = Companieshistory::where('company_id', $company_id)->select('created_at')->get();;
+        $companyLoginT = Companieshistory::where('company_id', $company_id)
+                                          ->orderBy('id', 'desc')
+                                          ->select('created_at')
+                                          ->get();
         return $companyLoginT;
     }
 

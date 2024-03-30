@@ -15,7 +15,7 @@
                 </div>
                 @include('partials._company_info_header')
                 <div class="information-item">
-                <form action="{{ route('ecoulex.kanri.updateJobPostingInfo') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('ecoulex.kanri.updateJobPostingInfo') }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">
@@ -36,17 +36,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">求人見出し:</label>
-                                <input type="text" name="prefecuture_catch_head" value="{{$jobPostings[0] -> prefecuture_catch_reading}}">
+                                <div class="form-label">
+                                <label>求人情報キャッチ:</label>
+                                <div class="form-attention">
+                                        ※文字数30文字まで
+                                    </div>
+                                    </div>
+                                <input type="text" name="prefecuture_catch_head" value="{{$jobPostings[0] -> prefecuture_catch_head}}"maxlength="30">
                             </div>
                             <div class="form-group">
                                 <div class="form-label">
-                                    <label>求人用キャッチ:</label>
+                                    <label>求人情報詳細:</label>
                                     <div class="form-attention">
                                         ※文字数100文字まで
                                     </div>
                                 </div>
-                                <textarea name="prefecuture_catch_reading" rows="4" cols="50" maxlength="〇〇">{{$jobPostings[0] -> prefecuture_catch_head}}</textarea>
+                                <textarea name="prefecuture_catch_reading" rows="5" cols="100" maxlength="100">{{$jobPostings[0] -> prefecuture_catch_reading}}</textarea>
                             </div>
 
                             <div class="form-group">

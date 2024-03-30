@@ -16,7 +16,7 @@
                 </div>
                 @include('partials._company_info_header')
                 <div class="information-item">
-                <form action="{{ route('ecoulex.kanri.editMemberCompanyInfo.updateCompanyInfo') }}" method="post">
+                <form action="{{ route('ecoulex.kanri.editMemberCompanyInfo.updateCompanyInfo') }}" method="post" novalidate>
                 @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">

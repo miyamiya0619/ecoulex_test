@@ -33,6 +33,7 @@ class SearchRecruitController extends Controller
     
         // 会社情報の取得
         $companies = $this->RecruitSearchService->fetchCompanyData($prefecture_id,$region_id);
+
     
         //都道府県IDから都道府県名を取得する
         $prefecture_name = $this->RecruitSearchService->fetchPrefectureData($prefecture_id);

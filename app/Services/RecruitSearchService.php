@@ -34,11 +34,12 @@ class RecruitSearchService
             'jo.offer1_by_form'
         )
         ->join('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
-        ->leftjoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.id')
+        ->leftjoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.company_id')
         ->leftjoin('jobofferdetail_cats AS jc', 'jc.jobcat_id', '=', 'jj.jobcat_id')
         ->join('companiesdetails AS cd', 'cd.company_id', '=', 'companies.company_id')
         ->join('companiesdetails_prefectures AS cp', 'cp.company_id', '=', 'companies.company_id')
         ->join('prefectures_cats AS pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
+        ->join('joboffer_prefectures AS jp', 'jo.company_id', '=', 'jp.job_id')
         ->groupBy(
             'companies.company_id',
             'companies.company_name',
@@ -69,7 +70,7 @@ class RecruitSearchService
         }
         // 採用情報一覧を見るボタンを押下した場合
         if ($prefecture_id !== 'all') {
-            $companies->where('cp.prefecuture_id', '=', $prefecture_id);
+            $companies->where('jp.prefecuture_id', '=', $prefecture_id);
         }
         return $companies->get();
     }

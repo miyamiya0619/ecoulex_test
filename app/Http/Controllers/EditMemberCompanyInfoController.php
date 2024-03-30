@@ -46,14 +46,22 @@ class EditMemberCompanyInfoController extends Controller
         //ユーザIDから企業名を取得する
         $user = Session::get('user');
         $company_id = Session::get('company_id');
-        
+
         if ($user) {
         //パラメータの受け取り、不要な情報を削除
         $companiesdetailsAll = $request->all();
 
         //受け取ったパラメータで企業詳細情報を更新する
-        $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
-        
+        $address_num = $companiesdetailsAll['address_num'];
+        $prefectureId = $companiesdetailsAll['prefectureId'];
+        $addressDetail = $companiesdetailsAll['addressDetail'];
+        $representative = $companiesdetailsAll['representative'];
+        //必須項目が入力されている場合、実行
+        if(!empty($address_num)&&!empty($prefectureId)&&!empty($addressDetail)&&!empty($representative)){
+            $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
+            return redirect()->route('ecoulex.kanri.memberCompanyInfo');
+        }
+
         return redirect()->route('ecoulex.kanri.editMemberCompanyInfo');
         
         }

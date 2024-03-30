@@ -48,9 +48,6 @@ class CompanyPasswordForgetController extends Controller
             $newPassword = Str::random(10); // 10文字のランダムな文字列を生成する例
             $company->password = Hash::make($newPassword);
             $company->save();
-
-            // dd($company);
-    
     
             // メール送信
                 Mail::to($company)->send(new ForgetdMail($newPassword));

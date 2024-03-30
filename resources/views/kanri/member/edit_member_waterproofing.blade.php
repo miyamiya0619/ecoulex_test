@@ -33,17 +33,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="form-label">防水工事用見出し:</label>
-                                <input type="text" name="waterproofing_job_catch" value="{{$worterProofs[0] -> waterproofing_job_catch}}">
+                                <div class="form-label">
+                                <label> 防水工事用キャッチ:</label>
+                                <div class="form-attention">
+                                        ※文字数30文字まで
+                                    </div>
+                                </div>
+                                <input type="text" name="waterproofing_job_catch" value="{{$worterProofs[0] -> waterproofing_job_catch}}" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <div class="form-label">
-                                    <label>防水工事用キャッチ:</label>
+                                    <label>防水工事用詳細:</label>
                                     <div class="form-attention">
                                         ※文字数100文字まで
                                     </div>
                                 </div>
-                                <textarea name="waterproofing_job_description" rows="4" cols="50" maxlength="〇〇">{{$worterProofs[0] -> waterproofing_job_description}}</textarea>
+                                <textarea name="waterproofing_job_description" rows="4" cols="50" maxlength="100">{{$worterProofs[0] -> waterproofing_job_description}}</textarea>
                             </div>
 
                             <div class="form-group">

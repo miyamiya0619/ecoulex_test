@@ -16,11 +16,7 @@ class MemberJobPostingsService
         $jobPostings = Company::select(
             'companies.company_id',
             'companies.company_name',
-            DB::raw("(SELECT CONCAT('[', GROUP_CONCAT(JSON_OBJECT('jobcat_id', jc.jobcat_id, 'catName', jc.catName) SEPARATOR ','), ']') AS catAndIds
-            FROM laravel.jobofferdetail_cats AS jc
-            left JOIN laravel.joboffers_jobofferdetails AS jj ON jj.jobcat_id = jc.jobcat_id
-            left JOIN laravel.joboffers AS jo ON jo.company_id = jj.joboffer_id
-            WHERE jo.company_id = laravel.companies.company_id) AS catAndIds"),
+            DB::raw('COALESCE(CONCAT(\'[\', GROUP_CONCAT(JSON_OBJECT(\'jobcat_id\', jc.jobcat_id, \'catName\', jc.catName) SEPARATOR \',\'), \']\'), \'[]\') AS catAndIds'),
             'jo.prefecuture_image',
             'jo.prefecuture_catch_head',
             'jo.prefecuture_catch_reading',
@@ -37,9 +33,9 @@ class MemberJobPostingsService
         )
          ->leftJoin('companiesdetails AS cd', 'cd.company_id', '=', 'companies.company_id')
         ->leftJoin('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
-        ->leftJoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.id')
+        ->leftJoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.company_id')
         ->leftJoin('jobofferdetail_cats AS jc', 'jc.jobcat_id', '=', 'jj.jobcat_id')
-        ->leftJoin('joboffer_prefectures as jp', 'jp.job_id', '=', 'jo.id')
+        ->leftJoin('joboffer_prefectures as jp', 'jp.job_id', '=', 'jo.company_id')
         ->where('companies.company_id', $company_id)
         ->groupBy(
             'companies.company_id',
@@ -89,12 +85,18 @@ class MemberJobPostingsService
         //求人募集内容関連テーブルを更新する（delete→insert)
         JoboffersJobofferdetail::where('joboffer_id', $company_id)->delete();
 
-        foreach ($jobPostingAll['JobofferdetailCat'] as $jobcatId) {
-            JoboffersJobofferdetail::insert([
-                'jobcat_id' => $jobcatId,
-                'joboffer_id' => $company_id,
-            ]);
+        if(!empty($jobPostingAll['JobofferdetailCat']))
+        {
+            foreach ($jobPostingAll['JobofferdetailCat'] as $jobcatId) {
+                JoboffersJobofferdetail::insert([
+                    'jobcat_id' => $jobcatId,
+                    'joboffer_id' => $company_id,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
         }
+
         //求人都道府県テーブルを更新する
         JobofferPrefecture::where('job_id', $company_id)->update(['prefecuture_id' => $jobPostingAll['prefectureId']]);
 
@@ -161,6 +163,8 @@ class MemberJobPostingsService
                 JoboffersJobofferdetail::insert([
                     'jobcat_id' => $jobcatId,
                     'joboffer_id' => $company_id,
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ]);
             }
 

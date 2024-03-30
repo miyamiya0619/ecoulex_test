@@ -32,7 +32,6 @@ class MemberJobPostingsController extends Controller
         //全求人カテゴリを取得する
         $JobofferdetailCatAll = $this->MemberJobPostingsService->fetchJobofferdetailCatsData();
 
-
         if ($user) {
             return view('kanri.member.member_job_postings', compact('user','jobPostings'));
         }
