@@ -196,7 +196,7 @@
 					<dd>{{ $company['offer1_by_tel']}}</dd>
 					
 					<dt>お問い合わせ先</dt>
-					<dd><a href="{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
+					<dd><a href="mailto:{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
 				</dl>
 
 			</div><!-- /resultWrap -->
