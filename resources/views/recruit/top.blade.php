@@ -63,23 +63,23 @@
 				<div class="areaName"><a href="{{ route('recruit_search_region', ['region_id' => 4]) }}">関東</a></div>
 					
 					<div class="prefArea">
-						<a href="{{ route('recruit_search', ['prefecture_id' => 13]) }}">茨城</a>／
-						<a href="{{ route('recruit_search', ['prefecture_id' => 14]) }}">栃木</a>／
-						<a href="{{ route('recruit_search', ['prefecture_id' => 15]) }}">群馬</a><br>
-						<a href="{{ route('recruit_search', ['prefecture_id' => 16]) }}">埼玉</a>／
-						<a href="{{ route('recruit_search', ['prefecture_id' => 17]) }}">千葉</a>／
-						<a href="{{ route('recruit_search', ['prefecture_id' => 18]) }}">東京</a><br>
-						<a href="{{ route('recruit_search', ['prefecture_id' => 19]) }}">神奈川</a>／
-						<a href="{{ route('recruit_search', ['prefecture_id' => 20]) }}">山梨</a>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 13, 'region_id' => 4]) }}">茨城</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 14, 'region_id' => 4]) }}">栃木</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 15, 'region_id' => 4]) }}">群馬</a><br>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 16, 'region_id' => 4]) }}">埼玉</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 17, 'region_id' => 4]) }}">千葉</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 18, 'region_id' => 4]) }}">東京</a><br>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 19, 'region_id' => 4]) }}">神奈川</a>／
+						<a href="{{ route('recruit_search', ['prefecture_id' => 20, 'region_id' => 4]) }}">山梨</a>
 					</div>
 				</div>
 				
-				<div class="selectArea areaWrap area05 nodata">
-					<div class="areaName"><p>東海</p></div>
+				<div class="selectArea areaWrap area05">
+					<div class="areaName"><a href="{{ route('recruit_search_region', ['region_id' => 5]) }}">東海</a></div>
 					
 					<div class="prefArea">
 						<p>岐阜／
-						静岡<br>
+						<a href="{{ route('recruit_search', ['prefecture_id' => 22, 'region_id' => 5]) }}">静岡</a><br>
 						愛知／
 						三重</p>
 					</div>

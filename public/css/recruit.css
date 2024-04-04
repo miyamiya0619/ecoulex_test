@@ -120,7 +120,7 @@
 #recruit .selectArea.area08 div.areaName a, #recruit.result .area08{background-color: #c8beff;}
 #recruit .selectArea.area09 div.areaName a, #recruit.result .area09{background-color: #ffb8c1;}
 
-#recruit .selectArea:has(p){border: solid 1px #c0bfbf;}
+#recruit .selectArea.nodata{border: solid 1px #c0bfbf;}
 #recruit .selectArea.areaWrap div.areaName p{background-color: #f6f6f6;color: #c0bfbf; background-image: url("../images/common/arrow02_g.svg");}
 
 #recruit .selectArea a:hover{transition: all .3s ease-out;opacity: .6;}
@@ -248,7 +248,7 @@
 #recruit.result .resultWrap .Company .Txt{position: relative; width: 100%;}
 #recruit.result .resultWrap .Company .Txt .catch{
 	position: relative;
-	margin: 0 auto 0 auto;
+	margin: 0 auto 10px auto;
 	font-size: .16rem;
 	color: #0064b3;
 }
@@ -397,7 +397,7 @@
 	#recruit .selectArea.area08{bottom:-6%; left: 31%;}
 	#recruit .selectArea.area09{bottom:1%; left: -12%;}
 	
-	#recruit .selectArea:has(p){border: solid 2px #c0bfbf;}
+	#recruit .selectArea.nodata{border: solid 2px #c0bfbf;}
 	
 	#recruit .selectArea::before{
 		position: absolute;
@@ -574,7 +574,7 @@
 	#recruit.result .resultWrap .Company .Img{width: 32%; max-width: 240px;}
 	#recruit.result .resultWrap .Company .Txt{width: calc(68% - 30px); max-width: calc(100% - 240px);font-size: .16rem;}
 	#recruit.result .resultWrap .Company .Txt .catch{
-		margin: 0 auto 0 auto;
+		margin: 15px auto 0 auto;
 		font-size: .2rem;
 	}
 	#recruit.result .resultWrap .ttl{
@@ -582,7 +582,7 @@
 		font-size: .28rem;
 	}
 	#recruit.result .resultWrap dl dt{
-		width: 7em;
+		width: 7.6em;
 		padding: 20px 2em;
 		color: #0064b3;
 		font-size: .16rem;

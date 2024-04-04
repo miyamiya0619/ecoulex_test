@@ -31,7 +31,9 @@ class RecruitSearchService
             'cd.capital',
             'cd.representative',
             'jo.offer1_by_tel',
-            'jo.offer1_by_form'
+            'jo.offer1_by_form',
+            'jo.offer2_by_tel',
+            'jo.offer2_by_form'
         )
         ->join('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
         ->leftjoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.company_id')
@@ -59,7 +61,9 @@ class RecruitSearchService
             'cd.capital',
             'cd.representative',
             'jo.offer1_by_tel',
-            'jo.offer1_by_form'
+            'jo.offer1_by_form',
+            'jo.offer2_by_tel',
+            'jo.offer2_by_form'
         );
 
         //地域を押下した場合
@@ -83,5 +87,15 @@ class RecruitSearchService
         )->where('prefectures_cats.prefecuture_id', '=', $prefecture_id);
 
         return $prefecture_name->get();
+    }
+
+    //地域IDから地域名を取得する
+    public function fetchRegionData($region_id){
+
+        $region_name = PrefecturesCat::select(
+            'prefectures_cats.regionName'
+        )->where('prefectures_cats.region_id', '=', $region_id);
+
+        return $region_name->get();
     }
 }

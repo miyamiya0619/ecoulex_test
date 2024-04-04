@@ -50,7 +50,7 @@
 				<h4 class="contents">地域を選択　<span>工事を検討している場所の地域を選んでください。</span></h4>
 				
 				<div class="selectArea areaWrap contents">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="regions[]" value="4" class="area04" />関東</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">関東</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -63,9 +63,27 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="selectArea areaWrap contents">
+					<div class="areaName"><div class="areaBtn">東海</div><span></span></div>
+					
+					<div class="prefArea">
+						<div class="flexbox flexstart">
+							<!-- 東海の地方（region_id = 5） -->
+						@foreach($prefectures as $prefecture)
+							@if($prefecture->region_id == 5)
+								<!-- 暫定対応（静岡のみ初回リリースのためそれ以外の県は非表示） -->
+								@if($prefecture->prefecuture_id == 22)
+								<label><input type="checkbox" name="prefectures[]" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
+								@endif
+							@endif
+						@endforeach
+						</div>
+					</div>
+				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="北海道" class="area01" />北海道</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">北海道</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexcenter">
@@ -80,7 +98,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="regions[]" value="東北" class="area02" />東北</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">東北</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -95,7 +113,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="北陸・甲信越" class="area03" />北陸・甲信越</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">北陸・甲信越</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -110,24 +128,8 @@
 				</div>
 				
 				
-				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="東海" class="area05" />東海</label><span></span></div>
-					
-					<div class="prefArea">
-						<div class="flexbox flexstart">
-							<!-- 東海の地方（region_id = 5） -->
-						@foreach($prefectures as $prefecture)
-							@if($prefecture->region_id == 5)
-								<label><input type="checkbox" name="" value="{{ $prefecture->prefecuture_id }}" class="area0{{ $prefecture->region_id }}" {{ in_array($prefecture->prefecuture_id, $prefectureIds ?? []) ? 'checked' : '' }}/>{{ $prefecture->catName }}</label>
-							@endif
-						@endforeach
-						</div>
-					</div>
-				</div>
-				
-				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="近畿" class="area06" />近畿</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">近畿</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -142,7 +144,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="中国" class="area07" />中国</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">中国</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -157,7 +159,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="四国" class="area08" />四国</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">四国</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">
@@ -172,7 +174,7 @@
 				</div>
 				
 				<div class="selectArea areaWrap contents gray">
-					<div class="areaName"><label class="areaBtn"><input type="checkbox" name="" value="九州・沖縄" class="area09" />九州・沖縄</label><span></span></div>
+					<div class="areaName"><div class="areaBtn">九州・沖縄</div><span></span></div>
 					
 					<div class="prefArea">
 						<div class="flexbox flexstart">

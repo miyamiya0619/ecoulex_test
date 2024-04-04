@@ -23,7 +23,8 @@
 			
 			<div class="searchBox contents flexbox flexbetween">
 				<div class="searchData">
-					
+					<!-- カテゴリが選択されていない場合非表示 -->
+					@if ($categories !== null && $categories->isNotEmpty())
 					<div class="searchList flexbox flexstart">
 						<div class="ttl">工事：</div>
 						<ul class="searchList flexbox flexaligncenter flexstart">
@@ -32,7 +33,7 @@
 						@endforeach
 						</ul>
 					</div>
-
+					@endif
 					<div class="searchArea flexbox flexstart">
 						<div class="ttl">地域：</div>
 						<ul class="searchList flexbox flexaligncenter flexstart">

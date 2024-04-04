@@ -75,7 +75,8 @@ Route::get('/ecoulex/message/', function () {
 
 //recruit
 Route::get('/ecoulex/recruit/', [SearchRecruitController::class, 'index'])->name('index');
-Route::get('/ecoulex/recruit/result/prefecture/{prefecture_id}', [SearchRecruitController::class, 'recruit_search'])->name('recruit_search');
+Route::get('/ecoulex/recruit/result/prefecture/{prefecture_id}/region/{region_id}', [SearchRecruitController::class, 'recruit_search'])->name('recruit_search');
+
 
 Route::get('/ecoulex/recruit/result', [SearchRecruitController::class, 'recruit_search_all'])->name('recruit_search_all');
 Route::get('/ecoulex/recruit/result/region/{region_id}', [SearchRecruitController::class, 'recruit_search_region'])->name('recruit_search_region');

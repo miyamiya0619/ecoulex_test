@@ -108,10 +108,11 @@ class SearchContactController extends Controller
         $categoryIds = $request->input('categories');
         $prefectureIds = $request->input('prefectures');
         $errors = [];
-
-        if (empty($categoryIds)) {
-            $errors[] = '工業は1つ以上選択してください';
-        }
+        
+        /* 20240404 必須チェック対応、都道府県のみ検索の場合も対応 */
+        // if (empty($categoryIds)) {
+        //     $errors[] = '工業は1つ以上選択してください';
+        // }
 
         if (empty($prefectureIds)) {
             $errors[] = '都道府県は1つ以上選択してください。';

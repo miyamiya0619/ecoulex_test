@@ -36,9 +36,14 @@ class CompanySearchService
         ->leftJoin('waterproofdetails_cats as wc', 'wc.waterproofcat_id', '=', 'ww.waterproofcat_id')
         ->whereRaw('cp.prefecuture_id IN (' . $groupedPrefectures->flatMap(function ($region) {
             return $region['prefectures']->pluck('prefecture_id');
-        })->implode(', ') . ')')
-        ->whereRaw('wc.waterproofcat_id IN (' . implode(', ', $categories->keys()->toArray()) . ')')
-        ->groupBy(
+        })->implode(', ') . ')');
+
+        // $categories が null でない場合のみ、whereRaw を追加
+        if ($categories !== null && $categories->isNotEmpty()) {
+            $companies->whereRaw('wc.waterproofcat_id IN (' . implode(', ', $categories->keys()->toArray()) . ')');
+        }
+
+        $paginator = $companies->groupBy(
             'companies.company_id',
             'companies.company_name',
             'w.waterproofing_job_image',
@@ -50,10 +55,9 @@ class CompanySearchService
             'cd.addressDetail',
             'cd.representative',
             'cd.phone',
-            'cd.form',
-        )        
-            ->paginate(10);
+            'cd.form'
+        )->paginate(10);
 
-        return $companies;
+        return $paginator;
     }
 }

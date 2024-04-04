@@ -149,12 +149,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					</div>
 				</div>
 				
-				<div class="selectArea areaWrap area05 nodata">
-					<div class="areaName"><p>東海</p></div>
+				<div class="selectArea areaWrap area05">
+					<div class="areaName"><a href="result.html">東海</a></div>
 					
 					<div class="prefArea">
 						<p>岐阜／
-						静岡<br>
+						<a href="result.html">静岡</a><br>
 						愛知／
 						三重</p>
 					</div>

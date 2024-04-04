@@ -25,6 +25,10 @@ class ContactService
 
     private function getCategories($categoryIds): Collection
     {
+        if ($categoryIds === null) {
+            return collect(); // ダミーコレクションを返す
+        }
+
         return WaterproofdetailsCat::whereIn('waterproofcat_id', $categoryIds)
             ->pluck('catName', 'waterproofcat_id');
     }

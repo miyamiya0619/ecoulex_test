@@ -28,16 +28,13 @@
 				<div class="selectArea areaWrap contents">
 					<div class="areaBtn sp">
 						<div class="flexbox flexstretch">
-							<div class="areaButton area04">関東</div>
+							<div class="areaButton area0{{$region_id}}">{{$region_name}}</div>
 							<div class="prefButton">
-								@if(($prefecture_id == 'all' && $region_id !=null )|| ($prefecture_id != 'all' && $region_id ==null))
-									@if($prefecture_id == 'all' && $region_id !=null)
+									@if($prefecture_id == 'all')
 									{{ $prefectures_sentence }}
-										@else
-										{{ $prefecture_name[0]->catName }}
-
+									@else
+									{{ $prefecture_name[0]->catName }}
 									@endif
-								@endif
 							</div>
 						</div>
 					</div>
@@ -47,18 +44,25 @@
 						<p>東北</p>
 						<p>北陸・<br class="pc">甲信越</p>
 						<a href="{{ route('recruit_search_region', ['region_id' => 4]) }}" class="area04 active">関東</a>
-						<p>東海</p>
+						<a href="{{ route('recruit_search_region', ['region_id' => 5]) }}" class="area05 active">東海</a>
 						<p>近畿</p>
 						<p>中国</p>
 						<p>四国</p>
 						<p>九州・<br class="pc">沖縄</p>
 					</div><!-- /areaList -->
-
+					@if($region_id ==1)
+					<div class="prefList area01 active">
+					@else
 					<div class="prefList area01">
+					@endif
 						<a href="result.html"><span>北海道</span></a>
 					</div>
 
+					@if($region_id ==2)
+					<div class="prefList area02 active">
+					@else
 					<div class="prefList area02">
+					@endif
 						<a href="result.html"><span>青森</span></a>
 						<a href="result.html"><span>岩手</span></a>
 						<a href="result.html"><span>宮城</span></a>
@@ -67,7 +71,11 @@
 						<a href="result.html"><span>福島</span></a>
 					</div>
 
+					@if($region_id ==3)
+					<div class="prefList area03 active">
+					@else
 					<div class="prefList area03">
+					@endif
 						<a href="result.html"><span>新潟</span></a>
 						<a href="result.html"><span>富山</span></a>
 						<a href="result.html"><span>石川</span></a>
@@ -75,27 +83,48 @@
 						<a href="result.html"><span>長野</span></a>
 					</div>
 
+					@if($region_id ==4)
 					<div class="prefList area04 active">
+					@else
+					<div class="prefList area04">
+					@endif
 					@foreach($prefectures as $index => $prefecture)
 						@if($prefecture->region_id == 4)
 							@if ($prefecture_id == 'all')
-								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id]) }}" class="active"><span>{{ $prefecture->catName }}</span></a>
+								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id, 'region_id' => 4]) }}" class="active"><span>{{ $prefecture->catName }}</span></a>
 							@else
-								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id]) }}" class="@if ($prefecture->prefecuture_id == $prefecture_id) active @endif"><span>{{ $prefecture->catName }}</span></a>
+								<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id, 'region_id' => 4]) }}" class="@if ($prefecture->prefecuture_id == $prefecture_id) active @endif"><span>{{ $prefecture->catName }}</span></a>
 							@endif
 						@endif
 					@endforeach
 
 					</div>
 
+					@if($region_id ==5)
+					<div class="prefList area05 active">
+					@else
 					<div class="prefList area05">
-						<a href="result.html"><span>岐阜</span></a>
-						<a href="result.html"><span>静岡</span></a>
-						<a href="result.html"><span>愛知</span></a>
-						<a href="result.html"><span>三重</span></a>
+					@endif
+					@foreach($prefectures as $index => $prefecture)
+						@if($prefecture->region_id == 5)
+							<!-- 静岡のみ初回リリース。 -->
+							@if ($prefecture->prefecuture_id == 22)
+								@if ($prefecture_id == 'all')
+									<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id, 'region_id' => 5]) }}" class="active"><span>{{ $prefecture->catName }}</span></a>
+								@else
+									<a href="{{ route('recruit_search', ['prefecture_id' => $prefecture->prefecuture_id, 'region_id' => 5]) }}" class="@if ($prefecture->prefecuture_id == $prefecture_id) active @endif"><span>{{ $prefecture->catName }}</span></a>
+								@endif
+							@endif
+							<!-- 静岡のみ初回リリース。 -->
+						@endif
+					@endforeach
 					</div>
 
+					@if($region_id ==6)
+					<div class="prefList area06 active">
+					@else
 					<div class="prefList area06">
+					@endif
 						<a href="result.html"><span>滋賀</span></a>
 						<a href="result.html"><span>京都</span></a>
 						<a href="result.html"><span>大阪</span></a>
@@ -104,7 +133,11 @@
 						<a href="result.html"><span>和歌山</span></a>
 					</div>
 
+					@if($region_id ==7)
+					<div class="prefList area07 active">
+					@else
 					<div class="prefList area07">
+					@endif
 						<a href="result.html"><span>鳥取</span></a>
 						<a href="result.html"><span>島根</span></a>
 						<a href="result.html"><span>岡山</span></a>
@@ -112,14 +145,22 @@
 						<a href="result.html"><span>山口</span></a>
 					</div>
 
+					@if($region_id ==8)
+					<div class="prefList area08 active">
+					@else
 					<div class="prefList area08">
+					@endif
 						<a href="result.html"><span>徳島</span></a>
 						<a href="result.html"><span>香川</span></a>
 						<a href="result.html"><span>愛媛</span></a>
 						<a href="result.html"><span>高知</span></a>
 					</div>
 
+					@if($region_id ==9)
+					<div class="prefList area09 active">
+					@else
 					<div class="prefList area09">
+					@endif
 						<a href="result.html"><span>福岡</span></a>
 						<a href="result.html"><span>佐賀</span></a>
 						<a href="result.html"><span>長崎</span></a>
@@ -192,11 +233,17 @@
 					<dt>代表者</dt>
 					<dd>{{ $company['representative']}}</dd>
 					
-					<dt>電話</dt>
+					<dt>電話1</dt>
 					<dd>{{ $company['offer1_by_tel']}}</dd>
 					
-					<dt>お問い合わせ先</dt>
+					<dt>お問い合わせ先1</dt>
 					<dd><a href="mailto:{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
+
+					<dt>電話2</dt>
+					<dd>{{ $company['offer2_by_tel']}}</dd>
+					
+					<dt>お問い合わせ先2</dt>
+					<dd><a href="mailto:{{ $company['offer2_by_form']}}" target="_blank">{{ $company['offer2_by_form']}}</a></dd>
 				</dl>
 
 			</div><!-- /resultWrap -->
