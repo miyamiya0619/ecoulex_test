@@ -248,7 +248,7 @@
 					
 					<dt>お問い合わせ先2</dt>
 					<!-- 「@」がついている場合はmailtoにする -->
-					@if (strpos($company['offer1_by_form'], '@') !== false)
+					@if (strpos($company['offer2_by_form'], '@') !== false)
 					<dd><a href="mailto:{{ $company['offer2_by_form']}}" target="_blank">{{ $company['offer2_by_form']}}</a></dd>
 					@else
 					<dd><a href="{{ $company['offer2_by_form']}}" target="_blank">{{ $company['offer2_by_form']}}</a></dd>
