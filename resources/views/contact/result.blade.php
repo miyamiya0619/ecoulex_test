@@ -73,20 +73,19 @@
 					@endforeach
 				@endif
 				</div>
-
+				@if ($company->waterproofing_job_image && file_exists(public_path('images/uploads/' . $company->waterproofing_job_image)) || !empty($company['waterproofing_job_catch']) || !empty($company['waterproofing_job_description']))
 				<div class="Company flexbox flexbetween">
-					<div class="Img">
 					@if ($company->waterproofing_job_image && file_exists(public_path('images/uploads/' . $company->waterproofing_job_image)))
-						<img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="{{ $company->company_name }}">
-					@else
+						<div class="Img">
+							<img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="{{ $company->company_name }}">
+						</div>
 					@endif
-					</div>
 					<div class="Txt">
 						<p class="catch">{{ $company['waterproofing_job_catch']}}</p>
 						<p class="detail">{{ $company['waterproofing_job_description']}}</p>
 					</div>
 				</div>
-				
+				@endif
 				<div class="ttl">企業情報</div>
 				<dl class=" flexbox flexstretch flexstart">
 					<dt>WEBサイト</dt>

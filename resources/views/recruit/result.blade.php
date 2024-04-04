@@ -179,9 +179,8 @@
 @foreach($companies as $company)
 			<div class="resultWrap contents">
 				<div class="Name">{{ $company['company_name']}}</div>
-				
-				<div class="searchList flexbox flexstretch flexstart">
 				@if (!is_null($company->catNames))
+				<div class="searchList flexbox flexstretch flexstart">
 					@php
 						$catNamesArray = explode(',', str_replace(['[', ']'], '', $company->catNames));
 					@endphp
@@ -189,9 +188,8 @@
 					@foreach($catNamesArray as $catName)
 						<div class="searchType">{{ $catName }}</div>
 					@endforeach
-				@endif
-
 				</div>
+				@endif
 
 				<div class="Company flexbox flexbetween">
 					<div class="Img"><img src="{{ asset('images/uploads/' . $company->prefecuture_image) }}" alt="{{ $company['prefecuture_image']}}"></div>

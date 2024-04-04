@@ -223,7 +223,7 @@
 }
 #contact.result .resultWrap .Company{
 	position: relative;
-	margin: 0 auto;
+	margin: 30px auto;
 	gap:20px 30px;
 }
 #contact.result .resultWrap .Company .Img{position: relative; width: 100%;}
@@ -412,7 +412,7 @@
 		border-radius: 40px;
 	}
 	#contact.result .resultWrap .Name{font-size: .38rem;}
-	#contact.result .resultWrap .searchList{margin: 20px 0 40px 0;}
+	#contact.result .resultWrap .searchList{margin: 20px 0 0 0;}
 	#contact.result .resultWrap .searchList .searchType{
 		padding: 7px 2em;
 		font-size: .16rem;
