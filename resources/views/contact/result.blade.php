@@ -102,7 +102,12 @@
 					<dd>{{ $company['phone']}}</dd>
 					
 					<dt>お問い合わせ先</dt>
+					<!-- 「@」がついている場合はmailtoにする -->
+					@if (strpos($company['form'], '@') !== false)
+					<dd><a href="mailto:{{ $company['form']}}" target="_blank">{{ $company['form']}}</a></dd>
+					@else
 					<dd><a href="{{ $company['form']}}" target="_blank">{{ $company['form']}}</a></dd>
+					@endif
 				</dl>
 
 			</div><!-- /resultWrap -->

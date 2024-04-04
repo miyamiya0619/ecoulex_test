@@ -237,13 +237,22 @@
 					<dd>{{ $company['offer1_by_tel']}}</dd>
 					
 					<dt>お問い合わせ先1</dt>
+					<!-- 「@」がついている場合はmailtoにする -->
+					@if (strpos($company['offer1_by_form'], '@') !== false)
 					<dd><a href="mailto:{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
-
+					@else
+					<dd><a href="{{ $company['offer1_by_form']}}" target="_blank">{{ $company['offer1_by_form']}}</a></dd>
+					@endif
 					<dt>電話2</dt>
 					<dd>{{ $company['offer2_by_tel']}}</dd>
 					
 					<dt>お問い合わせ先2</dt>
+					<!-- 「@」がついている場合はmailtoにする -->
+					@if (strpos($company['offer1_by_form'], '@') !== false)
 					<dd><a href="mailto:{{ $company['offer2_by_form']}}" target="_blank">{{ $company['offer2_by_form']}}</a></dd>
+					@else
+					<dd><a href="{{ $company['offer2_by_form']}}" target="_blank">{{ $company['offer2_by_form']}}</a></dd>
+					@endif
 				</dl>
 
 			</div><!-- /resultWrap -->
