@@ -11,7 +11,7 @@
     <div class="login-container">
 
         <div class="side-bar">
-            <h2>エコ・ウレックスお問い合わせ管理</h2>
+            <h2>エコ・ウレックス工業会 お問い合わせ管理</h2>
         </div>
         <div class="login-form">
             <form action="{{ route('ecoulex.kanri.forgot_password_complete') }}" method="post" novalidate>

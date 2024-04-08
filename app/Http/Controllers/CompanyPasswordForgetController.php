@@ -52,7 +52,9 @@ class CompanyPasswordForgetController extends Controller
             // メール送信
                 Mail::to($company)->send(new ForgetdMail($newPassword));
     
-            return view('kanri.registration.forgot_password_complete');;
+                return view('kanri.registration.forgot_password_complete', [
+                    'email' => $request->email,
+                ]);
 
         } else {
             // 企業が見つからない場合の処理

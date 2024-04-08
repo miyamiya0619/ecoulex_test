@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
+    <title>エコ・ウレックス工業会</title>
     <!-- CSSファイルの読み込み -->
     <link rel="stylesheet" href="{{ asset('css/member/member_common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/pagination.css') }}">
+    <meta name="robots" content="noindex">
     <!-- 個別のCSSファイルの読み込み -->
     @yield('css')
     <!-- jQueryの読み込み -->

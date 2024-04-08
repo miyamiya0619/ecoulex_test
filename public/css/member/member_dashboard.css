@@ -1,20 +1,19 @@
-.main-content {
+body {
+    font-family: "ヒラギノ角ゴ ProN W3","HiraKakuProN-W3","ヒラギノ角ゴ Pro W3","HiraKakuPro-W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS Pgothic","Osaka",sans-serif,Helvetica, Helvetica Neue, Arial, Verdana;
+    line-height: 1.7;
+}
 
+.main-content {
+    background: #fff;
     margin-left: 20%;
     min-height: 100vh;
     /* ビューポートの高さに合わせる */
-
 }
 
 .dashboard-container {
-    width: 95%;
-
     margin: auto;
-    padding-top: 20px;
-}
-
-.dashboard-container {
-    width: 95%;
+    width: 100%;
+    padding: 40px;
 }
 
 .company-name {
@@ -22,9 +21,7 @@
 }
 
 .dashboard-box {
-    padding-top: 20px;
-
-
+    padding: 0;
 }
 
 .update-method {
@@ -34,24 +31,18 @@
 }
 
 .dashboard-title {
-    font-size: xx-large;
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #005da8;
+    display: block;
+    margin-bottom: 40px;
 }
 
 .dashboard-content {
-
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 20px;
-
-    padding-top: 30px;
-    padding-bottom: 30px;
-
-    margin-top: 10px;
-
+    margin: 10px 0 20px;
+    padding: 30px;
+    border: 1px solid #ccc;
 }
-
-
-
 
 .info-header .info-title {
     font-size: medium;

@@ -1,38 +1,43 @@
+
+body {
+    font-family: "ヒラギノ角ゴ ProN W3","HiraKakuProN-W3","ヒラギノ角ゴ Pro W3","HiraKakuPro-W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS Pgothic","Osaka",sans-serif,Helvetica, Helvetica Neue, Arial, Verdana;
+    line-height: 1.7;
+}
+
 body,
 html {
     height: 100%;
-    /* 高さを全画面にする */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    /* 水平中央に配置 */
     align-items: center;
-    /* 垂直中央に配置 */
+    background: #eee;
 }
 
 .login-container {
-    width: 480px;
-    /* Flexboxを使用 */
+    width: 600px;
     flex-direction: row;
-    /* 横並びにするためにrowを指定 */
     transform: translate(0, 0%);
-    /* 垂直方向のみ中央に */
+    background: #fff;
+    border-radius: 10px;
 }
 
 .side-bar {
     flex: 2;
-    border: solid 1px black;
-    background-color: #EEEEEE;
+    border: none;
+    background: #fff;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0 0 0;
+    border-radius: 10px;
 }
 
 .login-form {
     flex: 8;
     border: solid 1px black;
+    border: none;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0 60px 0;
 }
 
 .login-form h2,
@@ -45,8 +50,8 @@ html {
 button {
     width: 35%;
     padding: 10px 0px;
-    border-radius: 10px;
-    background-color: black;
+    border-radius: 5px;
+    background: #005da8;
     color: white;
     border: none;
     cursor: pointer;
@@ -81,11 +86,7 @@ label {
 input[type="email"],
 input[type="password"] {
     flex: 1;
-    /* 入力フィールドは残りのスペースを埋める */
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
     margin-right: 10%;
-
-
+    padding: 10px;
+    font-size: 18px;
 }
