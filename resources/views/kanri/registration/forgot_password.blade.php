@@ -33,7 +33,7 @@
                     @endif
                     <button type="submit">パスワードを再発行する</button>
                     <div class="attention">
-                        ※メールがが届かない場合はXXX@ecoulex.co.jpのアドレスの受信許可をしていただくか事務局までお問い合わせください。
+                        ※メールがが届かない場合はsystem@eco-ulex.comのアドレスの受信許可をしていただくか事務局までお問い合わせください。
                     </div>
                 </div>
             </form>

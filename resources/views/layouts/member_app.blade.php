@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>エコ・ウレックス工業会</title>
     <!-- CSSファイルの読み込み -->
-    <link rel="stylesheet" href="{{ asset('css/admin/admin_common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/member/member_common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/common/pagination.css') }}">
     <meta name="robots" content="noindex">
@@ -19,16 +19,15 @@
 <body>
     <div id="header-container">
         <header>
-            <nav id="admin-nav">
+            <nav id="member-nav">
                 <div class="menu-title">
-                    事務局メニュー
+                    会員用メニュー
                 </div>
                 <ul>
-                    <li><a href="{{ route('ecoulex.kanri.adminDashboard') }}">●TOP（インフォメーション）</a></li>
-                    <li><a href="{{ route('ecoulex.kanri.adminCompanyInfo') }}">●会員企業管理</a></li>
-                    <li><a href="{{ route('ecoulex.kanri.memberWaterproofingManagement') }}">●企業情報管理</a></li>
-                    <li><a href="{{ route('ecoulex.kanri.memberJobPostings') }}">●防水情報管理</a></li>
-                    <li><a href="{{ route('ecoulex.kanri.memberJobPostings') }}">●CSVアップロード</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.memberDashboard') }}">●TOP</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.memberCompanyInfo') }}">●企業情報管理</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.memberWaterproofingManagement') }}">●防水工事管理</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.memberJobPostings') }}">●求人情報管理</a></li>
                     <li><a href="{{ route('showCpmanyLoginForm') }}">ログアウト</a></li>
                 </ul>
                 <div class="nav-company-name">
@@ -43,7 +42,7 @@
     </div>
 
     <!-- JavaScriptファイルの読み込み -->
-    <script src="{{ asset('js/admin/admin_common.js') }}"></script>
+    <script src="{{ asset('js/member/member_common.js') }}"></script>
 </body>
 
 </html>

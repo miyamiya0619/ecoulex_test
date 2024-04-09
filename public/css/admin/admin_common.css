@@ -1,10 +1,21 @@
+body {
+    font-family: "ヒラギノ角ゴ ProN W3","HiraKakuProN-W3","ヒラギノ角ゴ Pro W3","HiraKakuPro-W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS Pgothic","Osaka",sans-serif,Helvetica, Helvetica Neue, Arial, Verdana;
+    line-height: 1.7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 #admin-nav {
-    background-color: #DDDDDD;
+    background:#AAAAAA;
     width: 20%;
     height: 100vh;
     position: fixed;
     padding: 0;
+    color: #fff;
 }
+
 
 #admin-nav ul {
     list-style-type: none;
@@ -13,28 +24,68 @@
 }
 
 #admin-nav ul li {
-    border-bottom: 1px solid #CCCCCC;
+    border-bottom: 1px solid #d2eff7;
 }
 
 #admin-nav ul li a {
-    padding-top: 10px;
-    padding-bottom: 10px;
     padding-left: 20px;
+    padding: 15px 20px;
     text-decoration: none;
-    color: black;
+    color: #fff;
     display: block;
     width: 100%;
+    position: relative;
+}
+
+#admin-nav ul li a:after {
+    position: absolute;
+    content: '';
+    right: 20px;
+    width: 10px;
+    height:10px;
+    border-top: 1px solid #fff;
+    border-right: 1px solid #fff;
+    transform: rotate(45deg);
+    top: 50%;
+    margin-top: -5px;
+}
+
+#admin-nav ul li:last-child a:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url(../logout.png);
+    background-size:cover;
+    border: none;
+    transform: rotate(0deg);
+    right: 15px;
+    margin-top: -10px;
 }
 
 #admin-nav ul li a:hover,
 #admin-nav ul li a.active {
-    background-color: #CCCCCC;
+    background: #CCCCCC;
 }
 
 .menu-title {
     margin: 0;
     font-size: large;
-    padding: 10px;
-    padding-left: 20px;
+    padding: 20px;
+    background: #000;
+    font-weight: bold;
 
+}
+
+.nav-company-name {
+    overflow: hidden;
+    position: fixed;
+    text-overflow: clip;
+    width: 20%;
+    bottom: 20px;
+    left: 2%;
+    right: 82%;
+    width: fit-content;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
 }

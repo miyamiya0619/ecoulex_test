@@ -104,3 +104,17 @@ function addRequiredFieldStyles() {
     `);
     $('head').append(style);
 }
+
+
+// 背景色変更
+function highlightCurrentPageLink() {
+    var currentPagePath = window.location.pathname.split('/').pop();
+
+    $('#admin-nav ul li a').each(function () {
+        var linkPath = $(this).attr('href');
+        var linkPath = linkPath.substring(linkPath.lastIndexOf("/") + 1);
+        if (linkPath === currentPagePath) {
+            $(this).css('background-color', '#CCCCCC');
+        }
+    });
+}

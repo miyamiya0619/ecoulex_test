@@ -16,7 +16,7 @@
         <div class="login-form">
                 <div class="form-content">
                     <p>以下のパスワードに送信しました。<br>ご確認いただき、ログインを実施していただきますようよろしくお願いします。</p>
-                    <p>×××××@example.com</p>
+                    <p>{{ $email }}</p>
                     <a href="{{ route('showCpmanyLoginForm') }}">
                     <button type="submit">ログイン画面</button>
                     </a>

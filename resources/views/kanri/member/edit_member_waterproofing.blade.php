@@ -1,4 +1,4 @@
-@extends('layouts.admin_app')
+@extends('layouts.member_app')
 @section('title', '防水工事管理編集画面')
 
 @section('company_name', $user -> company_name)

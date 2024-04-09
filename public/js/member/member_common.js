@@ -123,3 +123,17 @@ function updateFileNameDisplay(input) {
         $(this).css('display', 'block'); // このクラスのみflexが効かないように設定
     });
 }
+
+
+// 背景色変更
+function highlightCurrentPageLink() {
+    var currentPagePath = window.location.pathname.split('/').pop();
+
+    $('#member-nav ul li a').each(function () {
+        var linkPath = $(this).attr('href');
+        var linkPath = linkPath.substring(linkPath.lastIndexOf("/") + 1);
+        if (linkPath === currentPagePath) {
+            $(this).css('background-color', 'hsl(215, 40%, 65%)');
+        }
+    });
+}

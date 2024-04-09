@@ -1,4 +1,4 @@
-@extends('layouts.admin_app')
+@extends('layouts.member_app')
 @section('title', '求人募集内容編集画面')
 
 @section('company_name', $user -> company_name)

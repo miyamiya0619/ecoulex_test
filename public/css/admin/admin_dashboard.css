@@ -1,51 +1,49 @@
-.main-content {
+body {
+    font-family: "ヒラギノ角ゴ ProN W3","HiraKakuProN-W3","ヒラギノ角ゴ Pro W3","HiraKakuPro-W3","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS Pgothic","Osaka",sans-serif,Helvetica, Helvetica Neue, Arial, Verdana;
+    line-height: 1.7;
+}
 
-    margin-left: 20%;
+.main-content {
+    background: #fff;
+    margin-left: 10%;
     min-height: 100vh;
     /* ビューポートの高さに合わせる */
-
 }
 
 .dashboard-container {
-    width: 95%;
-
     margin: auto;
-    padding-top: 20px;
+    width: 100%;
+    padding: 40px;
 }
 
-.dashboard-container {
-    width: 95%;
-}
-
-.company-name {
+.info-update,
+.info-mail  {
     font-size: small;
 }
 
 .dashboard-box {
-    padding-top: 20px;
+    padding: 0;
+}
 
+.update-method {
+    margin-top: 40px;
+    color: #000;
 
 }
 
 .dashboard-title {
-    font-size: xx-large;
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 4px solid #005da8;
+    display: block;
+    margin-bottom: 40px;
 }
 
 .dashboard-content {
-
-    border: 1px solid black;
-    padding: 10px;
-    margin-bottom: 20px;
-
-    padding-top: 30px;
-    padding-bottom: 30px;
-
-    margin-top: 10px;
-
+    margin: 10px 0 20px;
+    padding: 30px;
+    border: 1px solid #ccc;
 }
-
-
-
 
 .info-header .info-title {
     font-size: medium;
@@ -64,11 +62,18 @@
     padding-bottom: 30px;
     margin-top: 10px;
     display: flex;
+    justify-content: space-between;
 }
 
 
 .information-section input[type="text"] {
     margin-left: 10px;
+}
+
+.button_group{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
 }
 
 /* インフォメーションヘッダー */
@@ -106,13 +111,13 @@
 
 /* 確認するボタンのスタイル */
 .info-button {
-    padding: 5px 15px;
+    padding: 20px 30px;
     background-color: #000;
     border-radius: 10px;
     color: #fff;
     border: none;
     cursor: pointer;
-    margin-left: auto;
+    margin-right: 10px;
     /* 右寄せ */
 }
 

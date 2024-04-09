@@ -16,6 +16,7 @@ class CompanyLoginController extends Controller
 {
 
     private $MemberCompanyloginService;
+    private $CommonLoginService;
     
     public function __construct(MemberCompanyloginService $MemberCompanyloginService)
     {
@@ -38,9 +39,18 @@ class CompanyLoginController extends Controller
         {
             $user = Auth::user();
             $request->session()->put('user', $user);
-
-            //認証が成功した場合、ログイン履歴テーブルにレコードを挿入する。
+            
             $company_id = $user -> company_id;
+            $user_type = $user -> user_type;
+            $request->session()->put('user_type', $user_type);
+
+
+            //ユーザ種別を取得
+            //ユーザ種別が2の場合、すなわち事務局側の場合事務局側管理画面に遷移する
+            if($user_type == 2){
+                return redirect()->intended(route('ecoulex.kanri.adminDashboard'));
+            }
+
             //ログイン履歴日時のレコードを挿入する
             $this->MemberCompanyloginService->CreateCompanieshistoryData($company_id);
 

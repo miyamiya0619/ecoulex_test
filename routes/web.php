@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchContactController;
 use App\Http\Controllers\SearchRecruitController;
 use App\Http\Controllers\Auth\CompanyLoginController;
-use App\Http\Controllers\MemberTopController;
+use App\Http\Controllers\TopController;
 use App\Http\Controllers\MemberCompanyInfoController;
 use App\Http\Controllers\MemberWaterproofingManagementController;
 use App\Http\Controllers\MemberJobPostingsController;
@@ -12,6 +12,7 @@ use App\Http\Controllers\EditMemberCompanyInfoController;
 use App\Http\Controllers\EditMemberWaterproofingController;
 use App\Http\Controllers\EditMemberJobPostingsController;
 use App\Http\Controllers\CompanyPasswordForgetController;
+use App\Http\Controllers\AdminCompanyInfoController;
 
 
 
@@ -90,7 +91,7 @@ Route::get('/lp/mirai_project/kanri/loginCompany/', [CompanyLoginController::cla
 Route::post('/lp/mirai_project/kanri/loginCompany/', [CompanyLoginController::class, 'login'])->name('login');
 
 //お問い合わせ管理（トップページ）
-Route::get('/lp/mirai_project/kanri/memberDashboard', [MemberTopController::class, 'index'])->name('ecoulex.kanri.memberDashboard');
+Route::get('/lp/mirai_project/kanri/memberDashboard', [TopController::class, 'index'])->name('ecoulex.kanri.memberDashboard');
 
 //お問い合わせ管理（企業情報管理ページ）
 Route::get('/lp/mirai_project/kanri/memberCompanyInfo', [MemberCompanyInfoController::class, 'index'])->name('ecoulex.kanri.memberCompanyInfo');
@@ -111,3 +112,12 @@ Route::post('/lp/mirai_project/kanri/editMemberJobPostings', [EditMemberJobPosti
 Route::get('/lp/mirai_project/kanri/forgot_password', [CompanyPasswordForgetController::class, 'index'])->name('ecoulex.kanri.forgot_password');
 
 Route::post('/lp/mirai_project/kanri/forgot_password_complete', [CompanyPasswordForgetController::class, 'forgot_password_complete'])->name('ecoulex.kanri.forgot_password_complete');
+
+// 管理画面（事務局側）
+
+
+Route::get('/lp/mirai_project/kanri/adminDashboard', [TopController::class, 'index'])->name('ecoulex.kanri.adminDashboard');
+
+//お問い合わせ管理（企業情報管理ページ）
+Route::get('/lp/mirai_project/kanri/adminCompanyInfo', [AdminCompanyInfoController::class, 'index'])->name('ecoulex.kanri.adminCompanyInfo');
+Route::post('/lp/mirai_project/kanri/editAdminCompanyInfo', [EditMemberCompanyInfoController::class, 'updateCompanyInfo'])->name('ecoulex.kanri.editMemberCompanyInfo.updateCompanyInfo');

@@ -1,4 +1,4 @@
-@extends('layouts.admin_app')
+@extends('layouts.member_app')
 
 @section('title', 'お問い合わせ管理画面トップ')
 
@@ -23,6 +23,6 @@
             </div>
         </div>
 
-        <a href="https://docs.google.com/presentation/d/1YaWBWRP5jP75vxccWhuMSAp3km7neeXj3e51QBesJw8/edit#slide=id.p" class="update-method">操作・更新方法　＞</a>
+        <a target=_blank href="https://docs.google.com/presentation/d/1YaWBWRP5jP75vxccWhuMSAp3km7neeXj3e51QBesJw8/edit#slide=id.p" class="update-method">操作・更新方法　＞</a>
     </div>
 @endsection
