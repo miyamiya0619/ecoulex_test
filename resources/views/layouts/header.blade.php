@@ -19,8 +19,8 @@
 							<div><a href="/lp/mirai_project/recruit">防水の挑戦者になる</a></div>
 						</div>
 					</li>
-					<li class="snsBtn twi"><a href="" target="_blank"><img src="{{ asset('images/common/btn_x.png') }}" alt="Official X"></a></li>
-					<li class="snsBtn ig"><a href="" target="_blank"><img src="{{ asset('images/common/btn_ig.png') }}" alt="Official Instagram"></a></li>
+					<li class="snsBtn twi"><a href="https://twitter.com/eco_ulex" target="_blank"><img src="{{ asset('images/common/btn_x.png') }}" alt="Official X"></a></li>
+					<li class="snsBtn ig"><a href="https://www.instagram.com/ecoulex_official/" target="_blank"><img src="{{ asset('images/common/btn_ig.png') }}" alt="Official Instagram"></a></li>
 					<li class="snsBtn yt"><a href="https://www.youtube.com/@ECOULEX-bousui/featured" target="_blank"><img src="{{ asset('images/common/btn_yb.png') }}" alt="Official Youtube Channel"></a></li>
 				</ul>
 			</div>

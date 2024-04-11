@@ -9,7 +9,6 @@
 @endsection
 
 @section('content')
-    <div class="main-content">
         <div class="dashboard-container">
             <div class="information-section">
                 <div class="info-header">
@@ -107,5 +106,4 @@
             <a href="#">5</a>
             <a href="#">&raquo;</a>
         </div>
-    </div>
  @endsection

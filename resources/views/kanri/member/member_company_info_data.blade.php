@@ -21,7 +21,7 @@
                         <div class="box-info">
                             <ul>
                                 <li>
-                                    <span class="label">URL:</span>
+                                    <span class="label">WEBサイト:</span>
                                     <span class="URL">{{ $companies[0] -> url }}</span>
                                 </li>
                                 <li>

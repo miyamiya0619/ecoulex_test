@@ -23,7 +23,7 @@
                             <p class="message"> {{ session('status') }}</p>
                             <ul>
                                 <li>
-                                    <span class="label">URL:</span>
+                                    <span class="label">WEBサイト:</span>
                                     <input type="text" class="URL" name="url" value="{{ $companies[0] -> url }}">
                                 </li>
 

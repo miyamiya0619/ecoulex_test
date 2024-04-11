@@ -20,7 +20,7 @@
                             <ul>
                                 <li>
                                     <div class="inquiry_content">
-                                        <div class="label">お問い合わせ募集内容:</div>
+                                        <div class="label">求人募集内容:</div>
                                         <ul>
                                         @php
                                         $catNamesArray = json_decode($jobPostings[0]['catAndIds'], true);

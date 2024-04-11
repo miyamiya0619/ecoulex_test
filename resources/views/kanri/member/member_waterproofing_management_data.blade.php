@@ -24,7 +24,7 @@ $idValue = $catAndIdsArray[0]['id'];
                             <ul>
                                 <li>
                                     <div class="inquiry_content">
-                                        <div class="label">お問い合わせ募集内容:</div>
+                                        <div class="label">防水工事募集内容:</div>
                                         <ul>
                                         @foreach($catAndIdsArray as $catName)
                                         <li>{{ $catName['name'] }}</li>

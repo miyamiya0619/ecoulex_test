@@ -27,6 +27,7 @@ class CompanySearchService
             'cd.representative',
             'cd.phone',
             'cd.form',
+            'w.updated_at'
         )
         ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
         ->leftJoin('waterproofs as w', 'w.company_id', '=', 'companies.company_id')
@@ -42,6 +43,7 @@ class CompanySearchService
         if ($categories !== null && $categories->isNotEmpty()) {
             $companies->whereRaw('wc.waterproofcat_id IN (' . implode(', ', $categories->keys()->toArray()) . ')');
         }
+    
 
         $paginator = $companies->groupBy(
             'companies.company_id',
@@ -55,8 +57,9 @@ class CompanySearchService
             'cd.addressDetail',
             'cd.representative',
             'cd.phone',
-            'cd.form'
-        )->paginate(10);
+            'cd.form',
+            'w.updated_at',
+        )->orderBy('w.updated_at', 'desc')->paginate(10);
 
         return $paginator;
     }

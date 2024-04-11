@@ -33,7 +33,8 @@ class RecruitSearchService
             'jo.offer1_by_tel',
             'jo.offer1_by_form',
             'jo.offer2_by_tel',
-            'jo.offer2_by_form'
+            'jo.offer2_by_form',
+            'jo.updated_at'
         )
         ->join('joboffers AS jo', 'jo.company_id', '=', 'companies.company_id')
         ->leftjoin('joboffers_jobofferdetails AS jj', 'jj.joboffer_id', '=', 'jo.company_id')
@@ -63,20 +64,24 @@ class RecruitSearchService
             'jo.offer1_by_tel',
             'jo.offer1_by_form',
             'jo.offer2_by_tel',
-            'jo.offer2_by_form'
+            'jo.offer2_by_form',
+            'jo.updated_at'
         );
+
+
 
         //地域を押下した場合
         if ($region_id !== null) {
             $companies->addSelect('pc.region_id')
             ->groupBy('pc.region_id')
-            ->where('pc.region_id', '=', $region_id);
+            ->where('pc.region_id', '=', $region_id);       
         }
         // 採用情報一覧を見るボタンを押下した場合
         if ($prefecture_id !== 'all') {
             $companies->where('jp.prefecuture_id', '=', $prefecture_id);
         }
-        return $companies->get();
+        return $companies->orderBy('jo.updated_at', 'desc')->get();
+
     }
 
     //都道府県IDから都道府県名を取得する
