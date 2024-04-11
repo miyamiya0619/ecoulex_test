@@ -19,6 +19,7 @@
                 @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">
+                        <p class="message"> {{ session('status') }}</p>
                             <div class="form-group">
                                 <label class="form-label">求人募集内容:</label>
                                 <div class="checkbox">
@@ -58,7 +59,7 @@
                                 <div class="form-label">
                                     <label>求人用画像:</label>
                                     <div class="form-attention">
-                                        ※推奨サイズ〇〇
+                                        ※推奨サイズ 横240px×縦160px
                                     </div>
 
                                 </div>

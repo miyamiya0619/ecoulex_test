@@ -16,7 +16,7 @@ class CompanyLoginController extends Controller
 {
 
     private $MemberCompanyloginService;
-    private $CommonLoginService;
+
     
     public function __construct(MemberCompanyloginService $MemberCompanyloginService)
     {

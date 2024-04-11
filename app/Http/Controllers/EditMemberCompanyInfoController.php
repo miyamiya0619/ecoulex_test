@@ -58,11 +58,12 @@ class EditMemberCompanyInfoController extends Controller
         $representative = $companiesdetailsAll['representative'];
         //必須項目が入力されている場合、実行
         if(!empty($address_num)&&!empty($prefectureId)&&!empty($addressDetail)&&!empty($representative)){
-            $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
-            return redirect()->route('ecoulex.kanri.memberCompanyInfo');
-        }
 
-        return redirect()->route('ecoulex.kanri.editMemberCompanyInfo');
+            $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
+            return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', '更新が完了しました');
+        }else{
+            return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', '必須項目をすべて入力してください');
+        }
         
         }
 

@@ -87,7 +87,7 @@ class EditMemberJobPostingsController extends Controller
                 $this->MemberJobPostingsService->updateJobPostingData($company_id,$jobPostingAll,$filename);
             }
             
-            return redirect()->route('ecoulex.kanri.memberJobPostings');
+            return redirect()->route('ecoulex.kanri.editMemberJobPostings')->with('status', '更新が完了しました');
         }
         return view('kanri.registration.loginCompany');
 

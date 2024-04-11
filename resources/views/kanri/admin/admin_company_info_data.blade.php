@@ -17,79 +17,19 @@
                     <div class="search-container">
                         <input type="text" placeholder="検索">
                         <button class="search-button">検索</button>
-
                     </div>
                 </div>
+                <div> <button class="search-button">パスワードを通知する</button></div>
                 <div class="information-box">
                     <div class="information-item">
                         <div class="information-content">
-                        <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
-                        </div>
-                        <div class="button_group">
-                            <div class="info-button">
-                                <button class="delete-edit-button-design">編集</button>
-                            </div>
-                            <div class="info-button">
-                                <button class="delete-edit-button-design delete-button">削除</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="information-item">
-                        <div class="information-content">
-                        <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
-                        </div>
-                        <div class="button_group">
-                            <div class="info-button">
-                                <button class="delete-edit-button-design">編集</button>
-                            </div>
-                            <div class="info-button">
-                                <button class="delete-edit-button-design delete-button">削除</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="information-item">
-                        <div class="information-content">
-                        <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
-                        </div>
-                        <div class="button_group">
-                            <div class="info-button">
-                                <button class="delete-edit-button-design">編集</button>
-                            </div>
-                            <div class="info-button">
-                                <button class="delete-edit-button-design delete-button">削除</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="information-item">
-                        <div class="information-content">
-                        <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
-                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
-                        </div>
-                        <div class="button_group">
-                            <div class="info-button">
-                                <button class="delete-edit-button-design">編集</button>
-                            </div>
-                            <div class="info-button">
-                                <button class="delete-edit-button-design delete-button">削除</button>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="information-item">
-                        <div class="information-content">
+                        <div><input type="checkbox"></div>
+                        <div class="information_txt">
                             <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
                             <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
                             <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
                         </div>
+                        </div>
                         <div class="button_group">
                             <div class="info-button">
                                 <button class="delete-edit-button-design">編集</button>
@@ -98,7 +38,60 @@
                                 <button class="delete-edit-button-design delete-button">削除</button>
                             </div>
                         </div>
-
+                    </div>
+                    <div class="information-item">
+                        <div class="information-content">
+                        <div><input type="checkbox"></div>
+                        <div class="information_txt">
+                            <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
+                        </div>
+                        </div>
+                        <div class="button_group">
+                            <div class="info-button">
+                                <button class="delete-edit-button-design">編集</button>
+                            </div>
+                            <div class="info-button">
+                                <button class="delete-edit-button-design delete-button">削除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information-item">
+                        <div class="information-content">
+                        <div><input type="checkbox"></div>
+                        <div class="information_txt">
+                            <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
+                        </div>
+                        </div>
+                        <div class="button_group">
+                            <div class="info-button">
+                                <button class="delete-edit-button-design">編集</button>
+                            </div>
+                            <div class="info-button">
+                                <button class="delete-edit-button-design delete-button">削除</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="information-item">
+                        <div class="information-content">
+                        <div><input type="checkbox"></div>
+                        <div class="information_txt">
+                            <div class="company-name">株式会社〇〇〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-update ">企業名カナ：〇〇〇〇〇〇〇〇〇〇</div>
+                            <div class="info-mail ">登録メールアドレス：〇〇〇〇〇〇〇〇〇</div>
+                        </div>
+                        </div>
+                        <div class="button_group">
+                            <div class="info-button">
+                                <button class="delete-edit-button-design">編集</button>
+                            </div>
+                            <div class="info-button">
+                                <button class="delete-edit-button-design delete-button">削除</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

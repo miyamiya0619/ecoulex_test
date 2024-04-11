@@ -20,6 +20,7 @@
                 @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">
+                            <p class="message"> {{ session('status') }}</p>
                             <ul>
                                 <li>
                                     <span class="label">URL:</span>

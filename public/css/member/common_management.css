@@ -47,11 +47,16 @@ body {
     font-size: medium;
 }
 
-
+.information-content .box-info .message{
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
 /* インフォメーションアイテムスタイル */
 .information-item {
     border: 1px solid #ccc;
     padding: 50px;
+
 }
 
 /* インフォメーションヘッダー */

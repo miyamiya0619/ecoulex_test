@@ -65,6 +65,10 @@ body {
     justify-content: space-between;
 }
 
+.information-content{
+    display: flex;
+    justify-content: space-between;
+}
 
 .information-section input[type="text"] {
     margin-left: 10px;

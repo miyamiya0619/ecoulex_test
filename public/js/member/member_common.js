@@ -46,14 +46,14 @@ $(document).ready(function () {
             }
         });
 
-        if (!isValid) {
-            alert("必須項目をすべて入力してください。");
-            return false; // フォームの送信を防ぐ
-        } else {
-            // ここにフォーム送信のコードを追加
-            alert("更新完了しました。");
-            return true;
-        }
+        // if (!isValid) {
+        //     alert("必須項目をすべて入力してください。");
+        //     return false; // フォームの送信を防ぐ
+        // } else {
+        //     // ここにフォーム送信のコードを追加
+        //     alert("更新完了しました。");
+        //     return true;
+        // }
     };
 
     // addRequiredTextToCheckboxGroup();

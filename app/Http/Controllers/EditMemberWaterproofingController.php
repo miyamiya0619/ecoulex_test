@@ -50,7 +50,7 @@ class EditMemberWaterproofingController extends Controller
         $waterProofingAll = $request->all();
         //カテゴリがPOSTされていない場合は、終了
         if (!isset($waterProofingAll['WaterProofingCat']) || !is_array($waterProofingAll['WaterProofingCat'])) {
-            return redirect()->route('ecoulex.kanri.editMemberWaterproofing');
+            return redirect()->route('ecoulex.kanri.editMemberWaterproofing')->with('status', '必須項目をすべて入力してください');
         }
 
         
@@ -86,7 +86,7 @@ class EditMemberWaterproofingController extends Controller
                 $this->MemberWaterproofingManagementService->updateWaterProofingData($company_id,$waterProofingAll,$filename);
             }
             
-            return redirect()->route('ecoulex.kanri.memberWaterproofingManagement');
+            return redirect()->route('ecoulex.kanri.editMemberWaterproofing')->with('status', '更新が完了しました');
         }
         return view('kanri.registration.loginCompany');
 
