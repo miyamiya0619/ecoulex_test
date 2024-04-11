@@ -75,7 +75,7 @@
 				</div>
 				@if ($company->waterproofing_job_image && file_exists(public_path('images/uploads/' . $company->waterproofing_job_image)) || !empty($company['waterproofing_job_catch']) || !empty($company['waterproofing_job_description']))
 				<div class="Company flexbox flexbetween">
-					@if ($company->waterproofing_job_image && file_exists(public_path('images/uploads/' . $company->waterproofing_job_image)))
+					@if ($company->waterproofing_job_image)
 						<div class="Img">
 							<img src="{{ asset('images/uploads/' . $company->waterproofing_job_image) }}" alt="{{ $company->company_name }}">
 						</div>

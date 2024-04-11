@@ -192,7 +192,9 @@
 				@endif
 
 				<div class="Company flexbox flexbetween">
+					@if ($company->prefecuture_image)
 					<div class="Img"><img src="{{ asset('images/uploads/' . $company->prefecuture_image) }}" alt="{{ $company['prefecuture_image']}}"></div>
+					@endif
 					<div class="Txt">
 						<p class="catch">{{ $company['prefecuture_catch_head']}}</p>
 						<p class="detail">{{ $company['prefecuture_catch_reading']}}</p>
