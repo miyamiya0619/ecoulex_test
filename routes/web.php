@@ -121,3 +121,5 @@ Route::get('/lp/mirai_project/kanri/adminDashboard', [TopController::class, 'ind
 //お問い合わせ管理（企業情報管理ページ）
 Route::get('/lp/mirai_project/kanri/adminCompanyInfo', [AdminCompanyInfoController::class, 'index'])->name('ecoulex.kanri.adminCompanyInfo');
 Route::post('/lp/mirai_project/kanri/editAdminCompanyInfo', [EditMemberCompanyInfoController::class, 'updateCompanyInfo'])->name('ecoulex.kanri.editMemberCompanyInfo.updateCompanyInfo');
+
+Route::post('/lp/mirai_project/kanri/adminCompanyInfo', [AdminCompanyInfoController::class, 'sendCompanyPassword'])->name('ecoulex.kanri.sendCompanyPassword');

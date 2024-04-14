@@ -30,6 +30,8 @@ class MemberCompanyInfoController extends Controller
         // 会社情報を取得する
         $companies = $this->MemberCompanyInfoService->fetchCompanyDetailData($company_id);
 
+
+
         // sessionにデータが入っている場合、画面描画の処理を行う
         if ($user) {            
             return view('kanri.member.member_company_info_data', compact('user','companies'));

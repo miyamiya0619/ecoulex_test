@@ -65,9 +65,14 @@ body {
     justify-content: space-between;
 }
 
+.information-item .infomartion_chkbox{
+    margin-right: 10px;
+}
+
 .information-content{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .information-section input[type="text"] {
@@ -82,9 +87,9 @@ body {
 
 /* インフォメーションヘッダー */
 .info-header {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; */
     /* 左右に要素を分ける */
     gap: 10px;
     margin-bottom: 10px;
@@ -109,9 +114,16 @@ body {
     border: none;
     cursor: pointer;
     border-radius: 10px;
-
 }
 
+.password-button{
+    padding: 5px 15px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
 
 /* 確認するボタンのスタイル */
 .info-button {
@@ -130,4 +142,15 @@ body {
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+.select_all{
+    margin-top: 10px;
+}
+
+
+.message{
+    text-align: center;
+    color: red;
+    font-weight: bold;
 }

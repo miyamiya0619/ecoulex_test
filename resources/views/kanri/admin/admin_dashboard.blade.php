@@ -16,11 +16,14 @@
         <div class="dashboard-box">
                 <h3>ダッシュボード</h3>
                 <div class="dashboard-content">
-                    <p>ログイン履歴など</p>
+                ログイン履歴: 
+                @foreach ($companyLoginT as $companyLoginData)
+                    <p>{{ $companyLoginData->created_at }}</p>
+                @endforeach
                 </div>
             </div>
-
-            <div class="information-section">
+<!-- 初回リリース時は未実施 -->
+            <!-- <div class="information-section">
                 <div class="info-header">
                     <h3 class="info-title">インフォメーション</h3>
                     <div class="search-container">
@@ -49,10 +52,11 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
     </div>
+    <!-- 初回リリース時は未実施 -->
             <!-- ページネーション -->
-        <div class="pagination">
+        <!-- <div class="pagination">
             <a href="#">&laquo;</a>
             <a href="#">1</a>
             <a href="#">2</a>
@@ -60,5 +64,5 @@
             <a href="#">4</a>
             <a href="#">5</a>
             <a href="#">&raquo;</a>
-        </div>
+        </div> -->
 @endsection

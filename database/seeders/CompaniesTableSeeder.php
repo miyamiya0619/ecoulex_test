@@ -16,20 +16,21 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 100; $i++) {
-            $companyName = '宮本企業' . $i;
-            $companyNameKana = 'ミヤモトキギョウ' . $i;
-            $mail1 = 'miya' . $i . '00@example.com';
-            $mail2 = 'miya' . $i . '00@example.com';
-            $mail3 = 'miya' . $i . '00@example.com';
+        for ($i = 1; $i <= 2; $i++) {
+            $companyName = '宮本事務局' . $i;
+            $companyNameKana = 'ミヤモトジムキョク' . $i;
+            $mail1 = 'miyajimu' . $i . '00@example.com';
+            $mail2 = 'miyajimu' . $i . '00@example.com';
+            $mail3 = 'miyajimu' . $i . '00@example.com';
 
             DB::table('companies')->insert([
                 'company_name' => $companyName,
                 'company_name_kana' => $companyNameKana,
-                'mail1' => $mail1,
-                'mail2' => $mail2,
-                'mail3' => $mail3,
+                'email' => $mail1,
+                'email2' => $mail2,
+                'email3' => $mail3,
                 'password' => Hash::make('password'), // 仮のパスワード
+                'user_type'=> '2',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

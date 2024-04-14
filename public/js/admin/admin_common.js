@@ -50,12 +50,24 @@ $(document).ready(function () {
             return true;
         }
     };
+    var selectAllCheckbox = document.getElementById('select-all');
+    if (selectAllCheckbox) {
+        document.getElementById('select-all').addEventListener('click', function() {
+            var checkboxes = document.querySelectorAll('input[name="selected_items[]"]');
+            checkboxes.forEach(function(checkbox) {
+                checkbox.checked = document.getElementById('select-all').checked;
+            });
+        });
+    
+    }
+
 
     // 必須フィールドに関する関数はそのまま保持し、プルダウンにも適用します
     addRequiredTextToCheckboxGroup();
     addRequiredTextToOtherFields();
     addRequiredTextToSelectFields(); // プルダウン用の関数を追加
     addRequiredFieldStyles();
+    highlightCurrentPageLink(); // 現在のページのリンクの背景をグレーにする機能
 });
 
 function addRequiredTextToCheckboxGroup() {
@@ -118,3 +130,4 @@ function highlightCurrentPageLink() {
         }
     });
 }
+

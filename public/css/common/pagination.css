@@ -1,4 +1,5 @@
-.pagination a {
+.pagination a,
+.pagination span {
     color: #5db0d6; /* 水色の文字色 */
     padding: 8px 16px; /* パディングの調整 */
     text-decoration: none;
@@ -7,6 +8,18 @@
 
     float: left; /* フロートで左寄せ */
 }
+.pagination span {
+    color: #fff; /* 水色の文字色 */
+    background-color: #5db0d6;
+    padding: 8px 16px; /* パディングの調整 */
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd; /* グレーの枠線 */
+
+    float: left; /* フロートで左寄せ */
+   
+}
+
 
 .pagination a:first-child {
     border-top-left-radius: 4px; /* 角を丸くする */
@@ -24,6 +37,8 @@
     color: white;
     border-color: #5db0d6; /* ボーダーの色を変更 */
 }
+
+
 
 .pagination {
     display: flex; /* フレックスボックスを使用 */

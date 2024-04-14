@@ -46,10 +46,6 @@ class CompanyLoginController extends Controller
 
 
             //ユーザ種別を取得
-            //ユーザ種別が2の場合、すなわち事務局側の場合事務局側管理画面に遷移する
-            if($user_type == 2){
-                return redirect()->intended(route('ecoulex.kanri.adminDashboard'));
-            }
 
             //ログイン履歴日時のレコードを挿入する
             $this->MemberCompanyloginService->CreateCompanieshistoryData($company_id);
@@ -66,9 +62,15 @@ class CompanyLoginController extends Controller
 
             //ユーザに紐づくログイン履歴情報を取得する
             $companyLoginT = $this->MemberCompanyloginService->fetchCompanieshistoryLoginTData($company_id);
+
+                        //ユーザ種別が2の場合、すなわち事務局側の場合事務局側管理画面に遷移する
             $request->session()->put('companyLoginT', $companyLoginT);
 
-        return redirect()->intended(route('ecoulex.kanri.memberDashboard'));
+            if($user_type == 2){
+                return redirect()->intended(route('ecoulex.kanri.adminDashboard'));
+            }else{
+                return redirect()->intended(route('ecoulex.kanri.memberDashboard'));
+            }
         }
     return redirect()->back()->withInput()->withErrors(['loginError' => 'ログインIDまたはパスワードが正しくありません']);
     }

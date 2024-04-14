@@ -30,7 +30,7 @@ class TopController extends Controller
             }
             //ユーザタイプが2すなわち事務局側の場合
             if($user_type == 2){
-                return view('kanri.admin.admin_dashboard', compact('user'));
+                return view('kanri.admin.admin_dashboard', compact('user','companyLoginT'));
             }
         }
 

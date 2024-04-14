@@ -29,7 +29,7 @@ class ForgetdMail extends Mailable
     public function envelope(): Envelope
     {
         $from    = new Address(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
-        $subject = 'パスワード再発行のお知らせ　エコ・ウレックス工業会LPサイトお問い合わせ管理画面';
+        $subject = 'エコ・ウレックス工業会LPサイトお問い合わせ管理画面登録のお知らせ';
  
         return new Envelope(
             from: $from,
@@ -43,7 +43,7 @@ class ForgetdMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            text: 'emails.member', // プレーンテキストで送信
+            text: 'emails.memberNotice', // プレーンテキストで送信
         );
     }
  
