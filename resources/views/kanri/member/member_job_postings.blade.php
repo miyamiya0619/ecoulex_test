@@ -53,7 +53,7 @@
                                 </li>
                                 <li>
                                     <div class="label">勤務地:</div>
-                                    <div class="detail">〒{{ $jobPostings[0]->address_num }}{{ $jobPostings[0]->prefectureName }}{{ $jobPostings[0]->addressDetail }}</div>
+                                    <div class="detail">{{ $jobPostings[0]->prefectureName }}{{ $jobPostings[0]->addressDetail }}</div>
                                 </li>
                                 <li>
                                     <div class="label">勤務時間:</div>

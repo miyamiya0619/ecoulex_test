@@ -10,7 +10,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
  
-class ForgetdMail extends Mailable
+class sendMail extends Mailable
 {
     use Queueable, SerializesModels;
  public $newPassword;

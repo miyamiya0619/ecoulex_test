@@ -192,6 +192,10 @@ header .scroll span::after {
 	margin: 0;
 	width: 100%;
 }
+#news ul li a{
+	color: black;
+}
+
 
 /* future */
 #future{

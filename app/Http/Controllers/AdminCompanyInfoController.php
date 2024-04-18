@@ -2,9 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Services\AdminCompanyInfoService;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Str;
+use App\Models\Company;
+use App\Mail\sendMail;
 
 
 class AdminCompanyInfoController extends Controller
@@ -44,13 +52,12 @@ class AdminCompanyInfoController extends Controller
             $company = Company::where('company_id', $selectedItem)->first();
 
             if ($company) {
-                dd($company);
                 $newPassword = Str::random(10); // 10文字のランダムな文字列を生成する例
                 $company->password = Hash::make($newPassword);
                 $company->save();
         
                 // メール送信
-                    Mail::to($company)->send(new ForgetdMail($newPassword));
+                    Mail::to($company)->send(new sendMail($newPassword));
             }
         }
 

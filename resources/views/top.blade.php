@@ -39,9 +39,9 @@
 			<h2 class="contents">新着情報</h2>
 			
 			<ul class="contents">
-				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt">防水の挑戦者募集開始いたしました。</p></li>
-				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt">Instagram開始しました。</p></li>
-				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt">防水の挑戦者募集開始いたしました。</p></li>
+				<li class=" flexbox flexcenter"><p class="date">2024.04.18</p><p class="txt"><a href="https://www.eco-ulex.com/lp/mirai_project/recruit" target="_blank">防水の挑戦者募集開始いたしました。</a></p></li>
+				<li class=" flexbox flexcenter"><p class="date">2024.04.18</p><p class="txt"><a href="https://www.eco-ulex.com/lp/mirai_project/contact" target="_blank">防水工事・各種工事のご相談ページをオープンしました。</a></p></li>
+				<li class=" flexbox flexcenter"><p class="date">2024.04.01</p><p class="txt"><a href="https://www.instagram.com/ecoulex_official" target="_blank">Instagram開始しました。</a></p></li>
 			</ul>
 、
 		</section>

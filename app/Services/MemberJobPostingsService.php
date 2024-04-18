@@ -108,7 +108,7 @@ class MemberJobPostingsService
         $updateData = [
             'prefecuture_catch_head' => $jobPostingAll['prefecuture_catch_head'],
             'prefecuture_catch_reading' => $jobPostingAll['prefecuture_catch_reading'],
-            'address_num' => $jobPostingAll['address_num'],
+            // 'address_num' => $jobPostingAll['address_num'],
             'prefectureName' => $prefectureName[0]->catName,
             'addressDetail' => $jobPostingAll['addressDetail'],
             'working_hours' => $jobPostingAll['working_hours'],
@@ -142,7 +142,7 @@ class MemberJobPostingsService
             $Joboffer->company_id = $company_id;
             $Joboffer->prefecuture_catch_head = $jobPostingAll['prefecuture_catch_head'];
             $Joboffer->prefecuture_catch_reading = $jobPostingAll['prefecuture_catch_reading'];
-            $Joboffer->address_num =  $jobPostingAll['address_num'];
+            // $Joboffer->address_num =  $jobPostingAll['address_num'];
             $Joboffer->prefectureName = $prefectureName[0]->catName;
             $Joboffer->addressDetail = $jobPostingAll['addressDetail'];
             $Joboffer->working_hours = $jobPostingAll['working_hours'];

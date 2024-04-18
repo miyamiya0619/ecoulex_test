@@ -83,10 +83,10 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="form-label">郵便番号:</label>
                                 <input type="text" value= "{{$jobPostings[0] -> address_num}}" name="address_num" >
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <label class="form-label">勤務地:</label>

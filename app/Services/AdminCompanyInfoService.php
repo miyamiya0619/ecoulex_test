@@ -19,6 +19,7 @@ class AdminCompanyInfoService
             'companies.email',
         )
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
+            ->where('companies.user_type', 1)
             ->paginate(10);
 
         return $companies;
