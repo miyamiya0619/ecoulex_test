@@ -56,8 +56,15 @@ body {
 .information-item {
     border: 1px solid #ccc;
     padding: 50px;
-
 }
+
+
+.information__head{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
 
 /* インフォメーションヘッダー */
 .info-header {

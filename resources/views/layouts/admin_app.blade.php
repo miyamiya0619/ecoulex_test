@@ -26,9 +26,10 @@
                 <ul>
                     <li><a href="{{ route('ecoulex.kanri.adminDashboard') }}">●TOP（インフォメーション）</a></li>
                     <li><a href="{{ route('ecoulex.kanri.adminCompanyInfo') }}">●会員企業管理</a></li>
-                    <!-- <li><a href="#">●企業情報管理</a></li>
-                    <li><a href="#">●防水情報管理</a></li>
-                    <li><a href="#">●CSVアップロード</a></li> -->
+                    <li><a href="{{ route('ecoulex.kanri.adminCompanyDetailInfo') }}">●企業情報管理</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.adminjobPostingInfo') }}">●求人情報管理</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.adminWaterProofInfo') }}">●防水情報管理</a></li>
+                    <li><a href="{{ route('ecoulex.kanri.showcsvUpload') }}">●CSVアップロード</a></li>
                     <li><a href="{{ route('showCpmanyLoginForm') }}">ログアウト</a></li>
                 </ul>
                 <div class="nav-company-name">

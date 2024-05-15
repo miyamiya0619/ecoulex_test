@@ -1,0 +1,61 @@
+@extends('layouts.admin_app')
+@section('title', '企業情報管理編集画面')
+
+@section('company_name', $user -> company_name)
+
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/member/common_management.css') }}">
+@endsection
+
+@section('content')
+
+        <div class="dashboard-container">
+            <div class="information-section">
+                <div class="info-header">
+                    <h1 class="dashboard-title">会員企業管理</h1>
+                </div>
+                <div class="information-item">
+                <form action="{{route('ecoulex.kanri.deleteEditAdminCompanyInfo')}}" method="post" novalidate>
+                @csrf <!-- CSRFトークンを含める -->
+                    <div class="information-content">
+                        <div class="box-info">
+                            <ul>
+                                <li>
+                                    <span class="label">企業名:</span>
+                                    <input type="text" class="company_name" name="company_name" value="{{ $companies[0]->company_name}}" readonly>
+                                </li>
+
+                                <li>
+                                    <span class="label">企業名カナ:</span>
+                                    <input type="text" class="company_name_kana" name="company_name_kana" value="{{ $companies[0]->company_name_kana}}" readonly>
+                                </li>
+                                <li>
+                                    <span class="label">編集担当<br>メールアドレス1:</span>
+                                    <input type="text" class="email" name="email" value="{{ $companies[0]->email }}" readonly>
+                                </li>
+                                <li>
+                                    <span class="label">編集担当<br>メールアドレス2:</span>
+                                    <input type="text" class="email2" name="email2" value="{{ $companies[0]->email2 }}" readonly>
+                                </li>
+                                <li>
+                                    <span class="label">編集担当<br>メールアドレス3:</span>
+                                    <input type="text" class="email3" name="email3" value="{{ $companies[0]->email3 }}" readonly>
+                                </li>
+                            </ul>
+                            <input type="hidden" name="company_id" value="{{ $companies[0]->company_id}}">
+                        </div>
+                    </div>
+                    <div class="info-button">
+                        <button class="registration-button" onclick="validateForm()">削除する</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            <!-- ページネーション -->
+        </div>
+    </div>
+
+</body>
+
+</html>
+@endsection

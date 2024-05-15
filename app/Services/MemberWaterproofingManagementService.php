@@ -5,6 +5,8 @@ use App\Models\Company;
 use App\Models\WaterproofdetailsCat;
 use App\Models\Waterproof;
 use App\Models\WaterproofWaterproofdetail;
+use App\Models\information;
+
 use Illuminate\Support\Facades\DB;
 
 class MemberWaterproofingManagementService
@@ -52,10 +54,9 @@ class MemberWaterproofingManagementService
         return $waterProofingRec;
     }
 
-    //求人情報の更新処理を行う
+    //防水情報の更新処理を行う
     public function updateWaterProofingData($company_id,$waterProofingAll,$filename)
     {
-
 
         // トランザクションを開始
         DB::beginTransaction();
@@ -86,6 +87,15 @@ class MemberWaterproofingManagementService
         }
 
         Waterproof::where('company_id', $company_id)->update($updateData);
+        
+        //インフォメーションテーブルに格納し、事務局側に反映
+        information::insert([
+            'company_id' => $company_id,
+            'information_id' => 2,
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+
             // コミット
         DB::commit();
         } catch (\Exception $e) {
@@ -125,6 +135,14 @@ class MemberWaterproofingManagementService
                     'updated_at' => now()
                 ]);
             }
+
+            //インフォメーションテーブルに格納し、事務局側に反映
+            information::insert([
+                'company_id' => $company_id,
+                'information_id' => 2,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
 
             // コミット
             DB::commit();

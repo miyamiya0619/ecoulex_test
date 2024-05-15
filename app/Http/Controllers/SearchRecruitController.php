@@ -78,24 +78,6 @@ class SearchRecruitController extends Controller
             'region_name' => $region_name[0]->regionName ,
     ]);
     }
-    
-    //検索メイン処理(採用情報一覧)
-    // public function recruit_search_all($prefecture_id='all',$region_id=null)
-    // {
-    //     // validateRequest 関数を呼び出し、戻り値を取得する
-    //     $prefectures = $this->RecruitService->getPrefectureData();
-    
-    //     // 会社情報の取得
-    //     $companies = $this->RecruitSearchService->fetchCompanyData($prefecture_id,$region_id);
-    
-    //     return view('recruit.result', [
-    //         'prefecture_id' => $prefecture_id,
-    //         'region_id' => $region_id,
-    //         'prefectures' => $prefectures,
-    //         'companies' => $companies,
-    //         'prefectures_sentence' => '選択してください',
-    //         'prefecture_name' => '',
-    // ]);
-    // }
+
 
 }

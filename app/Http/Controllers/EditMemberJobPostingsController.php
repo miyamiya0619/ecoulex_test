@@ -34,8 +34,6 @@ class EditMemberJobPostingsController extends Controller
         //都道府県の情報を取得する
         $prefectures = $this->MemberJobPostingsService->fetchPrefecturesCatsData();
 
-  
-
         if ($user) {
             return view('kanri.member.edit_member_job_postings', compact('user','jobPostings','JobofferdetailCatAll','prefectures'));
         }

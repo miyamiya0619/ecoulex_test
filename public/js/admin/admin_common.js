@@ -131,3 +131,28 @@ function highlightCurrentPageLink() {
     });
 }
 
+
+//ファイルアップロード(会員企業管理)
+function displaycompanies(input) {
+    var fileName = input.files[0].name;
+    var fileNameDisplay = document.getElementById("file-name_companies");
+    fileNameDisplay.textContent = fileName;
+}
+//ファイルアップロード(会員企業管理)
+function displaycompaniesdetails(input) {
+    var fileName = input.files[0].name;
+    var fileNameDisplay = document.getElementById("file-name_companiesdetails");
+    fileNameDisplay.textContent = fileName;
+}
+//ファイルアップロード(会員企業管理)
+function displaywaterProofing(input) {
+    var fileName = input.files[0].name;
+    var fileNameDisplay = document.getElementById("file-name_waterProofing");
+    fileNameDisplay.textContent = fileName;
+}
+//ファイルアップロード(会員企業管理)
+function displayjoboffers(input) {
+    var fileName = input.files[0].name;
+    var fileNameDisplay = document.getElementById("file-name_joboffers");
+    fileNameDisplay.textContent = fileName;
+}

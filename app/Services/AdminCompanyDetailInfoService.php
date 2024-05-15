@@ -7,9 +7,43 @@ use App\Models\Companiesdetail;
 use App\Models\CompaniesdetailsPrefecture;
 use App\Models\information;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
-class MemberCompanyInfoService
+class AdminCompanyDetailInfoService
 {
+
+    //会員企業管理一覧画面
+    public function fetchCompanyDetailDataAll()
+    {
+        // 会社情報の取得
+        $companies = Company::select(
+            'companies.company_id',
+            'companies.company_name',
+            'companies.company_name_kana',
+            'companies.email',
+            'cd.url',
+            'cd.address_num',
+            'cd.prefectureName',
+            'cd.addressDetail',
+            'cd.number_of_employees',
+            'cd.year_of_establishment',
+            'cd.capital',
+            'cd.representative',
+            'cd.phone',
+            'cd.form',
+            'cp.prefecuture_id',
+            'cd.updated_at',
+        )
+            ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
+            ->leftJoin('companiesdetails_prefectures as cp', 'cp.company_id', '=', 'companies.company_id')
+            ->leftJoin('prefectures_cats as pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
+            ->where('companies.user_type', 1)
+            ->orderby('cd.updated_at', 'desc')
+            ->paginate(10);
+        return $companies;
+    }
+
     public function fetchCompanyDetailData($company_id)
     {
         // 会社情報の取得
@@ -109,6 +143,66 @@ class MemberCompanyInfoService
         ]);
 
     }
+
+    //会員企業管理削除処理
+    public function deleteCompanyDetailData($deleteEditAdminCompanyInfo)
+    {
+                // トランザクションを開始
+    DB::beginTransaction();
+    try {
+
+        //企業都道府県関連の削除
+        CompaniesdetailsPrefecture::where('company_id', $deleteEditAdminCompanyInfo['company_id']) -> delete();
+        //防水情報の削除
+        information::where('company_id', $deleteEditAdminCompanyInfo['company_id']) ->delete();
+        //防水情報の削除
+        Companiesdetail::where('company_id', $deleteEditAdminCompanyInfo['company_id']) -> delete();
+
+        // コミット
+        DB::commit();
+    }catch (\Exception $e) {
+            // エラーが発生した場合はロールバック
+            DB::rollBack();
+            throw $e; // 例外を再スローして呼び出し元でエラーを処理できるようにする
+        }
     
+    }
+
+
+    //会員企業管理一覧画面
+    public function fetchCompanyDetailSearchData($search_freeword)
+    {
+        // 会社情報の取得
+        $companies = Company::select(
+            'companies.company_id',
+            'companies.company_name',
+            'companies.company_name_kana',
+            'companies.email',
+            'cd.url',
+            'cd.address_num',
+            'cd.prefectureName',
+            'cd.addressDetail',
+            'cd.number_of_employees',
+            'cd.year_of_establishment',
+            'cd.capital',
+            'cd.representative',
+            'cd.phone',
+            'cd.form',
+            'cp.prefecuture_id',
+            'cd.updated_at',
+        )
+            ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
+            ->leftJoin('companiesdetails_prefectures as cp', 'cp.company_id', '=', 'companies.company_id')
+            ->leftJoin('prefectures_cats as pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
+            ->where('companies.user_type', 1)
+            ->where('companies.company_name', 'like',"%$search_freeword%")
+            ->orderby('cd.updated_at', 'desc')
+            ->paginate(10);
+        return $companies;
+    }
+
+
+
+
 
 }

@@ -6,25 +6,6 @@
 
 }
 
-.information-content {
-    display: flex;
-    width: 80%;
-    margin: auto;
-    justify-content: flex-start;
-}
-
-
-
-.company-name,
-.info-update {
-    flex: 1;
-    /* それぞれの幅を均等に */
-    padding: 5px;
-    /* 必要に応じて調整 */
-
-}
-
-
 .dashboard-container {
     width: 95%;
 
@@ -54,8 +35,10 @@
     padding: 10px;
     padding-top: 30px;
     padding-bottom: 30px;
+    margin-top: 10px;
 
 }
+
 
 
 
@@ -68,14 +51,13 @@
 }
 
 
-/* インフォメーションアイテムスタイル */
 .information-item {
     border: 1px solid black;
     padding: 15px;
     padding-top: 30px;
     padding-bottom: 30px;
-    display: flex;
 }
+
 
 
 .information-section input[type="text"] {
@@ -123,13 +105,19 @@
     border: none;
     cursor: pointer;
     margin-left: auto;
+    
+    text-decoration: none;
     /* 右寄せ */
 }
 
 /* 編集削除するボタンのスタイル */
 .info-button {
-    margin-left: auto;
     /* 右寄せ */
+    width: 130px;
+}
+.info-button a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .company-name {
@@ -159,4 +147,17 @@
 .non-decoration {
     text-decoration: none;
     color: #fff;
+}
+
+.email-link {
+
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.email-link a {
+    color: #000;
+    /* text-decoration: none; */
 }

@@ -45,6 +45,10 @@ body {
     border: 1px solid #ccc;
 }
 
+.dashboard-content__head{
+    margin-bottom: 10px;
+}
+
 .info-header .info-title {
     font-size: medium;
 }
@@ -75,21 +79,26 @@ body {
     align-items: center;
 }
 
+.information-content .date{
+    margin-right: 15px;
+}
+
 .information-section input[type="text"] {
     margin-left: 10px;
 }
 
 .button_group{
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    align-items: flex-end; /* 要素を下揃えにする */
     margin-right: 10px;
 }
 
 /* インフォメーションヘッダー */
 .info-header {
-    /* display: flex;
+    display: flex;
     align-items: center;
-    justify-content: space-between; */
+    justify-content: space-between;
     /* 左右に要素を分ける */
     gap: 10px;
     margin-bottom: 10px;
@@ -116,7 +125,14 @@ body {
     border-radius: 10px;
 }
 
-.password-button{
+.dashboard__button-group{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.password-button,
+.company__create-button{
     padding: 5px 15px;
     background-color: #000;
     color: #fff;
@@ -126,8 +142,12 @@ body {
 }
 
 /* 確認するボタンのスタイル */
+
+.info-button__back{
+    text-align: center;
+}
 .info-button {
-    padding: 20px 30px;
+    padding: 5px 18px;
     background-color: #000;
     border-radius: 10px;
     color: #fff;
@@ -153,4 +173,51 @@ body {
     text-align: center;
     color: red;
     font-weight: bold;
+}
+
+/* .information_txt{
+    display: flex;
+} */
+
+.information_txt .jobPosting-name{
+    margin-right: 10px;
+}
+
+.information_txt .strong{
+   font-weight: bold;
+}
+
+.button__group{
+    text-align: right;
+}
+
+.button__group .button__create{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.search-container{
+    margin-right: 10px;
+}
+
+.dashboard__bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.search_group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.jobPosting_txt,
+.waterProofing_txt{
+    display: flex;
+}
+
+.jobPosting-name,
+.waterproof-name
+{
+    margin-right: 10px;
 }
