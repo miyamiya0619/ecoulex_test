@@ -15,8 +15,9 @@ class AdminWaterProofInfoService
         $waterproofs = DB::table('waterproofs as wp')
             ->leftJoin('companiesdetails as cd', 'wp.company_id', '=', 'cd.company_id')
             ->leftJoin('companies as cp', 'cp.company_id', '=', 'cd.company_id')
-            ->select('cp.company_id','cp.company_name', 'wp.updated_at')
-            ->orderBy('cp.company_id' , 'desc')
+            ->select('cd.company_id','cp.company_name', 'wp.updated_at')
+            ->where('cp.user_type', 1)
+            ->orderBy('wp.updated_at' , 'desc')
             ->paginate(10);
 
         return $waterproofs;

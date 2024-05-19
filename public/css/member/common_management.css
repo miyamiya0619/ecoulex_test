@@ -272,3 +272,8 @@ textarea {
 select {
     padding: 5px;
 }
+
+.info_head{
+    font-weight: bold;
+    font-size: 18px;
+}

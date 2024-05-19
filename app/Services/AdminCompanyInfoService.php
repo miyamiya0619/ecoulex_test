@@ -14,6 +14,8 @@ use App\Models\information;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\sendMail;
 
 class AdminCompanyInfoService
 {
@@ -32,6 +34,7 @@ class AdminCompanyInfoService
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
             ->where('companies.user_type', 1)
             ->orderBy('companies.company_id' , 'desc')
+            ->orderBy('cd.updated_at' , 'desc')
             ->paginate(10);
 
         return $companies;
@@ -179,16 +182,6 @@ class AdminCompanyInfoService
 
         $Company->save();
 
-        //メール送信処理
-        if(!empty($createEditAdminCompanyAll['email'])){
-            Mail::to($Company)->send(new sendMail($newPassword));
-        }
-        if(!empty($createEditAdminCompanyAll['email2'])){
-            Mail::to($Company->email2)->send(new sendMail($newPassword));
-        }
-        if(!empty($createEditAdminCompanyAll['email3'])){
-            Mail::to($Company->email3)->send(new sendMail($newPassword));
-        }
         DB::commit();
     }catch (\Exception $e) {
         // エラーが発生した場合はロールバック

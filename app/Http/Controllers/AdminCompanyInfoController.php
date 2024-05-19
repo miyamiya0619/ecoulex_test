@@ -57,18 +57,24 @@ class AdminCompanyInfoController extends Controller
     
                 if ($company) {
                     $newPassword = Str::random(10); // 10文字のランダムな文字列を生成する例
+                    $newPassword2 = Str::random(10); // 10文字のランダムな文字列を生成する例
+                    $newPassword3 = Str::random(10); // 10文字のランダムな文字列を生成する例
+
                     $company->password = Hash::make($newPassword);
+                    $company->password2 = Hash::make($newPassword2);
+                    $company->password3 = Hash::make($newPassword3);
+                    
                     $company->updated_at = now();
                     $company->save();
             
                     // メール送信
-                        Mail::to($company)->send(new sendMail($newPassword));
-                        if(!empty($company->email2)){
-                            Mail::to($company->email2)->send(new sendMail($newPassword));
-                        }
-                        if(!empty($company->email3)){
-                            Mail::to($company->email3)->send(new sendMail($newPassword));
-                        }
+                    Mail::to($company)->send(new sendMail($newPassword));
+                    if(!empty($company->email2)){
+                        Mail::to($company->email2)->send(new sendMail($newPassword2));
+                    }
+                    if(!empty($company->email3)){
+                        Mail::to($company->email3)->send(new sendMail($newPassword3));
+                    }
 
                 }
             }

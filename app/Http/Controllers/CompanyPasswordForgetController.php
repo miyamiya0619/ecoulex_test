@@ -42,20 +42,37 @@ class CompanyPasswordForgetController extends Controller
         }
 
         // ユーザーのパスワードを更新
-        $company = Company::where('email', $request->email)->first();
+        $company = null;
+        $passwordColumn = 'password';
+
+        $email = $request->email;
+
+        // emailカラムでユーザーを検索
+        $company = Company::where('email', $email)->first();
+        if (!$company) {
+            // email2カラムでユーザーを検索
+            $company = Company::where('email2', $email)->first();
+            $passwordColumn = 'password2';
+        }
+        if (!$company) {
+            // email3カラムでユーザーを検索
+            $company = Company::where('email3', $email)->first();
+            $passwordColumn = 'password3';
+        }
 
         if ($company) {
             $newPassword = Str::random(10); // 10文字のランダムな文字列を生成する例
-            $company->password = Hash::make($newPassword);
-            $company->save();
-    
-            // メール送信
-                Mail::to($company)->send(new ForgetdMail($newPassword));
-    
-                return view('kanri.registration.forgot_password_complete', [
-                    'email' => $request->email,
-                ]);
 
+            // パスワードカラムを動的に更新
+            $company->$passwordColumn = Hash::make($newPassword);
+            $company->save();
+
+            // メール送信
+            // Mail::to($company)->send(new ForgetdMail($newPassword));
+
+            return view('kanri.registration.forgot_password_complete', [
+                'email' => $email,
+            ]);
         } else {
             // 企業が見つからない場合の処理
             return back()->withErrors(['email' => 'このメールアドレスに対応する企業は見つかりませんでした。']);

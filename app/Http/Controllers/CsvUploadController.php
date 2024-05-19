@@ -49,18 +49,20 @@ class CsvUploadController extends Controller
             return view('kanri.registration.loginCompany');
         }
 
+        // リクエストからファイルを取得
+        $file = $request->file('companies_csv_file');
+       
+        $searchString = '会員情報（会員企業管理画面）';
         //ファイル存在チェック
-        if (!($request->hasFile('companies_csv_file'))) {
+        if (!($request->hasFile('companies_csv_file')) || strpos($file, $searchString) === false) {
             $status = "会員企業登録用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
 
-        // リクエストからファイルを取得
-        $file = $request->file('companies_csv_file');
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
         fgetcsv($fp);
-
+        dd($file);
         // 1行ずつ読み込み、企業テーブルに登録する
         while (($csvData = fgetcsv($fp)) !== FALSE) {
             $this->AdminCsvImportService->InsertCompaniesCsvData($csvData);
@@ -82,14 +84,18 @@ class CsvUploadController extends Controller
             return view('kanri.registration.loginCompany');
         }
 
+        // リクエストからファイルを取得
+        $file = $request->file('companiesdetails_csv_file');
+
+        $searchString = '企業情報（企業情報管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('companiesdetails_csv_file'))) {
+        if (!($request->hasFile('companiesdetails_csv_file')) || strpos($file, $searchString) === false) {
             $status = "企業情報用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
+        
 
         // リクエストからファイルを取得
-        $file = $request->file('companiesdetails_csv_file');
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
         fgetcsv($fp);
@@ -116,14 +122,16 @@ class CsvUploadController extends Controller
             return view('kanri.registration.loginCompany');
         }
 
+        // リクエストからファイルを取得
+        $file = $request->file('WaterProofing_csv_file');
+
+        $searchString = '防水工事情報（防水工事管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('WaterProofing_csv_file'))) {
+        if (!($request->hasFile('WaterProofing_csv_file')) || strpos($file, $searchString) === false) {
             $status = "防水工事用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
 
-        // リクエストからファイルを取得
-        $file = $request->file('WaterProofing_csv_file');
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
         fgetcsv($fp);
@@ -149,14 +157,16 @@ class CsvUploadController extends Controller
             return view('kanri.registration.loginCompany');
         }
 
+        // リクエストからファイルを取得
+        $file = $request->file('joboffers_csv_file');
+
+        $searchString = '求人情報（求人情報管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('joboffers_csv_file'))) {
+        if (!($request->hasFile('joboffers_csv_file')) || strpos($file, $searchString) === false) {
             $status = "求人情報用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
 
-        // リクエストからファイルを取得
-        $file = $request->file('joboffers_csv_file');
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
         fgetcsv($fp);

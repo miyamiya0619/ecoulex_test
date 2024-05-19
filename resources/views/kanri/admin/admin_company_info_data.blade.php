@@ -21,7 +21,6 @@
                                     <input type="text" name="search_freeword" placeholder="検索" value="{{ $search_freeword ?? '' }}">
                                     <button class="search-button">検索</button>
                                 </div>
-                                <a href="{{route('ecoulex.kanri.createadminCompanyInfo')}}" class="info-button">新規企業登録</a>
                             </div>
                             <div class="button__mail"><a href="{{route('ecoulex.kanri.listmailaddress')}}">会員担当メールアドレス一覧</a></div>
                         </div>
@@ -31,7 +30,6 @@
                     @csrf <!-- CSRFトークンを含める -->
                     <div class="dashboard__button-group"> 
                         <button class="password-button">パスワードを通知する</button>
-
                     </div>
                     <div class="select_all"> <input type="checkbox" id="select-all">すべて選択する<br></div>
                     @if(isset($status) && $status != "")

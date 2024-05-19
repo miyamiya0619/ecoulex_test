@@ -25,7 +25,7 @@ class AdminWaterProofInfoController extends Controller
     $this->AdminWaterProofInfoService = $AdminWaterProofInfoService;
 
     }
-    // お問い合わせトップ画面を表示
+    // 防水工事一覧画面を表示
     public function index()
     {
         //ログイン後の取得したセッション情報を取り出す
