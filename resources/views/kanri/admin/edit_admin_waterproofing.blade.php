@@ -66,10 +66,13 @@
                                     </div>
 
                                 </div>
-                                <div class=" file-upload">
+                                <div class="file-upload">
                                     <button type="button" id="upload-btn">ファイルを選択</button>
                                     <input type="file" id="file-upload" name="waterproofing_job_image" style="display: none;">
                                     <div class="selected-file-name"></div>
+                                    @if ($WarterProofs[0]->waterproofing_job_image)
+                                        <div class="Img"><img src="{{ asset('images/uploads/' . $WarterProofs[0]->waterproofing_job_image) }}" alt=""></div>
+                                    @endif
                                 </div>
                             </div>
                             <input type="hidden" name="company_id" value="{{ $WarterProofs[0]->company_id}}">

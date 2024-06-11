@@ -142,7 +142,7 @@ class AdminWaterProofInfoService
 
         Waterproof::where('company_id', $company_id)->update($updateData);
 
-            // コミット
+        // コミット
         DB::commit();
         } catch (\Exception $e) {
             // エラーが発生した場合はロールバック

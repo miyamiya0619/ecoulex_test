@@ -31,6 +31,8 @@ class AdminCsvImportService
         $companies->email2 = $csvData[3];
         $companies->email3 = $csvData[4];
         $companies->password = Hash::make($newPassword);
+        $companies->password2 = Hash::make($newPassword);
+        $companies->password3 = Hash::make($newPassword);
         $companies->user_type = 1;
         $companies->created_at = now();
         $companies->updated_at = now();

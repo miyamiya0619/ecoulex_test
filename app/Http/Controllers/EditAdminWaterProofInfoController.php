@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Services\AdminWaterProofInfoService;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 
 class EditAdminWaterProofInfoController extends Controller
@@ -45,19 +47,55 @@ class EditAdminWaterProofInfoController extends Controller
         $user = Session::get('user');
         $company_id = Session::get('company_id');
 
-
-
         //パラメータの受け取る
         $waterProofingAll = $request->all();
-        $id = $waterProofingAll['company_id'];
-
-
-     //カテゴリがPOSTされていない場合は、終了
-        if (!isset($waterProofingAll['WaterProofingCat']) || !is_array($waterProofingAll['WaterProofingCat'])) {
-
-            return redirect()->route('ecoulex.kanri.updateEditAdminWaterProofInfo')->with('status', '必須項目をすべて入力してください');
+        if (isset($waterProofingAll['company_id'])) {
+            $id = $waterProofingAll['company_id'];
         }
 
+        //カテゴリがPOSTされていない場合は、終了
+        if (!isset($waterProofingAll['WaterProofingCat']) || !is_array($waterProofingAll['WaterProofingCat'])) {
+            //全工事カテゴリを取得する
+            $WarterProofCatAll = $this->AdminWaterProofInfoService->fetchWaterProofingCatData();
+            //ログインユーザに紐づく防水工事情報を取得する
+            $WarterProofs = $this->AdminWaterProofInfoService->fetchCompanyData($id);
+            $status = "必須項目はすべて入力してください";
+            return view('kanri.admin.edit_admin_waterproofing', compact('user','WarterProofs','WarterProofCatAll','status'));
+        }
+
+        // バリデーションルール
+        $rules = [
+        'waterproofing_job_catch' => [
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 所在地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+
+        'waterproofing_job_description' => [
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 社員数の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+        
+        'waterproofing_job_image' => [
+            'mimes:jpeg,png' // 許可するファイルの拡張子を指定
+        ],
+    ];
+
+        // カスタムメッセージ
+        $messages = [
+            'waterproofing_job_catch.regex' => '防水工事用キャッチの形式が正しくありません',
+            'waterproofing_job_description.regex' => '防水工事用詳細の形式が正しくありません',
+            'waterproofing_job_image.mimes' => '許可されていないファイル形式です。jpeg, pngのファイルのみ許可されています。',
+        ];
+
+        // バリデーション実行
+        $validator = validator()->make($waterProofingAll, $rules, $messages);
+
+        if ($validator->fails()) {
+            $status = $validator->errors()->first();
+            //全工事カテゴリを取得する
+            $WarterProofCatAll = $this->AdminWaterProofInfoService->fetchWaterProofingCatData();
+            //ログインユーザに紐づく防水工事情報を取得する
+            $WarterProofs = $this->AdminWaterProofInfoService->fetchCompanyData($id);
+            return view('kanri.admin.edit_admin_waterproofing', compact('user','WarterProofs','WarterProofCatAll','status'));
+        }
         
         if ($user) {
             
@@ -100,7 +138,6 @@ class EditAdminWaterProofInfoController extends Controller
             $WarterProofs = $this->AdminWaterProofInfoService->fetchCompanyData($id);
             //全工事カテゴリを取得する
             $WarterProofCatAll = $this->AdminWaterProofInfoService->fetchWaterProofingCatData();
-
 
             $status = "更新が完了しました";
             return view('kanri.admin.edit_admin_waterproofing', compact('user','WarterProofs','WarterProofCatAll','status'));

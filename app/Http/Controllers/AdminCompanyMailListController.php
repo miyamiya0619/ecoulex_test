@@ -140,18 +140,65 @@ class AdminCompanyMailListController extends Controller
         //ログイン後の取得したセッション情報を取り出す
         $user = Session::get('user');
         $company_id = Session::get('company_id');
+
+        $mailListArr = $request->all();
         
         $id = $request -> company_id; 
         $m_id = $request -> m_id;
         $mail = $request -> email;
 
-        $this->AdminCompanyMailListService->updateCompanyMailList($id,$m_id,$mail);
+        // バリデーションルール
+        $rules = [
+            'email' => [
+                'required',
+                'email'
+            ],
+        ];
+        // カスタムメッセージ
+        $messages = [
+            'email.required' => 'メールアドレスは必須です',
+            'email.email' => 'メールアドレスの形式が正しくありません',
+        ];
+        // バリデーション実行
+        $validator = validator()->make($mailListArr, $rules, $messages);
 
-        //メール一覧情報の取得
-        $mailList = $this->AdminCompanyMailListService->fetchCompanyMailList($id,$m_id);
+        if ($validator->fails()) {
+            $status = $validator->errors()->first();
+            // 会社情報を取得する
+            $mailList = $this->AdminCompanyMailListService->fetchCompanyMailList($id, $m_id);
+            
+            // sessionにデータが入っている場合、画面描画の処理を行う
+            if ($user) {
+                return view('kanri.admin.edit_admin_company_mailList_data', compact('user','mailList','m_id','status'));
+            }
+            // sessionにデータが入っていない（有効期限切れ）場合、ログイン画面に遷移する
+            return view('kanri.registration.loginCompany');
+        }
 
-        $status = "更新が完了しました";
+        //存在チェック
+        $company = Company::where('email', $mail)->first();
+        $company2 = Company::where('email2', $mail)->first();
+        $company3 = Company::where('email3', $mail)->first();
+        if (!empty($company) || !empty($company2) || !empty($company3)) {
+            $status = "このメールアドレスは既に存在しています。";
+            // 会社情報を取得する
+            $mailList = $this->AdminCompanyMailListService->fetchCompanyMailList($id, $m_id);
+            
+            // sessionにデータが入っている場合、画面描画の処理を行う
+            if ($user) {
+                return view('kanri.admin.edit_admin_company_mailList_data', compact('user','mailList','m_id','status'));
+            }
+            // sessionにデータが入っていない（有効期限切れ）場合、ログイン画面に遷移する
+            return view('kanri.registration.loginCompany');
+        }
 
+        //エラーがない場合
+
+            $this->AdminCompanyMailListService->updateCompanyMailList($id, $m_id, $mail);
+            //メール一覧情報の取得
+            $mailList = $this->AdminCompanyMailListService->fetchCompanyMailList($id, $m_id);
+            $status = "更新が完了しました";
+   
         // sessionにデータが入っている場合、画面描画の処理を行う
         if ($user) {
             return view('kanri.admin.edit_admin_company_mailList_data', compact('user','mailList','m_id','status'));

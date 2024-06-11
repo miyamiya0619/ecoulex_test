@@ -38,40 +38,134 @@ class CsvUploadController extends Controller
         return view('kanri.registration.loginCompany');
     }
 
-    //会員企業情報CSV登録
-    public function importCompaniesCsv(Request $request)
-    {
-        $user = Session::get('user');
-        $company_id = Session::get('company_id');
+    // //会員企業情報CSV登録
+    // public function importCompaniesCsv(Request $request)
+    // {
+    //     $user = Session::get('user');
+    //     $company_id = Session::get('company_id');
         
-        //セッションが切れた場合
-        if (!$user) {
-            return view('kanri.registration.loginCompany');
-        }
+    //     //セッションが切れた場合
+    //     if (!$user) {
+    //         return view('kanri.registration.loginCompany');
+    //     }
 
-        // リクエストからファイルを取得
-        $file = $request->file('companies_csv_file');
+    //     // リクエストからファイルを取得
+    //     $file = $request->file('companies_csv_file');
+    //     if($file){
+    //         $fileName = $file->getClientOriginalName();
+    //     }
        
-        $searchString = '会員情報（会員企業管理画面）';
-        //ファイル存在チェック
-        if (!($request->hasFile('companies_csv_file')) || strpos($file, $searchString) === false) {
-            $status = "会員企業登録用ファイルを選択してください";
-            return view('kanri.admin.show_csv_upload', compact('user','status'));
-        }
+    //     $searchString = '会員情報（会員企業管理画面）';
+    //     //ファイル存在チェック
+    //     if (!($request->hasFile('companies_csv_file')) || strpos($fileName, $searchString) === false) {
+    //         $status = "会員企業登録用ファイルを選択してください";
+    //         return view('kanri.admin.show_csv_upload', compact('user','status'));
+    //     }
 
-        $path = $file->getRealPath();
-        $fp = fopen($path, 'r');
-        fgetcsv($fp);
-        dd($file);
+    //     $path = $file->getRealPath();
+    //     $fp = fopen($path, 'r');
+    //     fgetcsv($fp);
+
+    //     // 1行ずつ読み込み、企業テーブルに登録する
+    //     while (($csvData = fgetcsv($fp)) !== FALSE) {
+    //         $this->AdminCsvImportService->InsertCompaniesCsvData($csvData);
+    //     }
+    //     // ファイルを閉じる
+    //     fclose($fp);
+    //     $status = "会員企業登録用ファイルの取り込みが完了しました。";
+    //     return view('kanri.admin.show_csv_upload', compact('user','status'));
+    // }
+
+//会員企業情報CSV登録
+public function importCompaniesCsv(Request $request)
+{
+    $user = Session::get('user');
+    $company_id = Session::get('company_id');
+
+    // セッションが切れた場合
+    if (!$user) {
+        return view('kanri.registration.loginCompany');
+    }
+
+    // リクエストからファイルを取得
+    $file = $request->file('companies_csv_file');
+    if ($file) {
+        $fileName = $file->getClientOriginalName();
+    }
+
+    $searchString = '会員情報（会員企業管理画面）';
+    // ファイル存在チェック
+    if (!($request->hasFile('companies_csv_file')) || strpos($fileName, $searchString) === false) {
+        $status = "会員企業登録用ファイルを選択してください";
+        return view('kanri.admin.show_csv_upload', compact('user', 'status'));
+    }
+
+    $path = $file->getRealPath();
+    $fp = fopen($path, 'r');
+    fgetcsv($fp); // ヘッダー行をスキップ
+
+    // 既存のメールアドレスを取得
+    $existingEmails = DB::table('companies')->pluck('email')->toArray();
+    $existingEmails2 = DB::table('companies')->pluck('email2')->toArray();
+    $existingEmails3 = DB::table('companies')->pluck('email3')->toArray();
+
+    $allDuplicateEmails = [];
+
+    // トランザクション開始
+    DB::beginTransaction();
+    try {
         // 1行ずつ読み込み、企業テーブルに登録する
         while (($csvData = fgetcsv($fp)) !== FALSE) {
+            $email = $csvData[2];
+            $email2 = $csvData[3];
+            $email3 = $csvData[4];
+
+            $currentErrors = [];
+            // メールアドレスの重複チェック
+            if (!empty($email) && in_array($email, $existingEmails)) {
+                $currentErrors[] = $email;
+            }
+            if (!empty($email2) && in_array($email2, $existingEmails2)) {
+                $currentErrors[] = $email2;
+            }
+            if (!empty($email3) && in_array($email3, $existingEmails3)) {
+                $currentErrors[] = $email3;
+            }
+
+            if (!empty($currentErrors)) {
+                $allDuplicateEmails = array_merge($allDuplicateEmails, $currentErrors);
+                continue;
+            }
+
+            // 企業データを挿入
             $this->AdminCsvImportService->InsertCompaniesCsvData($csvData);
         }
+
         // ファイルを閉じる
         fclose($fp);
-        $status = "会員企業登録用ファイルの取り込みが完了しました。";
-        return view('kanri.admin.show_csv_upload', compact('user','status'));
+
+        // エラーメッセージの表示
+        if (!empty($allDuplicateEmails)) {
+            // トランザクションをロールバック
+            DB::rollBack();
+            $uniqueDuplicateEmails = array_unique($allDuplicateEmails); // 重複メールを一意にする
+            $status = "そのメールアドレスは既に存在しています: " . implode(', ', $uniqueDuplicateEmails);
+        } else {
+            // トランザクションをコミット
+            DB::commit();
+            $status = "会員企業登録用ファイルの取り込みが完了しました。";
+        }
+    } catch (\Exception $e) {
+        // エラー発生時のロールバック
+        DB::rollBack();
+        fclose($fp);
+        $status = "エラーが発生しました: " . $e->getMessage();
     }
+
+    return view('kanri.admin.show_csv_upload', compact('user', 'status'));
+}
+
+
     
     //企業情報、都道府県関連CSV登録
     public function importCompaniesdetailsCsv(Request $request)
@@ -86,10 +180,13 @@ class CsvUploadController extends Controller
 
         // リクエストからファイルを取得
         $file = $request->file('companiesdetails_csv_file');
+        if($file){
+            $fileName = $file->getClientOriginalName();
+        }
 
         $searchString = '企業情報（企業情報管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('companiesdetails_csv_file')) || strpos($file, $searchString) === false) {
+        if (!($request->hasFile('companiesdetails_csv_file')) || strpos($fileName, $searchString) === false) {
             $status = "企業情報用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
@@ -124,10 +221,13 @@ class CsvUploadController extends Controller
 
         // リクエストからファイルを取得
         $file = $request->file('WaterProofing_csv_file');
+        if($file){
+            $fileName = $file->getClientOriginalName();
+        }
 
         $searchString = '防水工事情報（防水工事管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('WaterProofing_csv_file')) || strpos($file, $searchString) === false) {
+        if (!($request->hasFile('WaterProofing_csv_file')) || strpos($fileName, $searchString) === false) {
             $status = "防水工事用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
@@ -159,10 +259,14 @@ class CsvUploadController extends Controller
 
         // リクエストからファイルを取得
         $file = $request->file('joboffers_csv_file');
+        if($file){
+            $fileName = $file->getClientOriginalName();
+        }
+
 
         $searchString = '求人情報（求人情報管理）';
         //ファイル存在チェック
-        if (!($request->hasFile('joboffers_csv_file')) || strpos($file, $searchString) === false) {
+        if (!($request->hasFile('joboffers_csv_file')) || strpos($fileName, $searchString) === false) {
             $status = "求人情報用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }

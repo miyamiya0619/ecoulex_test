@@ -35,7 +35,6 @@ class AdminWaterProofInfoController extends Controller
         // 会社情報を取得する
         $waterproofs = $this->AdminWaterProofInfoService->fetchCompanyDetailData();
 
-
         // sessionにデータが入っている場合、画面描画の処理を行う
         if ($user) {            
             return view('kanri.admin.admin_waterProof_info_data', compact('user','waterproofs'));

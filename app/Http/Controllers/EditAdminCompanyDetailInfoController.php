@@ -50,13 +50,12 @@ class EditAdminCompanyDetailInfoController extends Controller
 
         return view('kanri.registration.loginCompany');
      }
-    
+    //企業情報更新
      public function updateCompanyDetailInfo(Request $request)
      {
         //ユーザIDから企業名を取得する
         $user = Session::get('user');
         $company_id = Session::get('company_id');
-
 
         if ($user) {
         //パラメータの受け取り
@@ -68,23 +67,87 @@ class EditAdminCompanyDetailInfoController extends Controller
         $addressDetail = $companiesdetailsAll['addressDetail'];
         $representative = $companiesdetailsAll['representative'];
 
-         //必須項目が入力されている場合、実行
-         if(!empty($address_num)&&!empty($prefectureId)&&!empty($addressDetail)&&!empty($representative)){
+        // バリデーションルール
+        $rules = [
+        'url' => [
+            'nullable',
+            'url'  // URL形式チェック
+        ],
+        'address_num' => [
+            'required',
+            'regex:/^\d{3}-?\d{4}$/'
+        ],
 
-            $status = '更新が完了しました';
-            $this->AdminCompanyDetailInfoService->updateCompanyDetailData($id,$companiesdetailsAll);
-            $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailData($id);
-            $prefectures = $this->AdminCompanyDetailInfoService->fetchPrefecturesCatsData();
-            return view('kanri.admin.edit_admin_company_detail_info', compact('user','status','companies','prefectures'));
+        'addressDetail' => [
+            'required',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 所在地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
 
-         }else{
+        'number_of_employees' => [
+            'nullable',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 社員数の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
 
-            $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailData($id);
-            $prefectures = $this->AdminCompanyDetailInfoService->fetchPrefecturesCatsData();
-            $status = '必須項目をすべて入力してください';
-            return view('kanri.admin.edit_admin_company_detail_info', compact('user','status','companies','prefectures'));
-         }
-         
+        'year_of_establishment' => [
+            'nullable',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 設立年の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+
+        'capital' => [
+            'nullable',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 資本金の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+
+        'representative' => [
+            'required',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 代表者の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+
+        'phone' => [
+            'nullable',
+            'regex:/^0\d{1,4}-\d{1,4}-\d{4}$/' // 電話番号の形式チェック
+        ],
+
+        'form' => [
+            'nullable',
+            'url'  // URL形式チェック
+        ],
+        
+    ];
+
+    // カスタムメッセージ
+    $messages = [
+        'url.url' => 'WEBサイトの形式が正しくありません',
+        'address_num.required' => '郵便番号は必須です',
+        'address_num.regex' => '郵便番号の形式が正しくありません',
+        'addressDetail.required' => '所在地は必須です',
+        'addressDetail.regex' => '所在地の形式が正しくありません',
+        'number_of_employees.regex' => '社員数の形式が正しくありません',
+        'year_of_establishment.regex' => '設立年の形式が正しくありません',
+        'capital.regex' => '資本金の形式が正しくありません',
+        'representative.required' => '代表者は必須です',
+        'representative.regex' => '代表者の形式が正しくありません',
+        'phone.regex' => '電話番号の形式が正しくありません',
+        'form.url' => 'フォームの形式が正しくありません',
+    ];
+
+    // バリデーション実行
+    $validator = validator()->make($companiesdetailsAll, $rules, $messages);
+
+    if ($validator->fails()) {
+        $status = $validator->errors()->first();
+        $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailData($id);
+        $prefectures = $this->AdminCompanyDetailInfoService->fetchPrefecturesCatsData();
+        return view('kanri.admin.edit_admin_company_detail_info', compact('user','status','companies','prefectures'));
+    }
+
+        //必須項目が入力されている場合、実行
+    $status = '更新が完了しました';
+    $this->AdminCompanyDetailInfoService->updateCompanyDetailData($id,$companiesdetailsAll);
+    $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailData($id);
+    $prefectures = $this->AdminCompanyDetailInfoService->fetchPrefecturesCatsData();
+    return view('kanri.admin.edit_admin_company_detail_info', compact('user','status','companies','prefectures'));
+
          }
  
          return view('kanri.registration.loginCompany');

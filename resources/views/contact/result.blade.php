@@ -52,7 +52,7 @@
 				
 				@if ($companies->total() != 0)		
 				<div class="searchButton">
-					<a href="/ecoulex/contact/?checkflg=1">条件を変更する</a>
+					<a href="lp/mirai_project/ecoulex/contact/?checkflg=1">条件を変更する</a>
 				</div>
 				@endif
 			</div><!-- /searchBox -->

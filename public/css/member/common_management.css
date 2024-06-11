@@ -277,3 +277,18 @@ select {
     font-weight: bold;
     font-size: 18px;
 }
+
+.dashboard-container .file-upload .Img{
+    width: 100%;
+    max-width: 240px;
+}
+
+.dashboard-container .file-upload .Img img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+    image-rendering: auto;
+}

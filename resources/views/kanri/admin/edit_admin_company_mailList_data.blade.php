@@ -31,7 +31,7 @@
                                 </li>
                                 <li>
                                     <span class="label">メールアドレス:</span>
-                                    <input type="text" class="email" name="email" value="{{ $mailList[0]->email}}">
+                                    <input type="text" class="email" name="email" value="{{ $mailList[0]->email}}" required>
                                 </li>
 
                             </ul>

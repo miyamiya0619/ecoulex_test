@@ -49,7 +49,7 @@
                                         ※文字数30文字まで
                                     </div>
                                     </div>
-                                <input type="text" name="prefecuture_catch_head" value="{{$jobPostings[0] -> prefecuture_catch_head}}"maxlength="30">
+                                <input type="text" name="prefecuture_catch_head" value="{{$jobPostings[0] -> prefecuture_catch_head}}" maxlength="30">
                             </div>
                             <div class="form-group">
                                 <div class="form-label">
@@ -73,6 +73,9 @@
                                     <button type="button" id="upload-btn">ファイルを選択</button>
                                     <input type="file" id="file-upload" name="prefecuture_image" style="display: none;">
                                     <div class="selected-file-name"></div>
+                                    @if ($jobPostings[0]->prefecuture_image)
+                                        <div class="Img"><img src="{{ asset('images/uploads/' . $jobPostings[0]->prefecuture_image) }}" alt=""></div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -92,17 +95,17 @@
 
                             <div class="form-group">
                                 <label class="form-label">勤務地:</label>
-                                <input type="text" value= "{{$jobPostings[0] -> addressDetail}}" name="addressDetail">
+                                <input type="text" value= "{{$jobPostings[0] -> addressDetail}}" name="addressDetail" maxlength="50">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">勤務時間:</label>
-                                <input type="text" value= "{{$jobPostings[0] -> working_hours}}" name="working_hours">
+                                <input type="text" value= "{{$jobPostings[0] -> working_hours}}" name="working_hours" maxlength="50">
                             </div>
 
                             <div class="form-group">
                                 <label class="form-label">初年度月収例:</label>
-                                <input type="text" value= "{{$jobPostings[0] -> monthly_income}}" name="monthly_income">
+                                <input type="text" value= "{{$jobPostings[0] -> monthly_income}}" name="monthly_income" maxlength="30">
                             </div>
 
                             <div class="form-group">

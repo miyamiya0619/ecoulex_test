@@ -12,6 +12,19 @@ $(document).ready(function () {
         $('#file-upload').click();
     });
 
+    $('#file-upload').on('change', function () {
+        updateFileNameDisplay(this);
+    });
+
+    // ファイル名表示関数
+    function updateFileNameDisplay(input) {
+    var fileName = $(input).val().split('\\').pop(); // ファイル名を取得
+    $('.selected-file-name').each(function () {
+        $(this).text(fileName); // 各表示要素にファイル名をセット
+        $(this).css('display', 'block'); // このクラスのみflexが効かないように設定
+    });
+    }
+
     // フォーム検証関数
     window.validateForm = function () {
         var isValid = true;
@@ -42,13 +55,13 @@ $(document).ready(function () {
             }
         });
 
-        if (!isValid) {
-            alert("必須項目をすべて入力してください。");
-            return false; // フォームの送信を防ぐ
-        } else {
-            // ここにフォーム送信のコードを追加
-            return true;
-        }
+        // if (!isValid) {
+        //     alert("必須項目をすべて入力してください。");
+        //     return false; // フォームの送信を防ぐ
+        // } else {
+        //     // ここにフォーム送信のコードを追加
+        //     return true;
+        // }
     };
     var selectAllCheckbox = document.getElementById('select-all');
     if (selectAllCheckbox) {
@@ -126,7 +139,7 @@ function highlightCurrentPageLink() {
         var linkPath = $(this).attr('href');
         var linkPath = linkPath.substring(linkPath.lastIndexOf("/") + 1);
         if (linkPath === currentPagePath) {
-            $(this).css('background-color', '#CCCCCC');
+            $(this).css('background-color', '#999999');
         }
     });
 }

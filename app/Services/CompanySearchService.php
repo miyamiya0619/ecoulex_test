@@ -29,8 +29,8 @@ class CompanySearchService
             'cd.form',
             'w.updated_at'
         )
-        ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
-        ->leftJoin('waterproofs as w', 'w.company_id', '=', 'companies.company_id')
+        ->join('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id') // inner join to ensure only existing companies in companiesdetails
+        ->join('waterproofs as w', 'w.company_id', '=', 'companies.company_id') // inner join to ensure only existing companies in waterproofs
         ->leftJoin('companiesdetails_prefectures as cp', 'cp.company_id', '=', 'companies.company_id')
         ->leftJoin('prefectures_cats as pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
         ->leftJoin('waterproof_waterproofdetails as ww', 'ww.waterproof_id', '=', 'w.company_id')
@@ -38,13 +38,12 @@ class CompanySearchService
         ->whereRaw('cp.prefecuture_id IN (' . $groupedPrefectures->flatMap(function ($region) {
             return $region['prefectures']->pluck('prefecture_id');
         })->implode(', ') . ')');
-
+    
         // $categories が null でない場合のみ、whereRaw を追加
         if ($categories !== null && $categories->isNotEmpty()) {
             $companies->whereRaw('wc.waterproofcat_id IN (' . implode(', ', $categories->keys()->toArray()) . ')');
         }
     
-
         $paginator = $companies->groupBy(
             'companies.company_id',
             'companies.company_name',
@@ -58,9 +57,10 @@ class CompanySearchService
             'cd.representative',
             'cd.phone',
             'cd.form',
-            'w.updated_at',
+            'w.updated_at'
         )->orderBy('w.updated_at', 'desc')->paginate(10);
-
+    
         return $paginator;
     }
+    
 }

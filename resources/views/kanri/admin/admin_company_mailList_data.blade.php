@@ -35,7 +35,7 @@
                             <div class="information-item">
                                 <div class="information-content">
                                 <div class="information_txt">
-                                    <div class="info-update ">メールアドレス：{{$emailsAndName['email']}}</div>
+                                    <div class="info-update" maxlength="100">メールアドレス：{{$emailsAndName['email']}}</div>
                                     <div class="info-mail ">企業名：{{$emailsAndName['company_name']}}</div>
                                 </div>
                                 </div>

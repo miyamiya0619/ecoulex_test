@@ -25,24 +25,24 @@
                             <ul>
                                 <li>
                                     <span class="label">企業名:</span>
-                                    <input type="text" class="company_name" name="company_name" value="{{ $companies[0]->company_name}}">
+                                    <input type="text" class="company_name" name="company_name" value="{{ $companies[0]->company_name}}"  maxlength="100" required>
                                 </li>
 
                                 <li>
                                     <span class="label">企業名カナ:</span>
-                                    <input type="text" class="company_name_kana" name="company_name_kana" value="{{ $companies[0]->company_name_kana}}">
+                                    <input type="text" class="company_name_kana" name="company_name_kana" value="{{ $companies[0]->company_name_kana}}" maxlength="100">
                                 </li>
                                 <li>
                                     <span class="label">編集担当<br>メールアドレス1:</span>
-                                    <input type="text" class="email" name="email" value="{{ $companies[0]->email }}">
+                                    <input type="text" class="email" name="email" value="{{ $companies[0]->email }}" maxlength="100" required>
                                 </li>
                                 <li>
                                     <span class="label">編集担当<br>メールアドレス2:</span>
-                                    <input type="text" class="email2" name="email2" value="{{ $companies[0]->email2 }}">
+                                    <input type="text" class="email2" name="email2" value="{{ $companies[0]->email2 }}" maxlength="100">
                                 </li>
                                 <li>
                                     <span class="label">編集担当<br>メールアドレス3:</span>
-                                    <input type="text" class="email3" name="email3" value="{{ $companies[0]->email3 }}">
+                                    <input type="text" class="email3" name="email3" value="{{ $companies[0]->email3 }}" maxlength="100">
                                 </li>
                             </ul>
                             <input type="hidden" name="company_id" value="{{ $companies[0]->company_id}}">

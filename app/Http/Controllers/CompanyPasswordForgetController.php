@@ -43,32 +43,48 @@ class CompanyPasswordForgetController extends Controller
 
         // ユーザーのパスワードを更新
         $company = null;
-        $passwordColumn = 'password';
-
         $email = $request->email;
 
         // emailカラムでユーザーを検索
         $company = Company::where('email', $email)->first();
-        if (!$company) {
-            // email2カラムでユーザーを検索
-            $company = Company::where('email2', $email)->first();
-            $passwordColumn = 'password2';
-        }
-        if (!$company) {
-            // email3カラムでユーザーを検索
-            $company = Company::where('email3', $email)->first();
-            $passwordColumn = 'password3';
-        }
-
+        //emailカラムにユーザが入っている場合、emailとpasswordカラムでメール送信
         if ($company) {
-            $newPassword = Str::random(10); // 10文字のランダムな文字列を生成する例
-
-            // パスワードカラムを動的に更新
-            $company->$passwordColumn = Hash::make($newPassword);
+            $newPassword = Str::random(10);
+            $newPasswordhash = Hash::make($newPassword);
+            $company->password = $newPasswordhash;
+            $company->updated_at = now();
             $company->save();
 
-            // メール送信
-            // Mail::to($company)->send(new ForgetdMail($newPassword));
+            Mail::to($company)->send(new ForgetdMail($newPassword));
+        }
+
+        // email2カラムでユーザーを検索
+        $company2 = Company::where('email2', $email)->first();
+        //email2カラムにユーザが入っている場合、email2とpassword2カラムでメール送信
+        if ($company2) {
+            $newPassword = Str::random(10);
+            $newPasswordhash = Hash::make($newPassword);
+            $company2->password2 = $newPasswordhash;
+            $company2->updated_at = now();
+            $company2->save();
+
+            Mail::to($company2->email2)->send(new ForgetdMail($newPassword));
+        }
+
+        // email3カラムでユーザーを検索
+        $company3 = Company::where('email3', $email)->first();
+        //email2カラムにユーザが入っている場合、email2とpassword2カラムでメール送信
+        if ($company3) {
+            $newPassword = Str::random(10);
+            $newPasswordhash = Hash::make($newPassword);
+            $company3->password3 = $newPasswordhash;
+            $company3->updated_at = now();
+            $company3->save();
+
+            Mail::to($company3->email3)->send(new ForgetdMail($newPassword));
+        }
+
+        if ($company || $company2 || $company3) {
 
             return view('kanri.registration.forgot_password_complete', [
                 'email' => $email,
