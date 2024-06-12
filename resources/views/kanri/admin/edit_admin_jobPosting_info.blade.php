@@ -115,7 +115,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">応募①フォーム:</label>
-                                <input type="text" value= "{{$jobPostings[0] -> offer1_by_form}}" name="offer1_by_form">
+                                <input type="text" value= "{{$jobPostings[0] -> offer1_by_form}}" name="offer1_by_form" maxlength="100">
                             </div>
 
                             <div class="form-group">
@@ -125,7 +125,7 @@
 
                             <div class="form-group">
                                 <label class="form-label">応募②フォーム:</label>
-                                <input type="text" value= "{{$jobPostings[0] -> offer2_by_form}}" name="offer2_by_form">
+                                <input type="text" value= "{{$jobPostings[0] -> offer2_by_form}}" name="offer2_by_form" maxlength="100">
                             </div>
                             <input type="hidden" name="company_id" value="{{ $jobPostings[0]->company_id}}">
                         </div>

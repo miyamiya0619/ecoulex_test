@@ -55,7 +55,7 @@
 
                                 <li>
                                     <span class="label">所在地:</span>
-                                    <input type="text" class="address" value="{{ $companies[0] -> addressDetail }}" name="addressDetail" maxlength="100" required>
+                                    <input type="text" class="address" value="{{ $companies[0] -> addressDetail }}" name="addressDetail" maxlength="50" required>
                                 </li>
                                 <li>
                                     <span class="label">社員数:</span>

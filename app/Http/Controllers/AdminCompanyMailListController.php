@@ -147,6 +147,7 @@ class AdminCompanyMailListController extends Controller
         $m_id = $request -> m_id;
         $mail = $request -> email;
 
+
         // バリデーションルール
         $rules = [
             'email' => [
@@ -176,9 +177,9 @@ class AdminCompanyMailListController extends Controller
         }
 
         //存在チェック
-        $company = Company::where('email', $mail)->first();
-        $company2 = Company::where('email2', $mail)->first();
-        $company3 = Company::where('email3', $mail)->first();
+        $company = Company::where('email', $mail)->where('company_id', '!=', $id)->first();
+        $company2 = Company::where('email2', $mail)->where('company_id', '!=', $id)->first();
+        $company3 = Company::where('email3', $mail)->where('company_id', '!=', $id)->first();
         if (!empty($company) || !empty($company2) || !empty($company3)) {
             $status = "このメールアドレスは既に存在しています。";
             // 会社情報を取得する

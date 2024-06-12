@@ -33,8 +33,8 @@ class AdminCompanyInfoService
         )
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
             ->where('companies.user_type', 1)
+            ->orderBy('companies.updated_at' , 'desc')
             ->orderBy('companies.company_id' , 'desc')
-            ->orderBy('cd.updated_at' , 'desc')
             ->paginate(10);
 
         return $companies;
@@ -100,7 +100,8 @@ class AdminCompanyInfoService
             'company_name_kana' => $updateEditAdminCompanyInfo['company_name_kana'],
             'email' => $updateEditAdminCompanyInfo['email'],
             'email2' => $updateEditAdminCompanyInfo['email2'],
-            'email3' => $updateEditAdminCompanyInfo['email3']
+            'email3' => $updateEditAdminCompanyInfo['email3'],
+            'updated_at' => now(),
         ]);
     }
 

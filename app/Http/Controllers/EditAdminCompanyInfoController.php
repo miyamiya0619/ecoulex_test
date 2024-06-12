@@ -162,7 +162,7 @@ class EditAdminCompanyInfoController extends Controller
             'company_name.regex' => '企業名の形式が正しくありません',
             'company_name_kana.regex' => '企業名カナの形式が正しくありません',
             'email.required' => 'メールアドレスは必須です',
-            'email.email' => 'メールアドレスの形式が正しくありません',
+            'email.email' => 'メールアドレス1の形式が正しくありません',
             'email2.email' => 'メールアドレス2の形式が正しくありません',
             'email3.email' => 'メールアドレス3の形式が正しくありません',
         ];
