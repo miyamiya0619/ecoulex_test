@@ -36,6 +36,32 @@ class CompanyLoginController extends Controller
     {
         $email = $request->input('email');
         $password = $request->input('password');
+
+        $Users = $request->all();
+        // バリデーションルール
+        $rules = [
+            'email' => [
+                'required',
+                'email'
+            ],
+            'password' => [
+                'required',
+            ],
+        ];
+        // カスタムメッセージ
+        $messages = [
+            'email.required' => 'メールアドレスは必須です',
+            'email.email' => 'メールアドレスの形式が正しくありません',
+            'password.required' => 'パスワードは必須です',
+        ];
+        // バリデーション実行
+        $validator = validator()->make($Users, $rules, $messages);
+
+        //エラーとする
+        if ($validator->fails()) {
+            $status = $validator->errors()->first();
+            return redirect()->back()->withInput()->withErrors(['loginError' => $status]);
+        }
         
         // ユーザーモデルを使用して手動でユーザーを検索および認証
         $user = Company::where('email', $email)->first();

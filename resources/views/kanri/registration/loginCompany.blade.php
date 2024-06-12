@@ -14,7 +14,7 @@
         </div>
         <div class="login-form">
             <h2>ログイン</h2>
-            <form method="POST" action="{{ route('showCpmanyLoginForm') }}">
+            <form method="POST" action="{{ route('showCpmanyLoginForm') }}" novalidate>
                 @csrf <!-- CSRFトークンを含める -->
                 <div class="form-group">
                     <label for="email">メールアドレス</label>
