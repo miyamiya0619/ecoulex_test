@@ -193,6 +193,19 @@ class AdminCompanyMailListController extends Controller
             return view('kanri.registration.loginCompany');
         }
 
+        //同一企業
+        $email = Company::where('email', $mail)->where('company_id', '==', $id)->pluck('email')->first();
+        $email2 = Company::where('email2', $mail)->where('company_id', '==', $id)->pluck('email2')->first();
+        $email3 = Company::where('email3', $mail)->where('company_id', '==', $id)->pluck('email3')->first();
+        if ($email === $email2 || $email === $email3 || (!empty($email2) && $email2 === $email3)) {
+            $mailList = $this->AdminCompanyMailListService->fetchCompanyMailList($id, $m_id);
+            $status = "入力されたメールアドレスは同一企業で互いに重複しています。";
+            // ビューを返す
+            if ($user) {
+                return view('kanri.admin.edit_admin_company_mailList_data', compact('user','mailList','m_id','status'));
+            }
+            return view('kanri.registration.loginCompany');
+        }
         //エラーがない場合
 
             $this->AdminCompanyMailListService->updateCompanyMailList($id, $m_id, $mail);
