@@ -24,19 +24,19 @@
                             <ul>
                                 <li>
                                     <span class="label">WEBサイト:</span>
-                                    <input type="text" class="URL" name="url" value="{{ $companies[0] -> url }}">
+                                    <input type="text" class="URL" name="url" value="{{ $companies[0] -> url }}" maxlength="100">
                                 </li>
 
                                 <li>
                                     <span class="label">郵便番号:</span>
-                                    <input type="text" class="zip_code" name="address_num" value="{{ $companies[0] -> address_num }}" required>
+                                    <input type="text" class="zip_code" name="address_num" value="{{ $companies[0] -> address_num }}" maxlength="15" required>
                                 </li>
 
                                 <li>
                                     <span class="label">
                                         都道府県名：
                                     </span>
-                                    <select name="prefectureId" id="prefecture" required>
+                                    <select name="prefectureId" id="prefecture" maxlength="50" required>
                                     @foreach($prefectures as $prefecture)
                                         @if($prefecture->prefecuture_id == $companies[0]->prefecuture_id)
                                         <option value="{{$prefecture -> prefecuture_id}}" selected>{{$prefecture -> catName}}</option>
@@ -49,31 +49,31 @@
 
                                 <li>
                                     <span class="label">所在地:</span>
-                                    <input type="text" class="address" value="{{ $companies[0] -> addressDetail }}" name="addressDetail" required>
+                                    <input type="text" class="address" value="{{ $companies[0] -> addressDetail }}" name="addressDetail" maxlength="50" required>
                                 </li>
                                 <li>
                                     <span class="label">社員数:</span>
-                                    <input type="text" class="number-of-employees" value="{{ $companies[0] -> number_of_employees }}" name="number_of_employees">
+                                    <input type="text" class="number-of-employees" value="{{ $companies[0] -> number_of_employees }}" name="number_of_employees" maxlength="30">
                                 </li>
                                 <li>
                                     <span class="label">設立年:</span>
-                                    <input type="text" class="establishment-date" value="{{ $companies[0] -> year_of_establishment }}" name="year_of_establishment">
+                                    <input type="text" class="establishment-date" value="{{ $companies[0] -> year_of_establishment }}" name="year_of_establishment" maxlength="30">
                                 </li>
                                 <li>
                                     <span class="label">資本金:</span>
-                                    <input type="text" class="capital" value="{{ $companies[0] -> capital }}" name="capital">
+                                    <input type="text" class="capital" value="{{ $companies[0] -> capital }}" name="capital" maxlength="30">
                                 </li>
                                 <li>
                                     <span class="label">代表者:</span>
-                                    <input type="text" class="representative" value="{{ $companies[0] -> representative }}" name="representative" required>
+                                    <input type="text" class="representative" value="{{ $companies[0] -> representative }}" name="representative" maxlength="30" required>
                                 </li>
                                 <li>
                                     <span class="label">電話番号:</span>
-                                    <input type="text" class="phone-number" value="{{ $companies[0] -> phone }}" name="phone">
+                                    <input type="text" class="phone-number" value="{{ $companies[0] -> phone }}" name="phone" maxlength="30">
                                 </li>
                                 <li>
                                     <span class="label">フォーム:</span>
-                                    <input type="text" class="form-mail" value="{{ $companies[0] -> form }}" name="form">
+                                    <input type="text" class="form-mail" value="{{ $companies[0] -> form }}" name="form" maxlength="100">
                                 </li>
                             </ul>
 

@@ -17,8 +17,11 @@
                     <div class="search_group">
                         <div></div>
                         <div class="search-container search-container">
-                            <input type="text" name="search_freeword" placeholder="検索" value="{{ $search_freeword ?? '' }}">
-                            <button class="search-button">検索</button>
+                            <form action="{{ url()->current() }}" method="GET">
+                            @csrf <!-- CSRFトークンを含める -->
+                                <input type="text" name="search_freeword" placeholder="検索" value="{{ $search_freeword ?? '' }}">
+                                <button class="search-button">検索</button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -56,13 +59,21 @@
             <!-- ページネーション -->
 
         </div>
+
+        @php
+            // 検索条件を配列にまとめる
+            $queryParams = [
+            'search_freeword' => request('search_freeword'),
+            // 他の検索条件があればここに追加
+            ];
+        @endphp
         @if (!($jobPostings->isEmpty()))
         <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($jobPostings->currentPage() == 1)
                     
                 @else
-                    <a href="{{ $jobPostings->url($jobPostings->currentPage() - 1) }}">«</a>
+                    <a href="{{ $jobPostings->appends($queryParams)->url($jobPostings->currentPage() - 1) }}">«</a>
                 @endif
 
                 <!-- Page Numbers -->
@@ -81,7 +92,7 @@
                     @if ($i == $jobPostings->currentPage())
                         <span>{{ $i }}</span>
                     @else
-                        <a href="{{ $jobPostings->url($i) }}">{{ $i }}</a>
+                        <a href="{{ $jobPostings->appends($queryParams)->url($i) }}">{{ $i }}</a>
                     @endif
                 @endfor
 
@@ -89,7 +100,7 @@
                 @if ($jobPostings->currentPage() == $jobPostings->lastPage())
                     
                 @else
-                    <a href="{{ $jobPostings->url($jobPostings->currentPage() + 1) }}">»</a>
+                    <a href="{{ $jobPostings->appends($queryParams)->url($jobPostings->currentPage() + 1) }}">»</a>
                 @endif
         </div><!-- /resultNav -->
         @endif
