@@ -74,9 +74,7 @@ class AdminCompanyMailListController extends Controller
         if(empty($search_freeword)){
             
             $companies = Company::paginate(10);
-
             
-    
             foreach ($companies as $company) {
                 if ($company->email) {
                 $emailsAndNames[] = ['company_id' => $company->company_id, 'email' => $company->email, 'company_name' => $company->company_name, 'm_id' => 1];
@@ -111,7 +109,8 @@ class AdminCompanyMailListController extends Controller
             }
         }
 
-        return view('kanri.admin.admin_company_mailList_data', compact('user','emailsAndNames','companies'));
+
+        return view('kanri.admin.admin_company_mailList_data', compact('user','emailsAndNames','companies','search_freeword'));
     }
         return view('kanri.registration.loginCompany');
     }
