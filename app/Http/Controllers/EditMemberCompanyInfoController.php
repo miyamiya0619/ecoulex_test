@@ -72,32 +72,32 @@ class EditMemberCompanyInfoController extends Controller
     
             'addressDetail' => [
                 'required',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 所在地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+
             ],
     
             'number_of_employees' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-\(\)（）]+$/u' // 社員数の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+
             ],
     
             'year_of_establishment' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-\(\)（）]+$/u' // 設立年の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+
             ],
     
             'capital' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-\(\)（）]+$/u' // 資本金の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+
             ],
     
             'representative' => [
                 'required',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 代表者の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+
             ],
     
             'phone' => [
                 'nullable',
-                'regex:/^0\d{1,4}-\d{1,4}-\d{4}$/' // 電話番号の形式チェック
+                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // 電話番号の形式チェック
             ],
     
             'form' => [
@@ -114,12 +114,7 @@ class EditMemberCompanyInfoController extends Controller
         'address_num.required' => '郵便番号は必須です',
         'address_num.regex' => '郵便番号の形式が正しくありません',
         'addressDetail.required' => '所在地は必須です',
-        'addressDetail.regex' => '所在地の形式が正しくありません',
-        'number_of_employees.regex' => '社員数の形式が正しくありません',
-        'year_of_establishment.regex' => '設立年の形式が正しくありません',
-        'capital.regex' => '資本金の形式が正しくありません',
         'representative.required' => '代表者は必須です',
-        'representative.regex' => '代表者の形式が正しくありません',
         'phone.regex' => '電話番号の形式が正しくありません',
         'form.url' => 'フォームの形式が正しくありません',
     ];
@@ -132,13 +127,9 @@ class EditMemberCompanyInfoController extends Controller
     }
 
         //必須項目が入力されている場合、実行
-        if(!empty($address_num)&&!empty($prefectureId)&&!empty($addressDetail)&&!empty($representative)){
+        $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
+        return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', '更新が完了しました');
 
-            $this->MemberCompanyInfoService->updateCompanyDetailData($company_id,$companiesdetailsAll);
-            return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', '更新が完了しました');
-        }else{
-            return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', '必須項目をすべて入力してください');
-        }
         
         }
 

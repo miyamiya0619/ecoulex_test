@@ -49,22 +49,20 @@ class EditMemberWaterproofingController extends Controller
 
         //パラメータの受け取る
         $waterProofingAll = $request->all();
-        //カテゴリがPOSTされていない場合は、終了
-        if (!isset($waterProofingAll['WaterProofingCat']) || !is_array($waterProofingAll['WaterProofingCat'])) {
-            return redirect()->route('ecoulex.kanri.editMemberWaterproofing')->with('status', '防水工事募集内容は必須です');
-        }
-
 
         // バリデーションルール
         $rules = [
+
+            'WaterProofingCat' => [
+                'required',
+            ],
+
             'waterproofing_job_catch' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 所在地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
     
             'waterproofing_job_description' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 社員数の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
             
             'waterproofing_job_image' => [
@@ -74,6 +72,7 @@ class EditMemberWaterproofingController extends Controller
 
         // カスタムメッセージ
         $messages = [
+            'WaterProofingCat.required' => '防水工事募集内容は必須です',
             'waterproofing_job_catch.regex' => '防水工事用キャッチの形式が正しくありません',
             'waterproofing_job_description.regex' => '防水工事用詳細の形式が正しくありません',
             'waterproofing_job_image.mimes' => '許可されていないファイル形式です。jpeg, pngのファイルのみ許可されています。',
@@ -83,10 +82,9 @@ class EditMemberWaterproofingController extends Controller
         $validator = validator()->make($waterProofingAll, $rules, $messages);
         
         if ($validator->fails()) {
-            $status = $validator->errors()->first();
-            return redirect()->route('ecoulex.kanri.editMemberWaterproofing')->with('status', $status);
+            $errors = $validator->errors()->toArray();
+            return redirect()->route('ecoulex.kanri.editMemberWaterproofing')->with('errors', $errors);
         }
-
 
         if ($user) {
 

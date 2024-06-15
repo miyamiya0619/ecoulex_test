@@ -83,7 +83,7 @@ class EditAdminjobPostingInfoController extends Controller
 
             'offer1_by_tel' => [
                 'nullable',
-                'regex:/^0\d{1,4}-\d{1,4}-\d{4}$/' // 電話番号の形式チェック
+                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // ハイフンあり・なし両方の形式チェック
             ],
 
             'offer1_by_form' => [
@@ -93,7 +93,7 @@ class EditAdminjobPostingInfoController extends Controller
 
             'offer2_by_tel' => [
                 'nullable',
-                'regex:/^0\d{1,4}-\d{1,4}-\d{4}$/' // 電話番号の形式チェック
+                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // ハイフンあり・なし両方の形式チェック
             ],
 
             'offer2_by_form' => [
@@ -105,13 +105,8 @@ class EditAdminjobPostingInfoController extends Controller
 
         // カスタムメッセージ
         $messages = [
-
             'prefecuture_image.mimes' => '求人用画像は許可されていないファイル形式です。jpeg, pngのファイルのみ許可されています。',
-            'addressDetail.regex' => '勤務地キャッチの形式が正しくありません',
-            'working_hours.regex' => '勤務時間の形式が正しくありません',
-            'monthly_income.regex' => '初年度月収例の形式が正しくありません',
             'offer1_by_tel.regex' => '応募①電話の形式が正しくありません',
-            'offer1_by_form.regex' => '応募①フォームの形式が正しくありません',
             'offer1_by_form.url' => '応募①フォームの形式が正しくありません',
             'offer2_by_tel.regex' => '応募②電話の形式が正しくありません',
             'offer2_by_form.url' => '応募➁フォームの形式が正しくありません',

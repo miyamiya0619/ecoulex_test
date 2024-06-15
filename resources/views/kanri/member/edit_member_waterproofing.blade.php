@@ -19,7 +19,16 @@
                 @csrf <!-- CSRFトークンを含める -->
                     <div class="information-content">
                         <div class="box-info">
-                        <p class="message"> {{ session('status') }}</p>
+                            @if(session('status'))
+                                <p class="message">{{ session('status') }}</p>
+                            @endif
+                            @if(isset($errors) && !empty($errors))
+                                @foreach ($errors as $field => $messages)
+                                    @foreach ($messages as $message)
+                                        <p class="message">{{ $message }}</p>
+                                    @endforeach
+                                @endforeach
+                            @endif
                             <div class="form-group">
                                 <label class="form-label">防水工事募集内容:</label>
                                 <div class="checkboxWaterproofing">
