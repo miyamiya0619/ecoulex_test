@@ -127,8 +127,8 @@ class EditMemberCompanyInfoController extends Controller
     $validator = validator()->make($companiesdetailsAll, $rules, $messages);
 
     if ($validator->fails()) {
-        $status = $validator->errors()->first();
-        return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('status', $status);
+        $errors = $validator->errors()->toArray();
+        return redirect()->route('ecoulex.kanri.editMemberCompanyInfo')->with('errors', $errors);
     }
 
         //必須項目が入力されている場合、実行

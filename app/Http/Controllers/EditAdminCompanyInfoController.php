@@ -177,9 +177,11 @@ class EditAdminCompanyInfoController extends Controller
     $company_id = $updateEditAdminCompanyInfo["company_id"];
 
     // postされたメールアドレスが互いに重複していないか
-    if ($email === $email2 || $email === $email3 || (!empty($email2) && $email2 === $email3)) {
-        $errors['email_duplicate'] = '入力されたメールアドレスが互いに重複しています。';
-    }
+    if (($email === $email2 && $email !== null && $email2 !== null) ||
+    ($email === $email3 && $email !== null && $email3 !== null) ||
+    ($email2 === $email3 && $email2 !== null && $email3 !== null)) {
+    $errors['email_duplicate'] = '入力されたメールアドレスが互いに重複しています。';
+}
 
         //クエリ結果を格納する配列を初期化
         $queries = [];
