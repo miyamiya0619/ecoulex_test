@@ -67,7 +67,7 @@
             // 他の検索条件があればここに追加
             ];
         @endphp
-        @if (!($jobPostings->isEmpty()))
+        @if (empty($search_freeword))
         <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($jobPostings->currentPage() == 1)
@@ -102,6 +102,6 @@
                 @else
                     <a href="{{ $jobPostings->appends($queryParams)->url($jobPostings->currentPage() + 1) }}">»</a>
                 @endif
-        </div><!-- /resultNav -->
-        @endif
+                </div><!-- /resultNav -->
+                @endif
  @endsection

@@ -34,7 +34,6 @@ class AdminCompanyInfoController extends Controller
         // 会社情報を取得する
         $companies = $this->AdminCompanyInfoService->fetchCompanyDetailData();
 
-
         // sessionにデータが入っている場合、画面描画の処理を行う
         if ($user) {            
             return view('kanri.admin.admin_company_info_data', compact('user','companies'));
@@ -65,16 +64,18 @@ class AdminCompanyInfoController extends Controller
                     $company->password3 = Hash::make($newPassword3);
                     
                     $company->updated_at = now();
+                    
+                    // // メール送信
+                    // Mail::to($company)->send(new sendMail($newPassword));
+                    // if(!empty($company->email2)){
+                    //     Mail::to($company->email2)->send(new sendMail($newPassword2));
+                    // }
+                    // if(!empty($company->email3)){
+                    //     Mail::to($company->email3)->send(new sendMail($newPassword3));
+                    // }
+
+                    $company->send_flg = 1;
                     $company->save();
-            
-                    // メール送信
-                    Mail::to($company)->send(new sendMail($newPassword));
-                    if(!empty($company->email2)){
-                        Mail::to($company->email2)->send(new sendMail($newPassword2));
-                    }
-                    if(!empty($company->email3)){
-                        Mail::to($company->email3)->send(new sendMail($newPassword3));
-                    }
 
                 }
             }

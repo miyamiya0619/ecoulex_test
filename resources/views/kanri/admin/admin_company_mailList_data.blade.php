@@ -55,7 +55,7 @@
                 </form>
             </div>
             <!-- ページネーション -->
-            @if ($emailsAndNames != null)
+            @if (empty($search_freeword))
             <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($companies->currentPage() == 1)

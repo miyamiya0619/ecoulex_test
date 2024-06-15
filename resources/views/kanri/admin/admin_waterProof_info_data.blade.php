@@ -56,5 +56,48 @@
             <!-- ページネーション -->
 
         </div>
- 
+        @php
+            // 検索条件を配列にまとめる
+            $queryParams = [
+            'search_freeword' => request('search_freeword'),
+            // 他の検索条件があればここに追加
+            ];
+        @endphp
+        @if (empty($search_freeword))
+        <div class="pagination contents">
+                <!-- Previous Button -->
+                @if ($waterproofs->currentPage() == 1)
+                    
+                @else
+                    <a href="{{ $waterproofs->appends($queryParams)->url($waterproofs->currentPage() - 1) }}">«</a>
+                @endif
+
+                <!-- Page Numbers -->
+                @php
+                    // 現在のページ番号を取得
+                    $currentPage = $waterproofs->currentPage();
+                    // ページ番号の範囲を計算
+                    $start = max(1, $currentPage - 2);
+                    $end = min($start + 4, $waterproofs->lastPage());
+                    // ページ番号が5未満の場合は最大5ページ目まで表示する
+                    if ($end < 5) {
+                        $end = min(5, $waterproofs->lastPage());
+                    }
+                @endphp
+                @for ($i = $start; $i <= $end; $i++)
+                    @if ($i == $waterproofs->currentPage())
+                        <span>{{ $i }}</span>
+                    @else
+                        <a href="{{ $waterproofs->appends($queryParams)->url($i) }}">{{ $i }}</a>
+                    @endif
+                @endfor
+
+                <!-- Next Button -->
+                @if ($waterproofs->currentPage() == $waterproofs->lastPage())
+                    
+                @else
+                    <a href="{{ $waterproofs->appends($queryParams)->url($waterproofs->currentPage() + 1) }}">»</a>
+                @endif
+         </div><!-- /resultNav -->
+                @endif
  @endsection

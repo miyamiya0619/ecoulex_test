@@ -59,7 +59,7 @@
     </div>
     <!-- 初回リリース時は未実施 -->
             <!-- ページネーション -->
-            @if (!($information->isEmpty()))
+            @if (empty($search_freeword))
             <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($information->currentPage() == 1)

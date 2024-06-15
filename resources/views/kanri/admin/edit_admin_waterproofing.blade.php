@@ -21,6 +21,13 @@
                         @if(isset($status) && $status != "")
                         <p class="message"> {{ $status }}</p>
                         @endif
+                        @if(isset($errors) && !empty($errors))
+                            @foreach ($errors as $field => $messages)
+                                @foreach ($messages as $message)
+                                    <p class="message">{{ $message }}</p>
+                                @endforeach
+                            @endforeach
+                        @endif
                         <p class="message"> {{ session('status') }}</p>
                             <div class="form-group">
                                 <label class="form-label">企業名:</label>

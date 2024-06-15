@@ -135,10 +135,10 @@ class EditAdminCompanyDetailInfoController extends Controller
     $validator = validator()->make($companiesdetailsAll, $rules, $messages);
 
     if ($validator->fails()) {
-        $status = $validator->errors()->first();
+        $errors = $validator->errors()->toArray();
         $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailData($id);
         $prefectures = $this->AdminCompanyDetailInfoService->fetchPrefecturesCatsData();
-        return view('kanri.admin.edit_admin_company_detail_info', compact('user','status','companies','prefectures'));
+        return view('kanri.admin.edit_admin_company_detail_info', compact('user','errors','companies','prefectures'));
     }
 
         //必須項目が入力されている場合、実行

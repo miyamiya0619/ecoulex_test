@@ -58,10 +58,12 @@ class EditMemberWaterproofingController extends Controller
         // バリデーションルール
         $rules = [
             'waterproofing_job_catch' => [
+                'nullable',
                 'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 所在地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
     
             'waterproofing_job_description' => [
+                'nullable',
                 'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 社員数の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
             

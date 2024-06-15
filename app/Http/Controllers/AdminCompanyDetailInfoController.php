@@ -42,7 +42,7 @@ class AdminCompanyDetailInfoController extends Controller
         return view('kanri.registration.loginCompany');
     }
 
-    //メールアドレスフリーワード検索処理
+    //フリーワード検索処理
     public function companiesDetailSearch(Request $request)
     {
         //ユーザIDから企業名を取得する
@@ -65,6 +65,7 @@ class AdminCompanyDetailInfoController extends Controller
             return view('kanri.admin.admin_company_detail_info_data', compact('user','companies','status','search_freeword'));
 
         }
+
 
         //検索結果のレコードを取得する
         $companies = $this->AdminCompanyDetailInfoService->fetchCompanyDetailSearchData($search_freeword);

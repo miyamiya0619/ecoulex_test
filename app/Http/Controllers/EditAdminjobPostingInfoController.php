@@ -58,12 +58,10 @@ class EditAdminjobPostingInfoController extends Controller
         $rules = [
             'prefecuture_catch_head' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 求人情報キャッチの形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
     
             'prefecuture_catch_reading' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 求人情報詳細の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
             
             'prefecuture_image' => [
@@ -73,17 +71,14 @@ class EditAdminjobPostingInfoController extends Controller
 
             'addressDetail' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 勤務地の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
 
             'working_hours' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 勤務時間の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
 
             'monthly_income' => [
                 'nullable',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 初年度月収例の形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
             ],
 
             'offer1_by_tel' => [
@@ -110,8 +105,7 @@ class EditAdminjobPostingInfoController extends Controller
 
         // カスタムメッセージ
         $messages = [
-            'prefecuture_catch_head.regex' => '求人情報キャッチの形式が正しくありません',
-            'prefecuture_catch_reading.regex' => '求人情報詳細の形式が正しくありません',
+
             'prefecuture_image.mimes' => '求人用画像は許可されていないファイル形式です。jpeg, pngのファイルのみ許可されています。',
             'addressDetail.regex' => '勤務地キャッチの形式が正しくありません',
             'working_hours.regex' => '勤務時間の形式が正しくありません',
@@ -128,7 +122,7 @@ class EditAdminjobPostingInfoController extends Controller
 
         if ($validator->fails()) {
 
-            $status = $validator->errors()->first();
+            $errors = $validator->errors()->toArray();
             //求人情報を取得する
             $jobPostings = $this->AdminjobPostingInfoService->fetchCompanyData($company_id);
             //全求人カテゴリを取得する
@@ -136,7 +130,7 @@ class EditAdminjobPostingInfoController extends Controller
             //都道府県の情報を取得する
             $prefectures = $this->AdminjobPostingInfoService->fetchPrefecturesCatsData();
             
-            return view('kanri.admin.edit_admin_jobPosting_info', compact('user','jobPostings','JobofferdetailCatAll','prefectures','status'));
+            return view('kanri.admin.edit_admin_jobPosting_info', compact('user','jobPostings','JobofferdetailCatAll','prefectures','errors'));
         }
         
             
@@ -159,7 +153,6 @@ class EditAdminjobPostingInfoController extends Controller
             }else{
                 $filename = "";
             }
-
 
 
             //ログイン情報に紐づく求人情報のレコードを取得する

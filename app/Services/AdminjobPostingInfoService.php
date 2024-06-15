@@ -25,6 +25,7 @@ class AdminjobPostingInfoService
             ->leftJoin('companies as cp', 'cp.company_id', '=', 'cd.company_id')
             ->select('cp.company_id','cp.company_name', 'jo.updated_at')
             ->where('cp.user_type', 1)
+            ->orderby('cp.updated_at', 'desc')
             ->orderBy('cp.company_id' , 'desc')
             ->paginate(10);
 

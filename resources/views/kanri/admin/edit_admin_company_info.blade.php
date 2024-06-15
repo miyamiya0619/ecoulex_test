@@ -20,7 +20,18 @@
                     <div class="information-content">
                         <div class="box-info">
                         @if(isset($status) && $status != "")
-                        <p class="message"> {{ $status }}</p>
+                            <p class="message"> {{ $status }}</p>
+                        @endif
+                        @if(isset($errors) && !empty($errors))
+                                @foreach ($errors as $field => $messages)
+                                    @if(is_array($messages))
+                                        @foreach ($messages as $message)
+                                        <p class="message">{{ $message }}</p>
+                                        @endforeach
+                                    @else
+                                    <p class="message">{{ $messages }}</p>
+                                    @endif
+                                @endforeach
                         @endif
                             <ul>
                                 <li>

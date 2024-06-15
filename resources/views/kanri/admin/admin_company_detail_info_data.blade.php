@@ -54,7 +54,7 @@
             </div>
             <!-- ページネーション -->
         </div>
-        @if (!($companies->isEmpty()))
+        @if (empty($search_freeword) )
         <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($companies->currentPage() == 1)

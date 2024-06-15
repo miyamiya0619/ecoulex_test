@@ -83,12 +83,9 @@ class EditAdminCompanyInfoController extends Controller
                     return view('kanri.admin.create_admin_company_info', compact('user','createCompany_id','status'));
                 }
 
-
                 //新規登録処理
                 $this->AdminCompanyInfoService->createCompanyInfo($createEditAdminCompanyAll);
-
                 if(!empty($email)){
-                    
                 }
 
                 $request->session()->put('createEditAdminCompanyAll', $createEditAdminCompanyAll);
@@ -115,12 +112,9 @@ class EditAdminCompanyInfoController extends Controller
 
         // 会社情報を取得する
         $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($id);
-
         if ($user) {
-            
             return view('kanri.admin.edit_admin_company_info', compact('user','companies'));
         }
-
         return view('kanri.registration.loginCompany');
     }
 
@@ -132,77 +126,62 @@ class EditAdminCompanyInfoController extends Controller
         $updateEditAdminCompanyInfo = $request->all();
 
         
-        // バリデーションルール
-        $rules = [
-            'company_name' => [
-                'required',
-                'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 求人情報キャッチの形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
-            ],
-            'company_name_kana' => [
-                'nullable',
-                'regex:/^[a-zA-Z0-9ｱ-ﾝｧ-ｫｬ-ｮｰﾞﾟａ-ｚＡ-Ｚ０-９ァ-ヶー\s\-]+$/u' // 英数字、半角カナ、全角カナ、スペース、ハイフンのみ許可
-            ],
-            'email' => [
-                'required',
-                'email'
-            ],
-            'email2' => [
-                'nullable',
-                'email'
-            ],
-            'email3' => [
-                'nullable',
-                'email'
-            ],
-        ];
+    // バリデーションルール
+    $rules = [
+        'company_name' => [
+            'required',
+            'regex:/^[a-zA-Z0-9ａ-ｚＡ-Ｚ０-９ぁ-んァ-ヶ一-龥々ー\s\-]+$/u' // 求人情報キャッチの形式チェック（許可される文字: 英数字、全角ひらがな、全角カタカナ、漢字、スペース、ハイフン）
+        ],
+        'company_name_kana' => [
+            'nullable',
+            'regex:/^[a-zA-Z0-9ｱ-ﾝｧ-ｫｬ-ｮｰﾞﾟａ-ｚＡ-Ｚ０-９ァ-ヶー\s\-]+$/u' // 英数字、半角カナ、全角カナ、スペース、ハイフンのみ許可
+        ],
+        'email' => [
+            'required',
+            'email'
+        ],
+        'email2' => [
+            'nullable',
+            'email'
+        ],
+        'email3' => [
+            'nullable',
+            'email'
+        ],
+    ];
 
-        // カスタムメッセージ
-        $messages = [
-            'company_name.required' => '企業名は必須です',
-            'company_name.regex' => '企業名の形式が正しくありません',
-            'company_name_kana.regex' => '企業名カナの形式が正しくありません',
-            'email.required' => 'メールアドレスは必須です',
-            'email.email' => 'メールアドレス1の形式が正しくありません',
-            'email2.email' => 'メールアドレス2の形式が正しくありません',
-            'email3.email' => 'メールアドレス3の形式が正しくありません',
-        ];
+    // カスタムメッセージ
+    $messages = [
+        'company_name.required' => '企業名は必須です',
+        'company_name.regex' => '企業名の形式が正しくありません',
+        'company_name_kana.regex' => '企業名カナの形式が正しくありません',
+        'email.required' => 'メールアドレスは必須です',
+        'email.email' => 'メールアドレス1の形式が正しくありません',
+        'email2.email' => 'メールアドレス2の形式が正しくありません',
+        'email3.email' => 'メールアドレス3の形式が正しくありません',
+    ];
 
-        // バリデーション実行
-        $validator = validator()->make($updateEditAdminCompanyInfo, $rules, $messages);
+    // バリデーション実行
+    $validator = validator()->make($updateEditAdminCompanyInfo, $rules, $messages);
 
-        if ($validator->fails()) {
-            $status = $validator->errors()->first();
-            // 会社情報を取得する
-            $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($updateEditAdminCompanyInfo['company_id']);
-            
-            // ビューを返す
-            if ($user) {
-                return view('kanri.admin.edit_admin_company_info', compact('user', 'companies', 'status'));
-            }
-            return view('kanri.registration.loginCompany');
-        }
+    if ($validator->fails()) {
+        $errors = $validator->errors()->toArray();
+    } else {
+        $errors = [];
+    }
 
-        //企業存在チェック
-        $email = $updateEditAdminCompanyInfo["email"];
-        $email2 = $updateEditAdminCompanyInfo["email2"];
-        $email3 = $updateEditAdminCompanyInfo["email3"];
-        $company_id = $updateEditAdminCompanyInfo["company_id"];
+    //企業存在チェック
+    $email = $updateEditAdminCompanyInfo["email"];
+    $email2 = $updateEditAdminCompanyInfo["email2"];
+    $email3 = $updateEditAdminCompanyInfo["email3"];
+    $company_id = $updateEditAdminCompanyInfo["company_id"];
 
-        // dd($companyCheck);
+    // postされたメールアドレスが互いに重複していないか
+    if ($email === $email2 || $email === $email3 || (!empty($email2) && $email2 === $email3)) {
+        $errors['email_duplicate'] = '入力されたメールアドレスが互いに重複しています。';
+    }
 
-        //postされたメールアドレスが互いに重複していないか
-        // 入力されたメールアドレスが互いに重複していないか
-        if ($email === $email2 || $email === $email3 || (!empty($email2) && $email2 === $email3)) {
-            $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($company_id);
-            $status = "入力されたメールアドレスが互いに重複しています。";
-            // ビューを返す
-            if ($user) {
-                return view('kanri.admin.edit_admin_company_info', compact('user', 'companies', 'status'));
-            }
-            return view('kanri.registration.loginCompany');
-        }
-
-        // クエリ結果を格納する配列を初期化
+        //クエリ結果を格納する配列を初期化
         $queries = [];
 
         // 各メールアドレスがnullでない場合にクエリを実行
@@ -226,19 +205,20 @@ class EditAdminCompanyInfoController extends Controller
 
         // どれかのクエリがtrueなら重複しているデータが存在する
         if (in_array(true, $queries, true)) {
-            $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($company_id);
-            $status = "重複しているメールアドレスが存在します。";
+            $errors['email_duplicateDB'] = '重複しているメールアドレスが存在します。';
+        }
 
-            // sessionにデータが入っている場合、画面描画の処理を行う
+        // エラーがある場合はビューを返す
+        if (!empty($errors)) {
+            // 会社情報を取得する
+            $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($company_id);
             // ビューを返す
             if ($user) {
-                return view('kanri.admin.edit_admin_company_info', compact('user', 'companies', 'status'));
+                return view('kanri.admin.edit_admin_company_info', compact('user', 'companies', 'errors'));
             }
-
             return view('kanri.registration.loginCompany');
         }
 
-    
         // 成功した場合の処理
         $this->AdminCompanyInfoService->updateCompanyDetailData($updateEditAdminCompanyInfo);
         $companies = $this->AdminCompanyInfoService->fetchCompanyInfoData($company_id);
