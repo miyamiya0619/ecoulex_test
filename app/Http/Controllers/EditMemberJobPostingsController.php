@@ -55,10 +55,12 @@ class EditMemberJobPostingsController extends Controller
         $rules = [
             'prefecuture_catch_head' => [
                 'nullable',
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
     
             'prefecuture_catch_reading' => [
                 'nullable',
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
             
             'prefecuture_image' => [
@@ -68,19 +70,22 @@ class EditMemberJobPostingsController extends Controller
 
             'addressDetail' => [
                 'nullable',
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
 
             'working_hours' => [
                 'nullable',
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
 
             'monthly_income' => [
                 'nullable',
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
 
             'offer1_by_tel' => [
                 'nullable',
-                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/'
+                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // ハイフンあり・なし両方の形式チェック
             ],
 
             'offer1_by_form' => [
@@ -90,7 +95,7 @@ class EditMemberJobPostingsController extends Controller
 
             'offer2_by_tel' => [
                 'nullable',
-                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/'
+                'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // ハイフンあり・なし両方の形式チェック
             ],
 
             'offer2_by_form' => [
@@ -102,7 +107,12 @@ class EditMemberJobPostingsController extends Controller
 
         // カスタムメッセージ
         $messages = [
+            'prefecuture_catch_head.regex' => '求人情報キャッチの形式が正しくありません',
+            'prefecuture_catch_reading.regex' => '求人情報詳細の形式が正しくありません',
             'prefecuture_image.mimes' => '求人用画像は許可されていないファイル形式です。jpeg, pngのファイルのみ許可されています。',
+            'addressDetail.regex' => '勤務地の形式が正しくありません',
+            'working_hours.regex' => '勤務時間の形式が正しくありません',
+            'monthly_income.regex' => '初年度月収例の形式が正しくありません',
             'offer1_by_tel.regex' => '応募①電話の形式が正しくありません',
             'offer1_by_form.url' => '応募①フォームの形式が正しくありません',
             'offer2_by_tel.regex' => '応募②電話の形式が正しくありません',
