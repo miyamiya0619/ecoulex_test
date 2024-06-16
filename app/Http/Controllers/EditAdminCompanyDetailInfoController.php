@@ -105,7 +105,7 @@ class EditAdminCompanyDetailInfoController extends Controller
 
         'phone' => [
             'nullable',
-            'regex:/^0\d{1,4}-\d{1,4}-\d{4}$/' // 電話番号の形式チェック
+            'regex:/^0\d{1,4}-?\d{1,4}-?\d{4}$/' // 電話番号の形式チェック
         ],
 
         'form' => [
