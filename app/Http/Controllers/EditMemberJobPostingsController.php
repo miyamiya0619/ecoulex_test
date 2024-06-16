@@ -90,7 +90,7 @@ class EditMemberJobPostingsController extends Controller
 
             'offer1_by_form' => [
                 'nullable',
-                'url'  // URL形式チェック
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
 
             'offer2_by_tel' => [
@@ -100,7 +100,7 @@ class EditMemberJobPostingsController extends Controller
 
             'offer2_by_form' => [
                 'nullable',
-                'url'  // URL形式チェック
+                'regex:/^(?!.*[\x{1F600}-\x{1F64F}\x{1F300}-\x{1F5FF}\x{1F680}-\x{1F6FF}\x{2600}-\x{26FF}\x{2700}-\x{27BF}\x{1F1E6}-\x{1F1FF}\x{20000}-\x{2A6DF}\x{2A700}-\x{2B73F}\x{2B740}-\x{2B81F}\x{2B820}-\x{2CEAF}\x{2F800}-\x{2FA1F}]).*$/u', // 絵文字および特定のUnicode範囲の排除
             ],
         ];
 
@@ -114,9 +114,9 @@ class EditMemberJobPostingsController extends Controller
             'working_hours.regex' => '勤務時間の形式が正しくありません',
             'monthly_income.regex' => '初年度月収例の形式が正しくありません',
             'offer1_by_tel.regex' => '応募①電話の形式が正しくありません',
-            'offer1_by_form.url' => '応募①フォームの形式が正しくありません',
+            'offer1_by_form.regex' => '応募①フォームの形式が正しくありません',
             'offer2_by_tel.regex' => '応募②電話の形式が正しくありません',
-            'offer2_by_form.url' => '応募➁フォームの形式が正しくありません',
+            'offer2_by_form.regex' => '応募➁フォームの形式が正しくありません',
         ];
 
         // バリデーション実行
