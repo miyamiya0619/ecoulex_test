@@ -246,8 +246,8 @@ class AdminCompanyInfoService
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
             ->where('companies.user_type', 1)
             ->whereNull('companies.send_flg') // send_flg が NULL のレコードを取得
+            ->orderBy('companies.updated_at', 'desc')
             ->orderBy('companies.company_id' , 'desc')
-            ->orderby('cd.updated_at', 'desc')
             ->paginate(10);
 
         return $companies;

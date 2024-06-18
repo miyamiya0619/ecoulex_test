@@ -18,6 +18,7 @@ class AdminWaterProofInfoService
             ->select('cd.company_id','cp.company_name', 'wp.updated_at')
             ->where('cp.user_type', 1)
             ->orderBy('wp.updated_at' , 'desc')
+            ->orderBy('wp.company_id' , 'desc')
             ->paginate(10);
 
         return $waterproofs;
@@ -180,7 +181,8 @@ class AdminWaterProofInfoService
             ->leftJoin('companies as cp', 'cp.company_id', '=', 'cd.company_id')
             ->select('cp.company_id','cp.company_name', 'wp.updated_at')
             ->where('cp.company_name', 'like',"%$search_freeword%")
-            ->orderBy('cp.company_id' , 'desc')
+            ->orderBy('wp.updated_at' , 'desc')
+            ->orderBy('wp.company_id' , 'desc')
             ->paginate(10);
 
         return $waterproofs;

@@ -40,6 +40,7 @@ class AdminCompanyDetailInfoService
             ->leftJoin('prefectures_cats as pc', 'pc.prefecuture_id', '=', 'cp.prefecuture_id')
             ->where('companies.user_type', 1)
             ->orderby('cd.updated_at', 'desc')
+            ->orderby('cd.company_id', 'desc')
             ->paginate(10);
         return $companies;
     }
@@ -197,6 +198,7 @@ class AdminCompanyDetailInfoService
             ->where('companies.user_type', 1)
             ->where('companies.company_name', 'like',"%$search_freeword%")
             ->orderby('cd.updated_at', 'desc')
+            ->orderby('cd.company_id', 'desc')
             ->paginate(10);
         return $companies;
     }
