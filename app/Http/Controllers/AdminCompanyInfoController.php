@@ -65,14 +65,14 @@ class AdminCompanyInfoController extends Controller
                     
                     $company->updated_at = now();
                     
-                    // // メール送信
-                    // Mail::to($company)->send(new sendMail($newPassword));
-                    // if(!empty($company->email2)){
-                    //     Mail::to($company->email2)->send(new sendMail($newPassword2));
-                    // }
-                    // if(!empty($company->email3)){
-                    //     Mail::to($company->email3)->send(new sendMail($newPassword3));
-                    // }
+                    // メール送信
+                    Mail::to($company)->send(new sendMail($newPassword));
+                    if(!empty($company->email2)){
+                        Mail::to($company->email2)->send(new sendMail($newPassword2));
+                    }
+                    if(!empty($company->email3)){
+                        Mail::to($company->email3)->send(new sendMail($newPassword3));
+                    }
 
                     $company->send_flg = 1;
                     $company->save();
