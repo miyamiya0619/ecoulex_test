@@ -137,3 +137,11 @@ function highlightCurrentPageLink() {
         }
     });
 }
+
+addRequiredTextToCheckboxGroup();
+function addRequiredTextToCheckboxGroup() {
+    // チェックボックスグループのコンテナに「必須」を追加
+    if ($(".checkbox input[type='checkbox'][required]").length) {
+        $(".checkbox").append('<div class="required-asterisk_long">* 少なくとも一つ選択必須</div>');
+    }
+}

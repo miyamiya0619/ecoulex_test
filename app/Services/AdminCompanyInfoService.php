@@ -29,6 +29,7 @@ class AdminCompanyInfoService
             'companies.email',
             'companies.email2',
             'companies.email3',
+            'companies.send_flg',
             'companies.updated_at',
         )
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
@@ -225,10 +226,34 @@ class AdminCompanyInfoService
             ->where('companies.user_type', 1)
             ->where('company_name', 'like',"%$search_freeword%")
             ->orderBy('companies.company_id' , 'desc')
+            ->orderby('cd.updated_at', 'desc')
             ->paginate(10);
 
         return $companies;
     }
+
+    public function fetchCompanyDetailNotsendData()
+    {
+        // 会社情報の取得
+        $companies = Company::select(
+            'companies.company_id',
+            'companies.company_name',
+            'companies.company_name_kana',
+            'companies.email',
+            'companies.send_flg',
+            'companies.updated_at',
+        )
+            ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
+            ->where('companies.user_type', 1)
+            ->whereNull('companies.send_flg') // send_flg が NULL のレコードを取得
+            ->orderBy('companies.company_id' , 'desc')
+            ->orderby('cd.updated_at', 'desc')
+            ->paginate(10);
+
+        return $companies;
+    }
+
+    
 
     
 }

@@ -144,12 +144,16 @@ Route::get('/lp/mirai_project/kanri/dellistmailaddressdetail/complete', [AdminCo
 Route::post('/lp/mirai_project/kanri/dellistmailaddressdetail/complete', [AdminCompanyMailListController::class, 'deleteEditmailList'])->name('ecoulex.kanri.deleteEditlistmailaddressdetail');
 
 
+
 //会員企業管理
 //お問い合わせ管理（会員企業管理ページ）
 Route::get('/lp/mirai_project/kanri/adminCompanyInfo', [AdminCompanyInfoController::class, 'index'])->name('ecoulex.kanri.adminCompanyInfo');
 Route::post('/lp/mirai_project/kanri/adminCompanyInfo', [AdminCompanyInfoController::class, 'sendCompanyPassword'])->name('ecoulex.kanri.sendCompanyPassword');
 
 Route::post('/lp/mirai_project/kanri/companiesSearch', [AdminCompanyInfoController::class, 'companiesSearch'])->name('ecoulex.kanri.companiesSearch');
+
+//パスワード未送信企業検索
+Route::get('/lp/mirai_project/kanri/listNotsendPassword', [AdminCompanyInfoController::class, 'notsendSearch'])->name('ecoulex.kanri.listNotsendPassword');
 
 
 //会員企業登録

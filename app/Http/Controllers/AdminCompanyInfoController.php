@@ -125,4 +125,24 @@ class AdminCompanyInfoController extends Controller
     }
 
 
+    //パスワード未送信企業
+    public function notsendSearch(Request $request)
+    {
+        //ユーザIDから企業名を取得する
+        $user = Session::get('user');
+        $user_type = Session::get('user_type');
+
+        if ($user) {
+        //パラメータの受け取る
+        $resultData = $request->all();
+
+        //検索結果のレコードを取得する
+        $companies = $this->AdminCompanyInfoService->fetchCompanyDetailNotsendData();
+        return view('kanri.admin.admin_company_info_data', compact('user','companies'));
+    }
+        return view('kanri.registration.loginCompany');
+    }
+
+
+
 }

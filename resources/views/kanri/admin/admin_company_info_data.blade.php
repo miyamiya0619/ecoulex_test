@@ -22,7 +22,10 @@
                                     <button class="search-button">検索</button>
                                 </div>
                             </div>
-                            <div class="button__mail"><a href="{{route('ecoulex.kanri.listmailaddress')}}">会員担当メールアドレス一覧</a></div>
+                            <div class="button_list">
+                                <div class="button__mail"><a href="{{route('ecoulex.kanri.listmailaddress')}}">会員担当メールアドレス一覧</a></div>
+                                <div class="button__password"><a href="{{route('ecoulex.kanri.listNotsendPassword')}}">パスワード未送信企業検索</a></div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -50,6 +53,14 @@
                                     <div class="info-mail ">登録メールアドレス2：{{$company -> email2}}</div>
                                     <div class="info-mail ">登録メールアドレス3：{{$company -> email3}}</div>
                                     <div class="info-update ">更新日時：{{$company -> updated_at}}</div>
+                                    <div class="info-update">
+                                        初回パスワード：
+                                        @if($company->send_flg == 1)
+                                            送信済
+                                        @else
+                                            未送信
+                                        @endif
+                                    </div>
                                 </div>
                                 </div>
                                 <!-- 削除 -->
@@ -70,7 +81,7 @@
             <!-- ページネーション -->
 
         </div>
-        @if (empty($search_freeword) )
+        @if (empty($search_freeword))
         <div class="pagination contents">
                 <!-- Previous Button -->
                 @if ($companies->currentPage() == 1)

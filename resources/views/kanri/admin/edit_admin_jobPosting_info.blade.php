@@ -42,9 +42,9 @@
                                 @endphp
                                 @foreach($JobofferdetailCatAll as $JobofferdetailCat)
                                 @if(in_array($JobofferdetailCat -> jobcat_id, $jobcatIds))
-                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}" checked> {{$JobofferdetailCat -> catName}}</div>
+                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}" required checked> {{$JobofferdetailCat -> catName}}</div>
                                     @else
-                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}"> {{$JobofferdetailCat -> catName}}</div>
+                                    <div><input type="checkbox" name="JobofferdetailCat[]" value="{{$JobofferdetailCat -> jobcat_id}}"required> {{$JobofferdetailCat -> catName}}</div>
                                     @endif
                                 @endforeach
                                 </div>
