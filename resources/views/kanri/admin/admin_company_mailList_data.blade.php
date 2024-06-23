@@ -21,6 +21,9 @@
                                 <button class="search-button">検索</button>
                             </div>
                         </div>
+                        <div class="button_list">
+                            <div class="button__password"><a href="{{route('ecoulex.kanri.listNotsendPassword')}}">パスワード未送信企業検索</a></div>
+                        </div>
                     </div>
                     
                     @csrf <!-- CSRFトークンを含める -->

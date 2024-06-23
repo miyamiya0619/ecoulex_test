@@ -90,3 +90,7 @@ body {
     font-weight: bold;
 }
 
+
+.button__password{
+    text-align: right;
+}
