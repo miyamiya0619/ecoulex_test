@@ -94,7 +94,10 @@ class AdminCompanyMailListController extends Controller
 
         //検索結果のレコードを取得する
         $query = Company::query();
-        $query->where('company_name', 'LIKE', '%' . $search_freeword . '%');
+        $query->where('company_name', 'LIKE', '%' . $search_freeword . '%')
+              ->orWhere('email', 'LIKE', '%' . $search_freeword . '%')
+              ->orWhere('email2', 'LIKE', '%' . $search_freeword . '%')
+              ->orWhere('email3', 'LIKE', '%' . $search_freeword . '%');
         $companies = $query->paginate(10);
 
         foreach ($companies as $company) {
