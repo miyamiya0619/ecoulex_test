@@ -34,7 +34,7 @@ class AdminCompanyInfoService
         )
             ->leftJoin('companiesdetails as cd', 'cd.company_id', '=', 'companies.company_id')
             ->where('companies.user_type', 1)
-            ->orderBy('companies.updated_at' , 'desc')
+            ->orderBy('companies.created_at' , 'desc')
             ->orderBy('companies.company_id' , 'desc')
             ->paginate(10);
 
