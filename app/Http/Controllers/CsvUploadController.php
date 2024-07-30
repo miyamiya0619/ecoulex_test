@@ -110,6 +110,44 @@ public function importCompaniesCsv(Request $request)
     $existingEmails3 = DB::table('companies')->pluck('email3')->toArray();
 
     $allDuplicateEmails = [];
+    $csvDataArray = [];
+
+    // CSV全体を読み込む
+    while (($csvData = fgetcsv($fp)) !== FALSE) {
+        $csvDataArray[] = $csvData;
+    }
+
+    // CSV内のメールアドレス重複チェック
+    $emailList = [];
+    foreach ($csvDataArray as $csvData) {
+        $email = $csvData[2];
+        $email2 = $csvData[3];
+        $email3 = $csvData[4];
+
+        if (!empty($email)) {
+            $emailList[] = $email;
+        }
+        if (!empty($email2)) {
+            $emailList[] = $email2;
+        }
+        if (!empty($email3)) {
+            $emailList[] = $email3;
+        }
+    }
+
+    $emailCount = array_count_values($emailList);
+    foreach ($emailCount as $email => $count) {
+        if ($count > 1) {
+            $allDuplicateEmails[] = $email;
+            $status = "ファイルの中に重複するメールアドレスが存在しています";
+            return view('kanri.admin.show_csv_upload', compact('user', 'status'));
+        }
+    }
+
+    // ファイルを再度開く（再度読み込み用）
+    fclose($fp);
+    $fp = fopen($path, 'r');
+    fgetcsv($fp); // ヘッダー行をスキップ
 
     // トランザクション開始
     DB::beginTransaction();
@@ -122,13 +160,13 @@ public function importCompaniesCsv(Request $request)
 
             $currentErrors = [];
             // メールアドレスの重複チェック
-            if (!empty($email) && in_array($email, $existingEmails)) {
+            if (!empty($email) && (in_array($email, $existingEmails) || in_array($email, $existingEmails2) || in_array($email, $existingEmails3))) {
                 $currentErrors[] = $email;
             }
-            if (!empty($email2) && in_array($email2, $existingEmails2)) {
+            if (!empty($email2) && (in_array($email, $existingEmails) || in_array($email, $existingEmails2) || in_array($email, $existingEmails3))) {
                 $currentErrors[] = $email2;
             }
-            if (!empty($email3) && in_array($email3, $existingEmails3)) {
+            if (!empty($email3) && (in_array($email, $existingEmails) || in_array($email, $existingEmails2) || in_array($email, $existingEmails3))) {
                 $currentErrors[] = $email3;
             }
 
@@ -190,14 +228,14 @@ public function importCompaniesCsv(Request $request)
             $status = "企業情報用ファイルを選択してください";
             return view('kanri.admin.show_csv_upload', compact('user','status'));
         }
-        
 
         // リクエストからファイルを取得
         $path = $file->getRealPath();
         $fp = fopen($path, 'r');
         fgetcsv($fp);
+
         //企業情報、都道府県関連CSV登録の場合1
-        $result = $this->processCsv($fp,1);
+        $result = $this->processCsv($fp,1,$path);
 
         if ($result['status'] === 'error') {
             return view('kanri.admin.show_csv_upload', compact('user'))->with('status', $result['message']);
@@ -236,7 +274,7 @@ public function importCompaniesCsv(Request $request)
         $fp = fopen($path, 'r');
         fgetcsv($fp);
 
-        $result = $this->processCsv($fp,2);
+        $result = $this->processCsv($fp,2,$path);
 
         if ($result['status'] === 'error') {
             return view('kanri.admin.show_csv_upload', compact('user'))->with('status', $result['message']);
@@ -275,7 +313,7 @@ public function importCompaniesCsv(Request $request)
         $fp = fopen($path, 'r');
         fgetcsv($fp);
 
-        $result = $this->processCsv($fp,3);
+        $result = $this->processCsv($fp,3,$path);
 
         if ($result['status'] === 'error') {
             return view('kanri.admin.show_csv_upload', compact('user'))->with('status', $result['message']);
@@ -285,7 +323,39 @@ public function importCompaniesCsv(Request $request)
     }
 
     //CSVチェック更新処理
-    public function processCsv($fp, $g_id){
+    public function processCsv($fp, $g_id,$path){
+
+    //ファイルの中身のチェック（重複しているメールアドレスがある場合、エラーとする）
+    $csvDataArray = [];
+
+    // CSV全体を読み込む
+    while (($csvData = fgetcsv($fp)) !== FALSE) {
+        $csvDataArray[] = $csvData;
+    }
+
+    // CSV内のメールアドレス重複チェック
+    $emailList = [];
+    foreach ($csvDataArray as $csvData) {
+        $email = $csvData[1];
+        if (!empty($email)) {
+            $emailList[] = $email;
+        }
+    }
+
+    $emailCount = array_count_values($emailList);
+    foreach ($emailCount as $email => $count) {
+        if ($count > 1) {
+            $allDuplicateEmails[] = $email;
+            $status = "ファイルの中に重複するメールアドレスが存在しています";
+            return ['status' => 'error', 'message' => $status];
+        }
+    }
+    
+    // ファイルを再度開く（再度読み込み用）
+    fclose($fp);
+    $fp = fopen($path, 'r');
+    fgetcsv($fp); // ヘッダー行をスキップ
+
     // メールアドレス存在チェック(企業テーブルに存在する場合は取り込みエラーとする)
     DB::beginTransaction();
     try {
@@ -304,6 +374,7 @@ public function importCompaniesCsv(Request $request)
             }elseif($g_id == 2){
                 $existingCompanyId = Waterproof::where('company_id', $company_id)->first();
             }else{
+                
                 $existingCompanyId = Joboffer::where('company_id', $company_id)->first();
             }
             
@@ -319,6 +390,7 @@ public function importCompaniesCsv(Request $request)
             }elseif($g_id == 2){
                 $this->AdminCsvImportService->importWaterProofingCsv($csvData,$company_id);
             }else{
+                
                 $this->AdminCsvImportService->InsertJoboffersCsvData($csvData,$company_id);
             }
         }

@@ -97,6 +97,8 @@ class AdminCsvImportService
         $joboffers->updated_at = now();
         $joboffers->save();
 
+
+
         // csvファイル情報をインサートする
         $jobofferPrefecture = new JobofferPrefecture;
         $jobofferPrefecture->job_id =  $company_id;
@@ -105,30 +107,32 @@ class AdminCsvImportService
         $jobofferPrefecture->updated_at = now();
         $jobofferPrefecture->save();
 
-
-        
-        //求人カテゴリが複数の場合
-        if (strpos($csvData[2], "・") !== false) {
-            $jobcat_ids = explode("・", $csvData[2]);
-            foreach($jobcat_ids as $jobcat_id){
+        //求人カテゴリが空の場合は
+        if(!empty($csvData[2])){
+            //求人カテゴリが複数の場合
+            if (strpos($csvData[2], "・") !== false) {
+                $jobcat_ids = explode("・", $csvData[2]);
+                foreach($jobcat_ids as $jobcat_id){
+                    // csvファイル情報をインサートする
+                    $joboffersJobofferdetail = new JoboffersJobofferdetail;
+                    $joboffersJobofferdetail->jobcat_id =  $jobcat_id;
+                    $joboffersJobofferdetail->joboffer_id = $company_id;
+                    $joboffersJobofferdetail->created_at = now();
+                    $joboffersJobofferdetail->updated_at = now();
+                    $joboffersJobofferdetail->save();
+                }
+            //求人カテゴリが単数の場合
+            }else{
                 // csvファイル情報をインサートする
                 $joboffersJobofferdetail = new JoboffersJobofferdetail;
-                $joboffersJobofferdetail->jobcat_id =  $jobcat_id;
+                $joboffersJobofferdetail->jobcat_id =  $csvData[2];
                 $joboffersJobofferdetail->joboffer_id = $company_id;
                 $joboffersJobofferdetail->created_at = now();
                 $joboffersJobofferdetail->updated_at = now();
                 $joboffersJobofferdetail->save();
             }
-        //求人カテゴリが単数の場合
-        }else{
-            // csvファイル情報をインサートする
-            $joboffersJobofferdetail = new JoboffersJobofferdetail;
-            $joboffersJobofferdetail->jobcat_id =  $csvData[2];
-            $joboffersJobofferdetail->joboffer_id = $company_id;
-            $joboffersJobofferdetail->created_at = now();
-            $joboffersJobofferdetail->updated_at = now();
-            $joboffersJobofferdetail->save();
-        }
+        }        
+
 
     }
 
